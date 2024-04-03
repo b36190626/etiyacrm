@@ -38,7 +38,7 @@ public class IndividualCustomer {
     private String fatherName;
 
     @Column(name = "nationality_identity_card", unique = true)
-    private String nationalityIdentityCard;
+    private String nationalityIdentity;
 
     @Column(name = "birth_date")
     private LocalDate birthDate;

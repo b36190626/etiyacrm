@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "customers")
 @Data
@@ -22,5 +24,8 @@ public class Customer extends BaseEntity {
 
     @OneToOne(mappedBy = "customer")
     private IndividualCustomer individualCustomer;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Address> addresses;
 
 }

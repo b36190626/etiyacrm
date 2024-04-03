@@ -24,6 +24,8 @@ public class CreateIndividualCustomerRequest {
     @Size(min = 2, max = 30)
     private String lastName;
 
+    private String email;
+
     @NotNull
     private LocalDate birthDate;
 

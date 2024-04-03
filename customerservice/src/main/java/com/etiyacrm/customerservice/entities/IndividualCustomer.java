@@ -42,7 +42,7 @@ public class IndividualCustomer{
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne
-    @JoinColumn(name = "customer_id")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 }

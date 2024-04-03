@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
@@ -30,10 +31,18 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
         individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(createIndividualCustomerRequest.getNationalityIdentity());
-        IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);
+
+        Customer customer = new Customer();
+        customer.setEmail(createIndividualCustomerRequest.getEmail());
+
+        IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE
+                .individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);
+        individualCustomer.setCustomer(customer);
+
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
-        CreatedIndividualCustomerResponse createdIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
+        CreatedIndividualCustomerResponse createdIndividualCustomerResponse =
+                IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
 
         return createdIndividualCustomerResponse;
     }

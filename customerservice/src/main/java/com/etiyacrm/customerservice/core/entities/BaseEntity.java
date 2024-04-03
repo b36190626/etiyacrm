@@ -1,9 +1,6 @@
 package com.etiyacrm.customerservice.core.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,8 +30,13 @@ public class BaseEntity {
         createdDate = LocalDateTime.now();
     }
 
-//    @PreUpdate
-//    protected void onUpdate(){
-//        updatedDate = LocalDateTime.now();
-//    }
+    @PreUpdate
+    protected void onUpdate(){
+        updatedDate = LocalDateTime.now();
+    }
+
+    @PreRemove
+    protected void onDelete(){
+        deletedDate =LocalDateTime.now();
+    }
 }

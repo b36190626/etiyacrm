@@ -36,5 +36,5 @@ public class CreateIndividualCustomerRequest {
 
     @NotEmpty(message = "Nationality ID cannot be empty")
     @Pattern(regexp = "\\d{11}")
-    private String nationalityIdentityCard;
+    private String nationalityIdentity;
 }

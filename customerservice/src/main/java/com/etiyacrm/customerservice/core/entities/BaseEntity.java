@@ -22,7 +22,7 @@ public class BaseEntity {
     private LocalDateTime createdDate;
 
     @Column(name = "updated_date")
-    private LocalDate updatedDate;
+    private LocalDateTime updatedDate;
 
     @Column(name = "deleted_date")
     private LocalDateTime deletedDate;
@@ -33,8 +33,8 @@ public class BaseEntity {
         createdDate = LocalDateTime.now();
     }
 
-    @PreUpdate
-    protected void onUpdate(){
-        updatedDate = LocalDate.now();
-    }
+//    @PreUpdate
+//    protected void onUpdate(){
+//        updatedDate = LocalDateTime.now();
+//    }
 }

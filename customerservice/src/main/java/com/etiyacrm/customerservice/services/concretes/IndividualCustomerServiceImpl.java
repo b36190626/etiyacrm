@@ -29,7 +29,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
-        individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(createIndividualCustomerRequest.getNationalityIdentityCard());
+        individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(createIndividualCustomerRequest.getNationalityIdentity());
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
@@ -48,7 +48,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
     @Override
     public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest, Long id) {
-        individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(updateIndividualCustomerRequest.getNationalityIdentityCard());
+        individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(updateIndividualCustomerRequest.getNationalityIdentity());
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromUpdateIndividualCustomerRequest(updateIndividualCustomerRequest);
         IndividualCustomer updatedIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 

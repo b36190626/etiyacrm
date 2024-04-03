@@ -8,6 +8,8 @@ import com.etiyacrm.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +23,15 @@ public class CityBusinessRules {
 
         if(city.isPresent()){
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityNameExists));
+        }
+    }
+
+    public void checkIfCityDeleted(LocalDateTime deletedDate){
+        List<City> cities = cityRepository.findByDeletedDate(deletedDate);
+        for (City city : cities){
+            if (city.getDeletedDate()!= null){
+                throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityDeleted));
+            }
         }
     }
 }

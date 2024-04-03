@@ -17,5 +17,5 @@ public class UpdatedIndividualCustomerResponse {
     private LocalDate birthDate;
     private String motherName;
     private String fatherName;
-    private String nationalityIdentityCard;
+    private String nationalityIdentity;
 }

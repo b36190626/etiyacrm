@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -35,11 +36,11 @@ public class IndividualCustomer{
     @Column(name = "father_name")
     private String fatherName;
 
-    @Column(name = "nationality_id")
-    private String nationalityId;
+    @Column(name = "nationality_identity")
+    private String nationalityIdentity;
 
     @Column(name = "birth_date")
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     @OneToOne
     @JoinColumn(name = "customer_id")

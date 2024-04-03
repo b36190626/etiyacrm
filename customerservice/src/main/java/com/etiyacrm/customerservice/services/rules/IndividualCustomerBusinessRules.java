@@ -13,9 +13,9 @@ import java.util.Optional;
 public class IndividualCustomerBusinessRules {
     private IndividualCustomerRepository individualCustomerRepository;
 
-    public void nationalityIdentityCannotBeDuplicated(String natioanlityIdentity){
+    public void nationalityIdentityCannotBeDuplicated(String nationalityIdentity){
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository
-                .findByNationalityIdIgnoreCase(natioanlityIdentity);
+                .findByNationalityIdentityIgnoreCase(nationalityIdentity);
         if (individualCustomer.isPresent()){
             throw new BusinessException("A customer is already exist with this Nationality ID");
         }

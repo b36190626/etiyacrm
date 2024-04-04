@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.controllers;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.cityRequests.CreateCityRequest;
@@ -29,7 +30,7 @@ public class CitiesController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<GetAllCityResponse> getAll(PageInfo pageInfo){
+    public PageInfoResponse<GetAllCityResponse> getAll(PageInfo pageInfo){
         return cityService.getAll(pageInfo);
     }
 

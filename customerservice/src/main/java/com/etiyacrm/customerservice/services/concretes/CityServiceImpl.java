@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.repositories.CityRepository;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
@@ -25,12 +26,13 @@ public class CityServiceImpl implements CityService {
     private CityRepository cityRepository;
     private CityBusinessRules cityBusinessRules;
     @Override
-    public List<GetAllCityResponse> getAll(PageInfo pageInfo) {
+    public PageInfoResponse<GetAllCityResponse> getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<City> response =  cityRepository.findAll(pageable);
-
-        return response.map(city -> CityMapper.INSTANCE.getAllCityResponseFromCity(city)).getContent();
-    }
+        Page<GetAllCityResponse> responsePage = response
+                .map(city -> CityMapper.INSTANCE.getAllCityResponseFromCity(city));
+        return new PageInfoResponse<>(responsePage);
+    }//GetAllCityResponse içinde totalPage totalElement getSize hasNext ve hasPrevious olacak
 
     @Override
     public GetCityResponse getById(long id) {

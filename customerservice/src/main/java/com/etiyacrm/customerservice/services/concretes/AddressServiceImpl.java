@@ -1,13 +1,17 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.entities.Address;
+import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.repositories.AddressRepository;
 import com.etiyacrm.customerservice.services.abstracts.AddressService;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.CreateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.UpdateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.addressResponses.*;
+import com.etiyacrm.customerservice.services.dtos.responses.cityresponses.GetAllCityResponse;
 import com.etiyacrm.customerservice.services.mappers.AddressMapper;
+import com.etiyacrm.customerservice.services.mappers.CityMapper;
 import com.etiyacrm.customerservice.services.rules.AddressBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,11 +29,12 @@ public class AddressServiceImpl implements AddressService {
     private AddressBusinessRules addressBusinessRules;
 
     @Override
-    public List<GetAllAddressResponse> getAll(PageInfo pageInfo) {
+    public PageInfoResponse<GetAllAddressResponse> getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<Address> response =  addressRepository.findAll(pageable);
-
-        return response.map(address -> AddressMapper.INSTANCE.getAllAddressResponse(address)).getContent();
+        Page<GetAllAddressResponse> responsePage = response
+                .map(address -> AddressMapper.INSTANCE.getAllAddressResponse(address));
+        return new PageInfoResponse<>(responsePage);
     }
 
     @Override

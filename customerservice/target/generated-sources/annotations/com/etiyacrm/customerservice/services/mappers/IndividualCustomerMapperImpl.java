@@ -4,13 +4,15 @@ import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.CreatedIndividualCustomerResponse;
+import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.DeletedIndividualCustomerResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.GetAllIndividualCustomerResponse;
+import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.GetIndividualCustomerResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.UpdatedIndividualCustomerResponse;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-03T18:47:17+0300",
+    date = "2024-04-04T10:38:28+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 19.0.2 (Amazon.com Inc.)"
 )
 public class IndividualCustomerMapperImpl implements IndividualCustomerMapper {
@@ -113,5 +115,27 @@ public class IndividualCustomerMapperImpl implements IndividualCustomerMapper {
         updatedIndividualCustomerResponse.setNationalityIdentity( individualCustomer.getNationalityIdentity() );
 
         return updatedIndividualCustomerResponse;
+    }
+
+    @Override
+    public GetIndividualCustomerResponse getIndividualCustomerResponseFromIndividualCustomer(IndividualCustomer individualCustomer) {
+        if ( individualCustomer == null ) {
+            return null;
+        }
+
+        GetIndividualCustomerResponse getIndividualCustomerResponse = new GetIndividualCustomerResponse();
+
+        return getIndividualCustomerResponse;
+    }
+
+    @Override
+    public DeletedIndividualCustomerResponse deletedIndividualCustomerResponseFromIndividualCustomer(IndividualCustomer individualCustomer) {
+        if ( individualCustomer == null ) {
+            return null;
+        }
+
+        DeletedIndividualCustomerResponse deletedIndividualCustomerResponse = new DeletedIndividualCustomerResponse();
+
+        return deletedIndividualCustomerResponse;
     }
 }

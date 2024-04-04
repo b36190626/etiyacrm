@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.controllers;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.services.abstracts.AddressService;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.CreateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.UpdateAddressRequest;
@@ -29,7 +30,7 @@ public class AddressesController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getAll")
-    public List<GetAllAddressResponse> getAll(PageInfo pageInfo){
+    public PageInfoResponse<GetAllAddressResponse> getAll(PageInfo pageInfo){
         return addressService.getAll(pageInfo);
     }
 

@@ -24,18 +24,21 @@ public class CitiesController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Add")
     public CreatedCityResponse add(@Valid @RequestBody CreateCityRequest createCityRequest){
         return cityService.add(createCityRequest);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "GetAll")
     public PageInfoResponse<GetAllCityResponse> getAll(PageInfo pageInfo){
         return cityService.getAll(pageInfo);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "GetById")
     public GetCityResponse getById(@PathVariable long id){
         return cityService.getById(id);
     }
@@ -49,6 +52,8 @@ public class CitiesController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Delete")
     public DeletedCityResponse delete(@PathVariable long id){
         return cityService.delete(id);
     }

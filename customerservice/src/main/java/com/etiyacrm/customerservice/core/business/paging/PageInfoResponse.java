@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class PageInfoResponse<T> {
-    private List<T> content;
+    private List<T> items;
     private int page;
     private int size;
     private long totalElements;
@@ -22,7 +22,7 @@ public class PageInfoResponse<T> {
     private boolean hasPrevious;
 
     public PageInfoResponse(Page<T> responsePage) {
-        this.setContent(responsePage.getContent());
+        this.setItems(responsePage.getContent());
         this.setPage(responsePage.getNumber());
         this.setSize(responsePage.getSize());
         this.setTotalPages(responsePage.getTotalPages());

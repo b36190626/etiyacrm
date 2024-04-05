@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/addresses")
+@RequestMapping("customerservice/api/v1/addresses")
 public class AddressesController {
     private AddressService addressService;
 

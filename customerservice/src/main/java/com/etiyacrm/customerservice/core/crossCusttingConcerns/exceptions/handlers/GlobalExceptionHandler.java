@@ -1,10 +1,8 @@
 package com.etiyacrm.customerservice.core.crossCusttingConcerns.exceptions.handlers;
 
 import com.etiyacrm.customerservice.core.crossCusttingConcerns.exceptions.details.BusinessProblemDetails;
-import com.etiyacrm.customerservice.core.crossCusttingConcerns.exceptions.details.ProblemDetails;
 import com.etiyacrm.customerservice.core.crossCusttingConcerns.exceptions.details.ValidationProblemDetails;
 import com.etiyacrm.customerservice.core.crossCusttingConcerns.exceptions.types.BusinessException;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

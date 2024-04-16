@@ -7,4 +7,4 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/b36190626/CrmConfiguration.git
+          uri: https://github.com/mustafatatlikatik/CrmConfiguration.git

@@ -1,6 +1,8 @@
 package com.etiyacrm.customerservice.repositories;
 
 import com.etiyacrm.customerservice.entities.City;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
@@ -12,4 +14,5 @@ public interface CityRepository extends JpaRepository<City, Long> {
     Optional<City> findByNameIgnoreCase(String name);
 
     List<City> findByDeletedDate(LocalDateTime deletedDate);
+
 }

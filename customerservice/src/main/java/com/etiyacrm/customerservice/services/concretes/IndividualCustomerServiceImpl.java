@@ -52,6 +52,8 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
     @Override
     public PageInfoResponse<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo) {
+
+
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<IndividualCustomer> response =  individualCustomerRepository.findAll(pageable);
         Page<GetAllIndividualCustomerResponse> responsePage = response
@@ -63,6 +65,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest, Long id) {
         individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(updateIndividualCustomerRequest.getNationalityIdentity());
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromUpdateIndividualCustomerRequest(updateIndividualCustomerRequest);
+        individualCustomer.setId(id);
         IndividualCustomer updatedIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.updatedIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
@@ -73,7 +76,6 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public GetIndividualCustomerResponse getById(long id) {
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
-        individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(individualCustomer.getNationalityIdentity());
         GetIndividualCustomerResponse response = IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
         return response;
     }

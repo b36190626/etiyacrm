@@ -12,7 +12,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-05T10:29:18+0300",
+    date = "2024-04-15T18:15:51+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 19.0.2 (Amazon.com Inc.)"
 )
 public class IndividualCustomerMapperImpl implements IndividualCustomerMapper {
@@ -125,6 +125,15 @@ public class IndividualCustomerMapperImpl implements IndividualCustomerMapper {
 
         GetIndividualCustomerResponse getIndividualCustomerResponse = new GetIndividualCustomerResponse();
 
+        getIndividualCustomerResponse.setFirstName( individualCustomer.getFirstName() );
+        getIndividualCustomerResponse.setMiddleName( individualCustomer.getMiddleName() );
+        getIndividualCustomerResponse.setLastName( individualCustomer.getLastName() );
+        getIndividualCustomerResponse.setGender( individualCustomer.getGender() );
+        getIndividualCustomerResponse.setBirthDate( individualCustomer.getBirthDate() );
+        getIndividualCustomerResponse.setMotherName( individualCustomer.getMotherName() );
+        getIndividualCustomerResponse.setFatherName( individualCustomer.getFatherName() );
+        getIndividualCustomerResponse.setNationalityIdentity( individualCustomer.getNationalityIdentity() );
+
         return getIndividualCustomerResponse;
     }
 
@@ -135,6 +144,9 @@ public class IndividualCustomerMapperImpl implements IndividualCustomerMapper {
         }
 
         DeletedIndividualCustomerResponse deletedIndividualCustomerResponse = new DeletedIndividualCustomerResponse();
+
+        deletedIndividualCustomerResponse.setId( individualCustomer.getId() );
+        deletedIndividualCustomerResponse.setDeletedDate( individualCustomer.getDeletedDate() );
 
         return deletedIndividualCustomerResponse;
     }

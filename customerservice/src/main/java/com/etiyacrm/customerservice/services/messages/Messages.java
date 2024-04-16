@@ -5,5 +5,7 @@ public class Messages {
         public static final String CityNameExists ="cityNameExists";
         public static final String CityDeleted="cityDeleted";
         public static final String AddressDeleted="addressDeleted";
+
+        public static final String IndividualCustomerDeleted="individualCustomerDeleted";
     }
 }

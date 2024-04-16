@@ -31,9 +31,10 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public PageInfoResponse<GetAllAddressResponse> getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<Address> response =  addressRepository.findAll(pageable);
+        Page<Address> response =  addressRepository.findByDeletedDateIsNull(pageable);
         Page<GetAllAddressResponse> responsePage = response
                 .map(address -> AddressMapper.INSTANCE.getAllAddressResponse(address));
+
         return new PageInfoResponse<>(responsePage);
     }
 
@@ -52,7 +53,8 @@ public class AddressServiceImpl implements AddressService {
         Address createdAddress = addressRepository.save(city);
 
         CreatedAddressResponse createdAddressResponse = AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
-
+        createdAddressResponse.setCityId(createAddressRequest.getCityId());
+        createdAddressResponse.setCustomerId(createAddressRequest.getCustomerId());
         return  createdAddressResponse;
     }
 
@@ -65,6 +67,8 @@ public class AddressServiceImpl implements AddressService {
         Address updatedAddress = addressRepository.save(address);
 
         UpdatedAddressResponse updatedAddressResponse = AddressMapper.INSTANCE.updatedAddressResponseFromAddress(updatedAddress);
+        updatedAddressResponse.setCityId(updateAddressRequest.getCityId());
+        updatedAddressResponse.setCustomerId(updateAddressRequest.getCustomerId());
         return updatedAddressResponse;
     }
 

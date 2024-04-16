@@ -17,10 +17,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 @Service
 @AllArgsConstructor
 public class CityServiceImpl implements CityService {
@@ -29,8 +25,7 @@ public class CityServiceImpl implements CityService {
     @Override
     public PageInfoResponse<GetAllCityResponse> getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<City> response =  cityRepository.findAll(pageable);
-        List<City> deletedCity = cityRepository.findAll();
+        Page<City> response =  cityRepository.findByDeletedDateIsNull(pageable);
         Page<GetAllCityResponse> responsePage = response
                 .map(city -> CityMapper.INSTANCE.getAllCityResponseFromCity(city));
         return new PageInfoResponse<>(responsePage);
@@ -70,6 +65,7 @@ public class CityServiceImpl implements CityService {
     @Override
     public DeletedCityResponse delete(long id) {
         City city = cityRepository.findById(id).get();
+        cityBusinessRules.checkIfCityDeleted(city.getDeletedDate());
         city.setId(id);
         city.setDeletedDate(LocalDateTime.now());
         City deletedCity = cityRepository.save(city);

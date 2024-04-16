@@ -1,6 +1,8 @@
 package com.etiyacrm.customerservice.services.mappers;
 
 import com.etiyacrm.customerservice.entities.Address;
+import com.etiyacrm.customerservice.entities.City;
+import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.CreateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.UpdateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.addressResponses.CreatedAddressResponse;
@@ -12,7 +14,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-15T18:15:51+0300",
+    date = "2024-04-16T17:29:06+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 19.0.2 (Amazon.com Inc.)"
 )
 public class AddressMapperImpl implements AddressMapper {
@@ -25,6 +27,8 @@ public class AddressMapperImpl implements AddressMapper {
 
         GetAllAddressResponse getAllAddressResponse = new GetAllAddressResponse();
 
+        getAllAddressResponse.setCityId( addressCityId( address ) );
+        getAllAddressResponse.setCustomerId( addressCustomerId( address ) );
         getAllAddressResponse.setId( address.getId() );
         getAllAddressResponse.setDescription( address.getDescription() );
 
@@ -111,5 +115,29 @@ public class AddressMapperImpl implements AddressMapper {
         getAddressResponse.setDescription( address.getDescription() );
 
         return getAddressResponse;
+    }
+
+    private long addressCityId(Address address) {
+        if ( address == null ) {
+            return 0L;
+        }
+        City city = address.getCity();
+        if ( city == null ) {
+            return 0L;
+        }
+        long id = city.getId();
+        return id;
+    }
+
+    private long addressCustomerId(Address address) {
+        if ( address == null ) {
+            return 0L;
+        }
+        Customer customer = address.getCustomer();
+        if ( customer == null ) {
+            return 0L;
+        }
+        long id = customer.getId();
+        return id;
     }
 }

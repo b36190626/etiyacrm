@@ -21,7 +21,7 @@ public class IndividualCustomerBusinessRules {
 
     public void nationalityIdentityCannotBeDuplicated(String nationalityIdentity){
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository
-                .findByNationalityIdentityIgnoreCase(nationalityIdentity);
+                .findByNationalityIdentity(nationalityIdentity);
         if (individualCustomer.isPresent()){
             throw new BusinessException("A customer is already exist with this Nationality ID");
         }

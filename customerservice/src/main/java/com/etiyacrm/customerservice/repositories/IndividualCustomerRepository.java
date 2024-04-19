@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface IndividualCustomerRepository extends JpaRepository<IndividualCustomer,Long> {
 
-    Optional<IndividualCustomer> findByNationalityIdentityIgnoreCase(String nationalityIdentity);
+    Optional<IndividualCustomer> findByNationalityIdentity(String nationalityIdentity);
     List<IndividualCustomer> findByDeletedDate(LocalDateTime deletedDate);
     Page<IndividualCustomer> findByDeletedDateIsNull(Pageable pageable);
 }

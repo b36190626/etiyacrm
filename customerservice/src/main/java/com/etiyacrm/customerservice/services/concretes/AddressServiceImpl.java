@@ -34,7 +34,6 @@ public class AddressServiceImpl implements AddressService {
         Page<Address> response =  addressRepository.findByDeletedDateIsNull(pageable);
         Page<GetAllAddressResponse> responsePage = response
                 .map(address -> AddressMapper.INSTANCE.getAllAddressResponse(address));
-
         return new PageInfoResponse<>(responsePage);
     }
 

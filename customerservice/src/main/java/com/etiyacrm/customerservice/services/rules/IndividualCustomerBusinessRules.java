@@ -23,7 +23,7 @@ public class IndividualCustomerBusinessRules {
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository
                 .findByNationalityIdentity(nationalityIdentity);
         if (individualCustomer.isPresent()){
-            throw new BusinessException("A customer is already exist with this Nationality ID");
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.NationalityIdentityExists));
         }
     }
 
@@ -33,6 +33,13 @@ public class IndividualCustomerBusinessRules {
             if (individualCustomer.getDeletedDate()!= null){
                 throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerDeleted));
             }
+        }
+    }
+
+    public void checkIfIndividualCustomer(long id){
+        Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findById(id);
+        if (individualCustomer.isEmpty()) {
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerIdNotExists));
         }
     }
 

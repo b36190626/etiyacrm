@@ -12,7 +12,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-16T17:01:05+0300",
+    date = "2024-04-24T13:28:16+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 19.0.2 (Amazon.com Inc.)"
 )
 public class IndividualCustomerMapperImpl implements IndividualCustomerMapper {
@@ -25,6 +25,7 @@ public class IndividualCustomerMapperImpl implements IndividualCustomerMapper {
 
         GetAllIndividualCustomerResponse getAllIndividualCustomerResponse = new GetAllIndividualCustomerResponse();
 
+        getAllIndividualCustomerResponse.setId( individualCustomer.getId() );
         getAllIndividualCustomerResponse.setFirstName( individualCustomer.getFirstName() );
         getAllIndividualCustomerResponse.setMiddleName( individualCustomer.getMiddleName() );
         getAllIndividualCustomerResponse.setLastName( individualCustomer.getLastName() );
@@ -65,6 +66,7 @@ public class IndividualCustomerMapperImpl implements IndividualCustomerMapper {
 
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse = new CreatedIndividualCustomerResponse();
 
+        createdIndividualCustomerResponse.setId( individualCustomer.getId() );
         createdIndividualCustomerResponse.setFirstName( individualCustomer.getFirstName() );
         createdIndividualCustomerResponse.setMiddleName( individualCustomer.getMiddleName() );
         createdIndividualCustomerResponse.setLastName( individualCustomer.getLastName() );
@@ -105,6 +107,7 @@ public class IndividualCustomerMapperImpl implements IndividualCustomerMapper {
 
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse = new UpdatedIndividualCustomerResponse();
 
+        updatedIndividualCustomerResponse.setId( individualCustomer.getId() );
         updatedIndividualCustomerResponse.setFirstName( individualCustomer.getFirstName() );
         updatedIndividualCustomerResponse.setMiddleName( individualCustomer.getMiddleName() );
         updatedIndividualCustomerResponse.setLastName( individualCustomer.getLastName() );
@@ -125,6 +128,7 @@ public class IndividualCustomerMapperImpl implements IndividualCustomerMapper {
 
         GetIndividualCustomerResponse getIndividualCustomerResponse = new GetIndividualCustomerResponse();
 
+        getIndividualCustomerResponse.setId( individualCustomer.getId() );
         getIndividualCustomerResponse.setFirstName( individualCustomer.getFirstName() );
         getIndividualCustomerResponse.setMiddleName( individualCustomer.getMiddleName() );
         getIndividualCustomerResponse.setLastName( individualCustomer.getLastName() );

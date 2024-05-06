@@ -28,9 +28,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
         individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(createIndividualCustomerRequest.getNationalityIdentity());
-
         Customer customer = new Customer();
-        customer.setEmail(createIndividualCustomerRequest.getEmail());
 
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE
                 .individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);

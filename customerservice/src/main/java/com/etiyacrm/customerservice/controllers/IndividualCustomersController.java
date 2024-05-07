@@ -23,6 +23,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin()
 @RequestMapping("customerservice/api/v1/individualcustomers")
 public class IndividualCustomersController {
     private IndividualCustomerService individualCustomerService;
@@ -43,6 +44,7 @@ public class IndividualCustomersController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+
     @Operation(summary = "GetAll")
     public PageInfoResponse<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo){
         return individualCustomerService.getAll(pageInfo);

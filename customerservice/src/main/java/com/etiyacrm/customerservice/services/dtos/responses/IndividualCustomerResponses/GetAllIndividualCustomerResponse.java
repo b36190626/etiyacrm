@@ -14,7 +14,6 @@ public class GetAllIndividualCustomerResponse {
     private String firstName;
     private String middleName;
     private String lastName;
-    private String email;
     private String gender;
     private LocalDate birthDate;
     private String motherName;

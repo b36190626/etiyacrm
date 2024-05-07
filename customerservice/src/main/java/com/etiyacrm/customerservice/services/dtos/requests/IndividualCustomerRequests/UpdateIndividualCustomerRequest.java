@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -25,8 +24,6 @@ public class UpdateIndividualCustomerRequest {
     @NotEmpty(message = "Last name cannot be empty")
     @Size(min = 2, max = 30)
     private String lastName;
-
-    private String email;
 
     @NotNull
     private LocalDate birthDate;

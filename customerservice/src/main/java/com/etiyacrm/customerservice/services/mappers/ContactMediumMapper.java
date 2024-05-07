@@ -7,8 +7,10 @@ import com.etiyacrm.customerservice.services.dtos.responses.contactMediumRespons
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.DeletedContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.GetContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.UpdatedContactMediumResponse;
+import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+@Mapper
 public interface ContactMediumMapper {
     ContactMediumMapper INSTANCE = Mappers.getMapper(ContactMediumMapper.class);
 

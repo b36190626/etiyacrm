@@ -16,4 +16,6 @@ public class CreatedContactMediumResponse {
     private String homePhone;
 
     private String fax;
+
+    private long customerId;
 }

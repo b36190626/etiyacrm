@@ -2,6 +2,8 @@ package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.ContactMedium;
+import com.etiyacrm.customerservice.entities.Customer;
+import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.repositories.ContactMediumRepository;
 import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMediumRequests.CreateContactMediumRequest;
@@ -25,9 +27,10 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
 
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
+
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
         CreatedContactMediumResponse createdContactMediumResponse = ContactMediumMapper.INSTANCE.createdContactMediumResponseFromContactMedium(createdContactMedium);
-
+        createdContactMediumResponse.setCustomerId(createContactMediumRequest.getCustomerId());
         return createdContactMediumResponse;
     }
 

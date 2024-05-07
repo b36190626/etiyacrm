@@ -49,8 +49,8 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
 
-        Address city = AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
-        Address createdAddress = addressRepository.save(city);
+        Address address = AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
+        Address createdAddress = addressRepository.save(address);
 
         CreatedAddressResponse createdAddressResponse = AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
         createdAddressResponse.setCityId(createdAddressResponse.getCityId());

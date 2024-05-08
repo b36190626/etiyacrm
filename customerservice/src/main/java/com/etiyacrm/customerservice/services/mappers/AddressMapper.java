@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface AddressMapper {
     AddressMapper INSTANCE = Mappers.getMapper(AddressMapper.class);
@@ -15,6 +17,10 @@ public interface AddressMapper {
     @Mapping(source = "city.id", target = "cityId")
     @Mapping(source = "customer.id", target = "customerId")
     GetAllAddressResponse getAllAddressResponse(Address address);
+    @Mapping(source = "city.id", target = "cityId")
+    @Mapping(source = "customer.id", target = "customerId")
+    @Mapping(source = "city.name", target = "cityName")
+    GetAllAddressResponse getAllListAddressResponse(Address address);
 
     Address addressFromCreateAddressRequest(CreateAddressRequest createAddressRequest);
     CreatedAddressResponse createdAddressResponseFromAddress(Address address);

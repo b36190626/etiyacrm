@@ -15,4 +15,5 @@ public interface AddressService {
     CreatedAddressResponse add(CreateAddressRequest createAddressRequest);
     UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest, long id);
     DeletedAddressResponse delete(long id);
+    List<GetAllAddressResponse> getAllAddresses();
 }

@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -95,5 +96,15 @@ public class AddressServiceImpl implements AddressService {
         DeletedAddressResponse deletedAddressResponse = AddressMapper.INSTANCE.deletedAddressResponseFromAddress(deletedAddress);
         deletedAddressResponse.setDeletedDate(deletedAddress.getDeletedDate());
         return deletedAddressResponse;
+    }
+
+    @Override
+    public List<GetAllAddressResponse> getAllAddresses() {
+
+        List<Address> response =  addressRepository.findAll();
+        List<GetAllAddressResponse> responsePage = response.stream()
+                .map(address -> AddressMapper.INSTANCE.getAllListAddressResponse(address))
+                .collect(Collectors.toList());
+        return responsePage;
     }
 }

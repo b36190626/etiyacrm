@@ -14,7 +14,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-08T10:51:46+0300",
+    date = "2024-05-08T11:30:13+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 19.0.2 (Amazon.com Inc.)"
 )
 public class AddressMapperImpl implements AddressMapper {
@@ -29,6 +29,23 @@ public class AddressMapperImpl implements AddressMapper {
 
         getAllAddressResponse.setCityId( addressCityId( address ) );
         getAllAddressResponse.setCustomerId( addressCustomerId( address ) );
+        getAllAddressResponse.setId( address.getId() );
+        getAllAddressResponse.setDescription( address.getDescription() );
+
+        return getAllAddressResponse;
+    }
+
+    @Override
+    public GetAllAddressResponse getAllListAddressResponse(Address address) {
+        if ( address == null ) {
+            return null;
+        }
+
+        GetAllAddressResponse getAllAddressResponse = new GetAllAddressResponse();
+
+        getAllAddressResponse.setCityId( addressCityId( address ) );
+        getAllAddressResponse.setCustomerId( addressCustomerId( address ) );
+        getAllAddressResponse.setCityName( addressCityName( address ) );
         getAllAddressResponse.setId( address.getId() );
         getAllAddressResponse.setDescription( address.getDescription() );
 
@@ -139,5 +156,20 @@ public class AddressMapperImpl implements AddressMapper {
         }
         long id = customer.getId();
         return id;
+    }
+
+    private String addressCityName(Address address) {
+        if ( address == null ) {
+            return null;
+        }
+        City city = address.getCity();
+        if ( city == null ) {
+            return null;
+        }
+        String name = city.getName();
+        if ( name == null ) {
+            return null;
+        }
+        return name;
     }
 }

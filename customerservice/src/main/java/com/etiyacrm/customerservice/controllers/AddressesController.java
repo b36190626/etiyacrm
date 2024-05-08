@@ -27,13 +27,19 @@ public class AddressesController {
         return addressService.add(createAddressRequest);
     }
 
-    @GetMapping
+    @GetMapping("/paging")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getAll")
     public PageInfoResponse<GetAllAddressResponse> getAll(PageInfo pageInfo){
         return addressService.getAll(pageInfo);
     }
 
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "getAll")
+    public List<GetAllAddressResponse> getAllAddress(){
+        return addressService.getAllAddresses();
+    }
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")

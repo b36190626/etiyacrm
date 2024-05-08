@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class GetAllAddressResponse {
     private long id;
+    private String cityName;
     private String description;
     private long cityId;
     private long customerId;

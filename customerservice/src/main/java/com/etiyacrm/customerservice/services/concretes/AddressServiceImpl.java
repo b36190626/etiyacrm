@@ -4,8 +4,11 @@ import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.entities.Address;
 import com.etiyacrm.customerservice.entities.City;
+import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.repositories.AddressRepository;
 import com.etiyacrm.customerservice.services.abstracts.AddressService;
+import com.etiyacrm.customerservice.services.abstracts.CityService;
+import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.CreateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.UpdateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.addressResponses.*;
@@ -28,6 +31,7 @@ public class AddressServiceImpl implements AddressService {
     private AddressRepository addressRepository;
     private AddressBusinessRules addressBusinessRules;
 
+
     @Override
     public PageInfoResponse<GetAllAddressResponse> getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
@@ -45,16 +49,24 @@ public class AddressServiceImpl implements AddressService {
         GetAddressResponse response = AddressMapper.INSTANCE.getAddressResponseFromAddress(address);
         return response;
     }
-
+//AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
     @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
+        City city = new City();
+        city.setId(createAddressRequest.getCityId());
+        Customer customer = new Customer();
+        customer.setId(createAddressRequest.getCustomerId());
 
-        Address address = AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
+        Address address = new Address();
+        address.setDescription(createAddressRequest.getDescription());
+        address.setCreatedDate(LocalDateTime.now());
+        address.setCity(city);
+        address.setCustomer(customer);
         Address createdAddress = addressRepository.save(address);
 
         CreatedAddressResponse createdAddressResponse = AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
-        createdAddressResponse.setCityId(createdAddressResponse.getCityId());
-        createdAddressResponse.setCustomerId(createAddressRequest.getCustomerId());
+        createdAddressResponse.setCityId(city.getId());
+        createdAddressResponse.setCustomerId(customer.getId());
         return  createdAddressResponse;
     }
 

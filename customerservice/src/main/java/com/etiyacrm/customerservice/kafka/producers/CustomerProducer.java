@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class CustomerProducer {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerProducer.class);
-    private final KafkaTemplate<String,Object> kafkaTemplate;
+    private final KafkaTemplate<String,CustomerCreatedEvent> kafkaTemplate;
 
-    public CustomerProducer(KafkaTemplate<String,Object> kafkaTemplate){
+    public CustomerProducer(KafkaTemplate<String,CustomerCreatedEvent> kafkaTemplate){
         this.kafkaTemplate = kafkaTemplate;
     }
 

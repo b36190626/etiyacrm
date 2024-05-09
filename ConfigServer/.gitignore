@@ -31,3 +31,19 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# Java compiled files
+*.class
+
+# Maven build directories
+target/
+
+# Maven wrapper files
+.mvn/
+mvnw
+mvnw.cmd
+
+# Package files
+*.jar
+*.war

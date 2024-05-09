@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin()
 @RequestMapping("customerservice/api/v1/contact-mediums")
 public class ContactMediumController {
     private ContactMediumService contactMediumService;

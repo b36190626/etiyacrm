@@ -15,8 +15,19 @@ public class CreateAddressRequest {
     @NotEmpty
     @Size(min = 3,max = 50)
     private String description;
+
+    @NotNull
+    private String district;
+
+    @NotNull
+    private String street;
+
+    @NotNull
+    private int flatNumber;
+
     @NotNull
     private long cityId;
+
     @NotNull
     private long customerId;
 }

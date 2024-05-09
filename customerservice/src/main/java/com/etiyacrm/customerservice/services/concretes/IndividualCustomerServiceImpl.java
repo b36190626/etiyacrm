@@ -1,9 +1,11 @@
 package com.etiyacrm.customerservice.services.concretes;
 
+import com.etiya.common.events.customers.CustomerCreatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
+import com.etiyacrm.customerservice.kafka.producers.CustomerProducer;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
@@ -27,6 +29,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     private IndividualCustomerRepository individualCustomerRepository;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     private CustomerService customerService;
+    private CustomerProducer customerProducer;
 
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
@@ -40,9 +43,11 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
+
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse =
                 IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
-
+        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(createdIndividualCustomerResponse.getId(), createdIndividualCustomerResponse.getFirstName());
+        customerProducer.sendMessage(customerCreatedEvent);
         return createdIndividualCustomerResponse;
     }
     @Override

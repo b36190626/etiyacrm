@@ -60,14 +60,15 @@ public class AddressServiceImpl implements AddressService {
 
         Address address = new Address();
         address.setDescription(createAddressRequest.getDescription());
+        address.setDistrict(createAddressRequest.getDistrict());
+        address.setFlatNumber(createAddressRequest.getFlatNumber());
+        address.setStreet(createAddressRequest.getStreet());
         address.setCreatedDate(LocalDateTime.now());
         address.setCity(city);
         address.setCustomer(customer);
         Address createdAddress = addressRepository.save(address);
 
         CreatedAddressResponse createdAddressResponse = AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
-        createdAddressResponse.setCityId(city.getId());
-        createdAddressResponse.setCustomerId(customer.getId());
         return  createdAddressResponse;
     }
 

@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin()
 @RequestMapping("customerservice/api/v1/cities")
 public class CitiesController {
     private CityService cityService;

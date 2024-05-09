@@ -20,6 +20,15 @@ public class Address extends BaseEntity {
     @Column(name="description")
     private String description;
 
+    @Column(name = "district")
+    private String district;
+
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "flatNumber")
+    private int flatNumber;
+
     @ManyToOne()
     @JoinColumn(name = "city_id")
     private City city;

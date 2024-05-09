@@ -20,6 +20,8 @@ public interface AddressMapper {
     @Mapping(source = "city.id", target = "cityId")
     @Mapping(source = "customer.id", target = "customerId")
     @Mapping(source = "city.name", target = "cityName")
+//    @Mapping(source = "district.id", target = "districtId")
+//    @Mapping(source = "district.name", target = "districtName")
     GetAllAddressResponse getAllListAddressResponse(Address address);
 
     Address addressFromCreateAddressRequest(CreateAddressRequest createAddressRequest);

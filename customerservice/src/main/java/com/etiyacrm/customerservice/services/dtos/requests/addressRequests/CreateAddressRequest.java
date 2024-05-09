@@ -17,9 +17,6 @@ public class CreateAddressRequest {
     private String description;
 
     @NotNull
-    private String district;
-
-    @NotNull
     private String street;
 
     @NotNull
@@ -27,6 +24,9 @@ public class CreateAddressRequest {
 
     @NotNull
     private long cityId;
+
+    @NotNull
+    private long districtId;
 
     @NotNull
     private long customerId;

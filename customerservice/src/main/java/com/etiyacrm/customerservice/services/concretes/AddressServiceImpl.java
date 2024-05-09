@@ -5,6 +5,7 @@ import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.entities.Address;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.Customer;
+import com.etiyacrm.customerservice.entities.District;
 import com.etiyacrm.customerservice.repositories.AddressRepository;
 import com.etiyacrm.customerservice.services.abstracts.AddressService;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
@@ -53,18 +54,24 @@ public class AddressServiceImpl implements AddressService {
 //AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
     @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
+       // Address address = AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
+
         City city = new City();
         city.setId(createAddressRequest.getCityId());
+
+        District district = new District();
+        district.setId(createAddressRequest.getDistrictId());
+
         Customer customer = new Customer();
         customer.setId(createAddressRequest.getCustomerId());
 
         Address address = new Address();
         address.setDescription(createAddressRequest.getDescription());
-        address.setDistrict(createAddressRequest.getDistrict());
         address.setFlatNumber(createAddressRequest.getFlatNumber());
         address.setStreet(createAddressRequest.getStreet());
         address.setCreatedDate(LocalDateTime.now());
         address.setCity(city);
+        address.setDistrict(district);
         address.setCustomer(customer);
         Address createdAddress = addressRepository.save(address);
 

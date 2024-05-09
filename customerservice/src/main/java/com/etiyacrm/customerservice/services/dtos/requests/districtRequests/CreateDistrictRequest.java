@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.services.dtos.responses.addressResponses;
+package com.etiyacrm.customerservice.services.dtos.requests.districtRequests;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CreatedAddressResponse {
-    private long id;
-    private String description;
-    private String street;
-    private int flatNumber;
+public class CreateDistrictRequest {
+    @NotNull
+    @NotEmpty
+    @Size(min = 3,max = 20)
+    private String name;
+
+    @NotNull
     private long cityId;
-    private long districtId;
-    private long customerId;
 }

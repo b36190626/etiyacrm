@@ -1,19 +1,16 @@
 package com.etiyacrm.customerservice.entities;
 
-import com.etiyacrm.customerservice.core.entities.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
-@Table(name = "cities")
+@Table(name = "districts")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class City extends BaseEntity {
+public class District {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +19,7 @@ public class City extends BaseEntity {
     @Column(name="name")
     private String name;
 
-    @OneToMany(mappedBy = "city")
-    private List<District> districts;
-
-    @OneToMany(mappedBy = "city")
-    private List<Address> addresses;
+    @ManyToOne()
+    @JoinColumn(name = "city_id")
+    private City city;
 }

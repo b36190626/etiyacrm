@@ -81,6 +81,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     }
     @Override
     public GetIndividualCustomerResponse getById(long id) {
+        individualCustomerBusinessRules.checkIfIndividualCustomer(id);
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
         individualCustomerBusinessRules.checkIfIndividualCustomerDeleted(individualCustomer.getDeletedDate());
         GetIndividualCustomerResponse response = IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
@@ -89,6 +90,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
     @Override
     public DeletedIndividualCustomerResponse delete(long id) {
+        individualCustomerBusinessRules.checkIfIndividualCustomer(id);
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
         individualCustomerBusinessRules.checkIfIndividualCustomerDeleted(individualCustomer.getDeletedDate());
         individualCustomer.setId(id);

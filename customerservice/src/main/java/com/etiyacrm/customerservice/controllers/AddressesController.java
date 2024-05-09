@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping("customerservice/api/v1/addresses")
 public class AddressesController {
     private AddressService addressService;
-    //deneme
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add")
@@ -44,7 +43,7 @@ public class AddressesController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")
-    public GetAddressResponse getById(@PathVariable long id){
+    public GetAddressResponse getById(@PathVariable String id){
         return addressService.getById(id);
     }
 
@@ -52,14 +51,14 @@ public class AddressesController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update")
     public UpdatedAddressResponse update(@Valid @RequestBody UpdateAddressRequest updateAddressRequest,
-                                         @PathVariable long id){
+                                         @PathVariable String id){
         return addressService.update(updateAddressRequest, id);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete")
     @ResponseStatus(HttpStatus.OK)
-    public DeletedAddressResponse delete(@PathVariable long id){
+    public DeletedAddressResponse delete(@PathVariable String id){
         return addressService.delete(id);
     }
 

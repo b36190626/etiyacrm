@@ -32,7 +32,7 @@ public class CityServiceImpl implements CityService {
     }//GetAllCityResponse içinde totalPage totalElement getSize hasNext ve hasPrevious olacak
 
     @Override
-    public GetCityResponse getById(long id) {
+    public GetCityResponse getById(String id) {
         City city = cityRepository.findById(id).get();
         cityBusinessRules.checkIfCityDeleted(city.getDeletedDate());
         GetCityResponse response = CityMapper.INSTANCE.getCityResponseFromCity(city);
@@ -41,6 +41,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public CreatedCityResponse add(CreateCityRequest createCityRequest) {
+
         cityBusinessRules.cityNameCanNotBeDuplicatedWhenInserted(createCityRequest.getName());
         City city = CityMapper.INSTANCE.cityFromCreateCityRequest(createCityRequest);
         City createdCity = cityRepository.save(city);
@@ -51,7 +52,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public UpdatedCityResponse update(UpdateCityRequest updateCityRequest, long id) {
+    public UpdatedCityResponse update(UpdateCityRequest updateCityRequest, String id) {
         cityBusinessRules.cityNameCanNotBeDuplicatedWhenInserted(updateCityRequest.getName());
         City city = CityMapper.INSTANCE.cityFromUpdateCityRequest(updateCityRequest);
         city.setId(id);
@@ -63,7 +64,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public DeletedCityResponse delete(long id) {
+    public DeletedCityResponse delete(String id) {
         City city = cityRepository.findById(id).get();
         cityBusinessRules.checkIfCityDeleted(city.getDeletedDate());
         city.setId(id);

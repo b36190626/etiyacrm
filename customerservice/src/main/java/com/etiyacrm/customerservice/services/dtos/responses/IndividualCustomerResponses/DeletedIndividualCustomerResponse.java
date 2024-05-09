@@ -10,6 +10,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DeletedIndividualCustomerResponse {
-    long id;
-    LocalDateTime deletedDate;
+    private String id;
+    private LocalDateTime deletedDate;
 }

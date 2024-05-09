@@ -10,6 +10,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DeletedContactMediumResponse {
-    private long id;
+    private String id;
     private LocalDateTime deletedDate;
 }

@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ContactMedium extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     @Column(name = "e-mail")
     private String email;
 
@@ -29,7 +29,7 @@ public class ContactMedium extends BaseEntity {
     @Column(name = "fax")
     private String fax;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne()
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 }

@@ -23,7 +23,7 @@ public class DistrictServiceImpl implements DistrictService {
     private DistrictRepository districtRepository;
 
     @Override
-    public GetDistrictResponse getById(long id) {
+    public GetDistrictResponse getById(String id) {
         District district = districtRepository.findById(id).get();
         GetDistrictResponse response = DistrictMapper.INSTANCE.getDistrictResponseFromDistrict(district);
         return response;
@@ -45,7 +45,7 @@ public class DistrictServiceImpl implements DistrictService {
     }
 
     @Override
-    public UpdatedDistrictResponse update(UpdateDistrictRequest updateDistrictRequest, long id) {
+    public UpdatedDistrictResponse update(UpdateDistrictRequest updateDistrictRequest, String id) {
         //rule eklenecek
         City city = new City();
         city.setId(updateDistrictRequest.getCityId());
@@ -61,7 +61,7 @@ public class DistrictServiceImpl implements DistrictService {
     }
 
     @Override
-    public DeletedDistrictResponse delete(long id) {
+    public DeletedDistrictResponse delete(String id) {
         //rule eklenecek
 
         District district = districtRepository.findById(id).get();

@@ -40,7 +40,7 @@ public class CitiesController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "GetById")
-    public GetCityResponse getById(@PathVariable long id){
+    public GetCityResponse getById(@PathVariable String id){
         return cityService.getById(id);
     }
 
@@ -48,14 +48,14 @@ public class CitiesController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update")
     public UpdatedCityResponse update(@Valid @RequestBody UpdateCityRequest updateCityRequest,
-                                      @PathVariable long id){
+                                      @PathVariable String id){
         return cityService.update(updateCityRequest, id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete")
-    public DeletedCityResponse delete(@PathVariable long id){
+    public DeletedCityResponse delete(@PathVariable String id){
         return cityService.delete(id);
     }
 

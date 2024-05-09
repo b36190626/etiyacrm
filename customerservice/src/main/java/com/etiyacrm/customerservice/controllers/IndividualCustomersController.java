@@ -30,7 +30,7 @@ public class IndividualCustomersController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update")
     public UpdatedIndividualCustomerResponse update(@Valid @RequestBody UpdateIndividualCustomerRequest updateIndividualCustomerRequest,
-                                                    @PathVariable long id){
+                                                    @PathVariable String id){
         return individualCustomerService.update(updateIndividualCustomerRequest, id);
     }
 
@@ -44,14 +44,14 @@ public class IndividualCustomersController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GetIndividualCustomerResponse getById(@PathVariable long id){
+    public GetIndividualCustomerResponse getById(@PathVariable String id){
         return individualCustomerService.getById(id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete")
-    public DeletedIndividualCustomerResponse delete(@PathVariable long id){
+    public DeletedIndividualCustomerResponse delete(@PathVariable String id){
         return individualCustomerService.delete(id);
     }
 }

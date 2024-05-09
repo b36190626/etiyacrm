@@ -1,5 +1,6 @@
 package com.etiyacrm.customerservice.services.concretes;
 
+
 import com.etiya.common.events.customers.CustomerCreatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
@@ -35,7 +36,6 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
         individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(createIndividualCustomerRequest.getNationalityIdentity());
         Customer customer = new Customer();
-        customerService.add(customer);
 
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE
                 .individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);
@@ -60,7 +60,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     }
 
     @Override
-    public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest, Long id) {
+    public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest, String id) {
         individualCustomerBusinessRules.checkIfIndividualCustomer(id);
 
         Optional<IndividualCustomer> optionalIndividualCustomer = individualCustomerRepository.findById(id);
@@ -80,7 +80,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         return updatedIndividualCustomerResponse;
     }
     @Override
-    public GetIndividualCustomerResponse getById(long id) {
+    public GetIndividualCustomerResponse getById(String id) {
         individualCustomerBusinessRules.checkIfIndividualCustomer(id);
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
         individualCustomerBusinessRules.checkIfIndividualCustomerDeleted(individualCustomer.getDeletedDate());
@@ -89,7 +89,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     }
 
     @Override
-    public DeletedIndividualCustomerResponse delete(long id) {
+    public DeletedIndividualCustomerResponse delete(String id) {
         individualCustomerBusinessRules.checkIfIndividualCustomer(id);
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
         individualCustomerBusinessRules.checkIfIndividualCustomerDeleted(individualCustomer.getDeletedDate());

@@ -16,5 +16,5 @@ public class GetContactMediumResponse {
 
     private String fax;
 
-    private long customerId;
+    private String customerId;
 }

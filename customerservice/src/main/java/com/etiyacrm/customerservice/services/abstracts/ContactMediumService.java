@@ -10,7 +10,7 @@ import com.etiyacrm.customerservice.services.dtos.responses.contactMediumRespons
 
 public interface ContactMediumService {
     CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest);
-    UpdatedContactMediumResponse update(long id, UpdateContactMediumRequest updateContactMediumRequest);
-    GetContactMediumResponse getById(long id);
-    DeletedContactMediumResponse delete(long id);
+    UpdatedContactMediumResponse update(String id, UpdateContactMediumRequest updateContactMediumRequest);
+    GetContactMediumResponse getById(String id);
+    DeletedContactMediumResponse delete(String id);
 }

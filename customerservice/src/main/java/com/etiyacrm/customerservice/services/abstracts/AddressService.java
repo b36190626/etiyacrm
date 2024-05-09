@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface AddressService {
     PageInfoResponse<GetAllAddressResponse> getAll(PageInfo pageInfo);
-    GetAddressResponse getById(long id);
+    GetAddressResponse getById(String id);
     CreatedAddressResponse add(CreateAddressRequest createAddressRequest);
-    UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest, long id);
-    DeletedAddressResponse delete(long id);
+    UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest, String id);
+    DeletedAddressResponse delete(String id);
     List<GetAllAddressResponse> getAllAddresses();
 }

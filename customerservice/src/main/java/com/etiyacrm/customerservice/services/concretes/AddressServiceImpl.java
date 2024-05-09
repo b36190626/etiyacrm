@@ -45,7 +45,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public GetAddressResponse getById(long id) {
+    public GetAddressResponse getById(String id) {
         Address address = addressRepository.findById(id).get();
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
         GetAddressResponse response = AddressMapper.INSTANCE.getAddressResponseFromAddress(address);
@@ -83,7 +83,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest, long id) {
+    public UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest, String id) {
         Address address = AddressMapper.INSTANCE.addressFromUpdateAddressRequest(updateAddressRequest);
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
         address.setId(id);
@@ -97,7 +97,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public DeletedAddressResponse delete(long id) {
+    public DeletedAddressResponse delete(String id) {
         Address address = addressRepository.findById(id).get();
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
         address.setId(id);

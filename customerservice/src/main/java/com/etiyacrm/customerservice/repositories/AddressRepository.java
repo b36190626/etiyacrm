@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface AddressRepository extends JpaRepository<Address,Long> {
+public interface AddressRepository extends JpaRepository<Address,String> {
     List<Address> findByDeletedDate(LocalDateTime deletedDate);
     Page<Address> findByDeletedDateIsNull(Pageable pageable);
 }

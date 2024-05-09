@@ -30,7 +30,7 @@ public class ContactMediumController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")
-    public GetContactMediumResponse getById(@PathVariable long id){
+    public GetContactMediumResponse getById(@PathVariable String id){
         return contactMediumService.getById(id);
     }
 
@@ -38,13 +38,13 @@ public class ContactMediumController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update")
     public UpdatedContactMediumResponse update(@Valid @RequestBody UpdateContactMediumRequest updateContactMediumRequest,
-                                               @PathVariable long id){
+                                               @PathVariable String id){
         return contactMediumService.update(id, updateContactMediumRequest);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete")
-    public DeletedContactMediumResponse delete(@PathVariable long id){
+    public DeletedContactMediumResponse delete(@PathVariable String id){
         return contactMediumService.delete(id);
     }
 }

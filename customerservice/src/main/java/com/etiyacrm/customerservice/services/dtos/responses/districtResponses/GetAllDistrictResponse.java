@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class GetAllDistrictResponse {
-    private long id;
+    private String id;
     private String name;
-    private long cityId;
+    private String cityId;
 }

@@ -14,7 +14,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-09T14:59:35+0300",
+    date = "2024-05-09T18:45:10+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 19.0.2 (Amazon.com Inc.)"
 )
 public class AddressMapperImpl implements AddressMapper {
@@ -31,6 +31,8 @@ public class AddressMapperImpl implements AddressMapper {
         getAllAddressResponse.setCustomerId( addressCustomerId( address ) );
         getAllAddressResponse.setId( address.getId() );
         getAllAddressResponse.setDescription( address.getDescription() );
+        getAllAddressResponse.setStreet( address.getStreet() );
+        getAllAddressResponse.setFlatNumber( address.getFlatNumber() );
 
         return getAllAddressResponse;
     }
@@ -48,6 +50,8 @@ public class AddressMapperImpl implements AddressMapper {
         getAllAddressResponse.setCityName( addressCityName( address ) );
         getAllAddressResponse.setId( address.getId() );
         getAllAddressResponse.setDescription( address.getDescription() );
+        getAllAddressResponse.setStreet( address.getStreet() );
+        getAllAddressResponse.setFlatNumber( address.getFlatNumber() );
 
         return getAllAddressResponse;
     }
@@ -61,7 +65,6 @@ public class AddressMapperImpl implements AddressMapper {
         Address address = new Address();
 
         address.setDescription( createAddressRequest.getDescription() );
-        address.setDistrict( createAddressRequest.getDistrict() );
         address.setStreet( createAddressRequest.getStreet() );
         address.setFlatNumber( createAddressRequest.getFlatNumber() );
 
@@ -78,6 +81,8 @@ public class AddressMapperImpl implements AddressMapper {
 
         createdAddressResponse.setId( address.getId() );
         createdAddressResponse.setDescription( address.getDescription() );
+        createdAddressResponse.setStreet( address.getStreet() );
+        createdAddressResponse.setFlatNumber( address.getFlatNumber() );
 
         return createdAddressResponse;
     }
@@ -91,7 +96,6 @@ public class AddressMapperImpl implements AddressMapper {
         Address address = new Address();
 
         address.setDescription( updateAddressRequest.getDescription() );
-        address.setDistrict( updateAddressRequest.getDistrict() );
         address.setStreet( updateAddressRequest.getStreet() );
         address.setFlatNumber( updateAddressRequest.getFlatNumber() );
 
@@ -108,6 +112,8 @@ public class AddressMapperImpl implements AddressMapper {
 
         updatedAddressResponse.setId( address.getId() );
         updatedAddressResponse.setDescription( address.getDescription() );
+        updatedAddressResponse.setStreet( address.getStreet() );
+        updatedAddressResponse.setFlatNumber( address.getFlatNumber() );
 
         return updatedAddressResponse;
     }
@@ -136,6 +142,8 @@ public class AddressMapperImpl implements AddressMapper {
 
         getAddressResponse.setId( address.getId() );
         getAddressResponse.setDescription( address.getDescription() );
+        getAddressResponse.setStreet( address.getStreet() );
+        getAddressResponse.setFlatNumber( address.getFlatNumber() );
 
         return getAddressResponse;
     }

@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface CityService {
     PageInfoResponse<GetAllCityResponse> getAll(PageInfo pageInfo);
-
     GetCityResponse getById(long id);
     CreatedCityResponse add(CreateCityRequest createCityRequest);
     UpdatedCityResponse update(UpdateCityRequest updateCityRequest, long id);

@@ -20,9 +20,6 @@ public class Address extends BaseEntity {
     @Column(name="description")
     private String description;
 
-    @Column(name = "district")
-    private String district;
-
     @Column(name = "street")
     private String street;
 
@@ -32,6 +29,10 @@ public class Address extends BaseEntity {
     @ManyToOne()
     @JoinColumn(name = "city_id")
     private City city;
+
+    @ManyToOne()
+    @JoinColumn(name = "district_id")
+    private District district;
 
     @ManyToOne()
     @JoinColumn(name = "customer_id")

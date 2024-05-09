@@ -2,24 +2,16 @@ package com.etiyacrm.customerservice.controllers;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
-import com.etiyacrm.customerservice.entities.City;
-import com.etiyacrm.customerservice.entities.IndividualCustomer;
-import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.UpdateIndividualCustomerRequest;
+
 import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.*;
-import com.etiyacrm.customerservice.services.mappers.IndividualCustomerMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -38,7 +30,7 @@ public class IndividualCustomersController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update")
     public UpdatedIndividualCustomerResponse update(@Valid @RequestBody UpdateIndividualCustomerRequest updateIndividualCustomerRequest,
-                                                    @PathVariable Long id){
+                                                    @PathVariable long id){
         return individualCustomerService.update(updateIndividualCustomerRequest, id);
     }
 

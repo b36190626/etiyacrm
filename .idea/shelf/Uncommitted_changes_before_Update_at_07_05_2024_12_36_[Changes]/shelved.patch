@@ -1,0 +1,18 @@
+Index: customerservice/src/main/java/com/etiyacrm/customerservice/entities/Address.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.etiyacrm.customerservice.entities;\r\n\r\n\r\nimport com.etiyacrm.customerservice.core.entities.BaseEntity;\r\nimport jakarta.persistence.*;\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Data;\r\nimport lombok.NoArgsConstructor;\r\n\r\n@Entity\r\n@Table(name = \"addresses\")\r\n@Data\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\npublic class Address extends BaseEntity {\r\n    @Id\r\n    @Column(name=\"id\")\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long id;\r\n    @Column(name=\"description\")\r\n    private String description;\r\n\r\n    @ManyToOne()\r\n    @JoinColumn(name = \"city_id\")\r\n    private City city;\r\n\r\n    @ManyToOne()\r\n    @JoinColumn(name = \"customer_id\")\r\n    private Customer customer;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/customerservice/src/main/java/com/etiyacrm/customerservice/entities/Address.java b/customerservice/src/main/java/com/etiyacrm/customerservice/entities/Address.java
+--- a/customerservice/src/main/java/com/etiyacrm/customerservice/entities/Address.java	(revision 9b14140999b15e8ae453ede2f3f33e74390a0568)
++++ b/customerservice/src/main/java/com/etiyacrm/customerservice/entities/Address.java	(date 1715071429666)
+@@ -17,6 +17,7 @@
+     @Column(name="id")
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private long id;
++
+     @Column(name="description")
+     private String description;
+ 

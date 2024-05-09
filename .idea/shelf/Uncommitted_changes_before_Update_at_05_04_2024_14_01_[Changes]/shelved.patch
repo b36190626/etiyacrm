@@ -1,0 +1,22 @@
+Index: GatewayServer/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/GatewayServer/src/main/resources/application.properties b/GatewayServer/src/main/resources/application.yml
+rename from GatewayServer/src/main/resources/application.properties
+rename to GatewayServer/src/main/resources/application.yml
+--- a/GatewayServer/src/main/resources/application.properties	
++++ b/GatewayServer/src/main/resources/application.yml	
+@@ -1,1 +1,9 @@
+-spring.application.name=GatewayServer
++spring:
++  application:
++    name: GatewayServer
++  cloud:
++    config:
++      profile: dev
++  config:
++    import:
++      configserver:http://localhost:8050/
+\ No newline at end of file

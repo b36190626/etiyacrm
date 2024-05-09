@@ -1,0 +1,29 @@
+<changelist name="Uncommitted_changes_before_Update_at_09_05_2024_13_32_[Changes]" date="1715250801868" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2024_13_32_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 09/05/2024 13:32 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="customerservice/target/classes/com/etiyacrm/customerservice/services/mappers/AddressMapperImpl.class" />
+    <option name="AFTER_PATH" value="customerservice/target/classes/com/etiyacrm/customerservice/services/mappers/AddressMapperImpl.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2024_13_32_[Changes]/AddressMapperImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="customerservice/target/classes/com/etiyacrm/customerservice/services/mappers/AddressMapper.class" />
+    <option name="AFTER_PATH" value="customerservice/target/classes/com/etiyacrm/customerservice/services/mappers/AddressMapper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2024_13_32_[Changes]/AddressMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="customerservice/target/classes/com/etiyacrm/customerservice/services/abstracts/AddressService.class" />
+    <option name="AFTER_PATH" value="customerservice/target/classes/com/etiyacrm/customerservice/services/abstracts/AddressService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2024_13_32_[Changes]/AddressService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="customerservice/target/classes/com/etiyacrm/customerservice/services/dtos/responses/addressResponses/GetAllAddressResponse.class" />
+    <option name="AFTER_PATH" value="customerservice/target/classes/com/etiyacrm/customerservice/services/dtos/responses/addressResponses/GetAllAddressResponse.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2024_13_32_[Changes]/GetAllAddressResponse.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="customerservice/target/classes/com/etiyacrm/customerservice/entities/Address.class" />
+    <option name="AFTER_PATH" value="customerservice/target/classes/com/etiyacrm/customerservice/entities/Address.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2024_13_32_[Changes]/Address.class" />
+  </binary>
+</changelist>

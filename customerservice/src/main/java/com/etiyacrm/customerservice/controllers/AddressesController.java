@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("customerservice/api/v1/addresses")
 public class AddressesController {
     private AddressService addressService;
-
+    //deneme
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add")

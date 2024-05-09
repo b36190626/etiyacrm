@@ -17,5 +17,5 @@ public class UpdateDistrictRequest {
     private String name;
 
     @NotNull
-    private long cityId;
+    private String cityId;
 }

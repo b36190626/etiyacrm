@@ -10,6 +10,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class DeletedCityResponse {
-    private long id;
+    private String id;
     private LocalDateTime deletedDate;
 }

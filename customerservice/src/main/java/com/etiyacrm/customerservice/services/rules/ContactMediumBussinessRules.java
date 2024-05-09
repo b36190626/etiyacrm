@@ -8,6 +8,7 @@ import com.etiyacrm.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,10 +17,18 @@ public class ContactMediumBussinessRules {
     private ContactMediumRepository contactMediumRepository;
     private MessageService messageService;
 
-    public void checkIfContactMedium(long id){
+    public void checkIfContactMedium(String id){
         Optional<ContactMedium> contactMedium = contactMediumRepository.findById(id);
         if (contactMedium.isEmpty()) {
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.ContactMediumIdNotExists));
         }
+    }
+
+    public void checkIfCustomerHasContactMedium(String customerId){
+        Optional<ContactMedium> contactMedium = contactMediumRepository.findByCustomerId(customerId);
+        if(contactMedium.isPresent()){
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CustomerHasContactmedium));
+        }
+
     }
 }

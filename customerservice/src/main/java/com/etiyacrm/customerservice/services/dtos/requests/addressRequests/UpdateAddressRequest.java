@@ -23,12 +23,12 @@ public class UpdateAddressRequest {
     private int flatNumber;
 
     @NotNull
-    private long cityId;
+    private String cityId;
 
     @NotNull
-    private long districtId;
+    private String districtId;
 
     @NotNull
-    private long customerId;
+    private String customerId;
 
 }

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public interface CityRepository extends JpaRepository<City, Long> {
+public interface CityRepository extends JpaRepository<City, String> {
 
     Optional<City> findByNameIgnoreCase(String name);
 

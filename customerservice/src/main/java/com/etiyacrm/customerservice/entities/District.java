@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 public class District extends BaseEntity {
     @Id
     @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column(name="name")
     private String name;

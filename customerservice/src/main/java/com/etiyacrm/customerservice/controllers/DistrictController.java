@@ -30,21 +30,22 @@ public class DistrictController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update")
-    public UpdatedDistrictResponse update(@Valid @RequestBody UpdateDistrictRequest updateDistrictRequest, @PathVariable long id){
+    public UpdatedDistrictResponse update(@Valid @RequestBody UpdateDistrictRequest updateDistrictRequest,
+                                          @PathVariable String id){
         return districtService.update(updateDistrictRequest, id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete")
-    public DeletedDistrictResponse delete(@PathVariable long id){
+    public DeletedDistrictResponse delete(@PathVariable String id){
         return districtService.delete(id);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "GetById")
-    public GetDistrictResponse getById(@PathVariable long id){
+    public GetDistrictResponse getById(@PathVariable String id){
         return districtService.getById(id);
     }
 

@@ -8,8 +8,8 @@ import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.Ge
 import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.UpdatedDistrictResponse;
 
 public interface DistrictService {
-    GetDistrictResponse getById(long id);
+    GetDistrictResponse getById(String id);
     CreatedDistrictResponse add(CreateDistrictRequest createDistrictRequest);
-    UpdatedDistrictResponse update(UpdateDistrictRequest updateDistrictRequest, long id);
-    DeletedDistrictResponse delete(long id);
+    UpdatedDistrictResponse update(UpdateDistrictRequest updateDistrictRequest, String id);
+    DeletedDistrictResponse delete(String id);
 }

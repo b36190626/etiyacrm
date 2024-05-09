@@ -27,9 +27,8 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
-
+        contactMediumBussinessRules.checkIfCustomerHasContactMedium(createContactMediumRequest.getCustomerId());
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
-
         Customer customer = new Customer();
         customer.setId(createContactMediumRequest.getCustomerId());
         contactMedium.setCustomer(customer);
@@ -41,7 +40,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     }
 
     @Override
-    public UpdatedContactMediumResponse update(long id, UpdateContactMediumRequest updateContactMediumRequest) {
+    public UpdatedContactMediumResponse update(String id, UpdateContactMediumRequest updateContactMediumRequest) {
         contactMediumBussinessRules.checkIfContactMedium(id);
         Customer customer = new Customer();
         customer.setId(id);
@@ -57,7 +56,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     }
 
     @Override
-    public GetContactMediumResponse getById(long id) {
+    public GetContactMediumResponse getById(String id) {
         contactMediumBussinessRules.checkIfContactMedium(id);
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
         GetContactMediumResponse contactMediumResponse = ContactMediumMapper.INSTANCE.getContactMediumResponseFromContactMedium(contactMedium);
@@ -65,7 +64,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     }
 
     @Override
-    public DeletedContactMediumResponse delete(long id) {
+    public DeletedContactMediumResponse delete(String id) {
         contactMediumBussinessRules.checkIfContactMedium(id);
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
         contactMedium.setId(id);

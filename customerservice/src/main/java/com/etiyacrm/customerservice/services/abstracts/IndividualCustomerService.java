@@ -11,7 +11,7 @@ import java.util.List;
 public interface IndividualCustomerService {
     CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest);
     PageInfoResponse<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo);
-    UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest, Long id);
-    GetIndividualCustomerResponse getById(long id);
-    DeletedIndividualCustomerResponse delete(long id);
+    UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest, String id);
+    GetIndividualCustomerResponse getById(String id);
+    DeletedIndividualCustomerResponse delete(String id);
 }

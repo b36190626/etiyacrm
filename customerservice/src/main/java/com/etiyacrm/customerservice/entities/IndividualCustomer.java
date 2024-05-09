@@ -19,8 +19,9 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper=false)
 public class IndividualCustomer extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+
     @Column(name = "first_name")
     private String firstName;
 

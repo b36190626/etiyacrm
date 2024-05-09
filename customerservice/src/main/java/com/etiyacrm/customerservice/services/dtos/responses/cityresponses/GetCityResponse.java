@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class GetCityResponse {
-    private long id;
+    private String id;
     private String name;
 }

@@ -17,5 +17,5 @@ public class CreateDistrictRequest {
     private String name;
 
     @NotNull
-    private long cityId;
+    private String cityId;
 }

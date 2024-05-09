@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public interface IndividualCustomerRepository extends JpaRepository<IndividualCustomer,Long> {
+public interface IndividualCustomerRepository extends JpaRepository<IndividualCustomer,String> {
 
     Optional<IndividualCustomer> findByNationalityIdentity(String nationalityIdentity);
     List<IndividualCustomer> findByDeletedDate(LocalDateTime deletedDate);

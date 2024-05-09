@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreatedAddressResponse {
-    private long id;
+    private String id;
     private String description;
     private String street;
     private int flatNumber;
-    private long cityId;
-    private long districtId;
-    private long customerId;
+    private String cityId;
+    private String districtId;
+    private String customerId;
 }

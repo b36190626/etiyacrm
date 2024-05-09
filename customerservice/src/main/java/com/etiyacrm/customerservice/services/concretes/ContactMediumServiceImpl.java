@@ -13,6 +13,7 @@ import com.etiyacrm.customerservice.services.dtos.responses.contactMediumRespons
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.GetContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.UpdatedContactMediumResponse;
 import com.etiyacrm.customerservice.services.mappers.ContactMediumMapper;
+import com.etiyacrm.customerservice.services.rules.ContactMediumBussinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +23,18 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ContactMediumServiceImpl implements ContactMediumService {
     private ContactMediumRepository contactMediumRepository;
+    private ContactMediumBussinessRules contactMediumBussinessRules;
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
 
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
 
+        Customer customer = new Customer();
+        customer.setId(createContactMediumRequest.getCustomerId());
+        contactMedium.setCustomer(customer);
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
+
         CreatedContactMediumResponse createdContactMediumResponse = ContactMediumMapper.INSTANCE.createdContactMediumResponseFromContactMedium(createdContactMedium);
         createdContactMediumResponse.setCustomerId(createContactMediumRequest.getCustomerId());
         return createdContactMediumResponse;
@@ -36,6 +42,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
     @Override
     public UpdatedContactMediumResponse update(long id, UpdateContactMediumRequest updateContactMediumRequest) {
+        contactMediumBussinessRules.checkIfContactMedium(id);
         Customer customer = new Customer();
         customer.setId(id);
 
@@ -51,6 +58,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
     @Override
     public GetContactMediumResponse getById(long id) {
+        contactMediumBussinessRules.checkIfContactMedium(id);
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
         GetContactMediumResponse contactMediumResponse = ContactMediumMapper.INSTANCE.getContactMediumResponseFromContactMedium(contactMedium);
         return contactMediumResponse;
@@ -58,6 +66,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
     @Override
     public DeletedContactMediumResponse delete(long id) {
+        contactMediumBussinessRules.checkIfContactMedium(id);
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
         contactMedium.setId(id);
         contactMedium.setDeletedDate(LocalDateTime.now());

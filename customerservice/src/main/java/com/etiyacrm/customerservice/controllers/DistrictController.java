@@ -2,8 +2,11 @@ package com.etiyacrm.customerservice.controllers;
 
 import com.etiyacrm.customerservice.services.abstracts.DistrictService;
 import com.etiyacrm.customerservice.services.dtos.requests.districtRequests.CreateDistrictRequest;
+import com.etiyacrm.customerservice.services.dtos.requests.districtRequests.UpdateDistrictRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.CreatedDistrictResponse;
+import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.DeletedDistrictResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.GetDistrictResponse;
+import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.UpdatedDistrictResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,6 +25,20 @@ public class DistrictController {
     @Operation(summary = "Add")
     public CreatedDistrictResponse add(@Valid @RequestBody CreateDistrictRequest createDistrictRequest){
         return districtService.add(createDistrictRequest);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Update")
+    public UpdatedDistrictResponse update(@Valid @RequestBody UpdateDistrictRequest updateDistrictRequest, @PathVariable long id){
+        return districtService.update(updateDistrictRequest, id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Delete")
+    public DeletedDistrictResponse delete(@PathVariable long id){
+        return districtService.delete(id);
     }
 
     @GetMapping("/{id}")

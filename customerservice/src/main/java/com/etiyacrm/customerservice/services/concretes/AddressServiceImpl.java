@@ -76,6 +76,9 @@ public class AddressServiceImpl implements AddressService {
         Address createdAddress = addressRepository.save(address);
 
         CreatedAddressResponse createdAddressResponse = AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
+        createdAddressResponse.setCustomerId(customer.getId());
+        createdAddressResponse.setCityId(city.getId());
+        createdAddressResponse.setDistrictId(district.getId());
         return  createdAddressResponse;
     }
 

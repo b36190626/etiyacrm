@@ -46,7 +46,8 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse =
                 IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
-        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(createdIndividualCustomerResponse.getId(), createdIndividualCustomerResponse.getFirstName());
+        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(
+                createdIndividualCustomerResponse.getId(), createdIndividualCustomerResponse.getFirstName());
         customerProducer.sendMessage(customerCreatedEvent);
         return createdIndividualCustomerResponse;
     }

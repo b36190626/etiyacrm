@@ -29,7 +29,5 @@ public class CustomerProducer {
                 .build();
 
         kafkaTemplate.send(message);
-
     }
-
 }

@@ -37,7 +37,7 @@ public class IndividualCustomerBusinessRules {
     }
 
     public void checkIfIndividualCustomer(String id){
-        Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findByCustomerId(id);
+        Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findById(id);
         if (individualCustomer.isEmpty()) {
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerIdNotExists));
         }

@@ -46,7 +46,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public GetAddressResponse getById(String id) {
-        Address address = addressRepository.findByCustomerId(id).get();
+        Address address = addressRepository.findById(id).get();
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
         GetAddressResponse response = AddressMapper.INSTANCE.getAddressResponseFromAddress(address);
         return response;
@@ -54,44 +54,37 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
 
-        City city = new City();
-        city.setId(createAddressRequest.getCityId());
+        Address address =
+                AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
 
-        District district = new District();
-        district.setId(createAddressRequest.getDistrictId());
-
-        Customer customer = new Customer();
-        customer.setId(createAddressRequest.getCustomerId());
-
-        Address address = AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
-        address.setCity(city);
-        address.setDistrict(district);
-        address.setCustomer(customer);
         Address createdAddress = addressRepository.save(address);
 
-        CreatedAddressResponse createdAddressResponse = AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
-        createdAddressResponse.setCustomerId(customer.getId());
-        createdAddressResponse.setCityId(city.getId());
-        createdAddressResponse.setDistrictId(district.getId());
+        CreatedAddressResponse createdAddressResponse =
+                AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
+
         return  createdAddressResponse;
     }
 
     @Override
     public UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest, String id) {
-        Address address = AddressMapper.INSTANCE.addressFromUpdateAddressRequest(updateAddressRequest);
+
+        Address address =
+                AddressMapper.INSTANCE.addressFromUpdateAddressRequest(updateAddressRequest);
+
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
+
         address.setUpdatedDate(LocalDateTime.now());
         Address updatedAddress = addressRepository.save(address);
 
-        UpdatedAddressResponse updatedAddressResponse = AddressMapper.INSTANCE.updatedAddressResponseFromAddress(updatedAddress);
-        updatedAddressResponse.setCityId(updateAddressRequest.getCityId());
-        updatedAddressResponse.setCustomerId(updateAddressRequest.getCustomerId());
+        UpdatedAddressResponse updatedAddressResponse =
+                AddressMapper.INSTANCE.updatedAddressResponseFromAddress(updatedAddress);
+
         return updatedAddressResponse;
     }
 
     @Override
     public DeletedAddressResponse delete(String id) {
-        Address address = addressRepository.findByCustomerId(id).get();
+        Address address = addressRepository.findById(id).get();
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
         address.setId(id);
         address.setDeletedDate(LocalDateTime.now());

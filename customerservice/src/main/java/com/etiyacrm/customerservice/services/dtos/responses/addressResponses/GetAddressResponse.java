@@ -12,7 +12,6 @@ public class GetAddressResponse {
     private String description;
     private String street;
     private int flatNumber;
-    private String cityId;
     private String districtId;
     private String customerId;
 }

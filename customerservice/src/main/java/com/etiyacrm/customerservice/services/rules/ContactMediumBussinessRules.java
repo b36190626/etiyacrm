@@ -4,6 +4,7 @@ import com.etiyacrm.customerservice.core.business.abstracts.MessageService;
 import com.etiyacrm.customerservice.core.crossCusttingConcerns.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.entities.ContactMedium;
 import com.etiyacrm.customerservice.repositories.ContactMediumRepository;
+import com.etiyacrm.customerservice.services.dtos.requests.contactMediumRequests.CreateContactMediumRequest;
 import com.etiyacrm.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,17 +18,19 @@ public class ContactMediumBussinessRules {
     private ContactMediumRepository contactMediumRepository;
     private MessageService messageService;
 
-    public void checkIfContactMedium(String id){
-        Optional<ContactMedium> contactMedium = contactMediumRepository.findByCustomerId(id);
+    public void checkIfContactMedium(String customerId){
+        Optional<ContactMedium> contactMedium = contactMediumRepository.findByCustomerId(customerId);
         if (contactMedium.isEmpty()) {
-            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.ContactMediumIdNotExists));
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CustomerHasNoContactMedium));
         }
     }
 
     public void checkIfCustomerHasContactMedium(String customerId){
-        Optional<ContactMedium> contactMedium = contactMediumRepository.findByCustomerId(customerId);
-        if(contactMedium.isPresent()){
-            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CustomerHasContactMedium));
+        List<ContactMedium> contactMediumList = contactMediumRepository.findAll();
+        for (ContactMedium contactMedium : contactMediumList){
+            if (!customerId.equals(contactMedium.getCustomer().getId())){
+                throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CustomerHasContactMedium));
+            }
         }
 
     }

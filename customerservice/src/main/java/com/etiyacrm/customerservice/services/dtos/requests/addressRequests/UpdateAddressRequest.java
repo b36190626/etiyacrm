@@ -23,9 +23,6 @@ public class UpdateAddressRequest {
     private int flatNumber;
 
     @NotNull
-    private String cityId;
-
-    @NotNull
     private String districtId;
 
     @NotNull

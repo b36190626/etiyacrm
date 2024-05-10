@@ -23,13 +23,13 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Service
 public class IndividualCustomerServiceImpl implements IndividualCustomerService {
     private IndividualCustomerRepository individualCustomerRepository;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
-    private CustomerService customerService;
     private CustomerProducer customerProducer;
 
     @Override
@@ -38,13 +38,13 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE
                 .individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);
-        individualCustomer.setCustomer(new Customer());
 
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse =
                 IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
-        createdIndividualCustomerResponse.setCustomerId(createdIndividualCustomer.getCustomer().getId());
+        createdIndividualCustomerResponse.setId(createdIndividualCustomer.getId());
+
         CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent();
         customerProducer.sendMessage(customerCreatedEvent);
         return createdIndividualCustomerResponse;
@@ -64,11 +64,12 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
         IndividualCustomer individualCustomer =
                 IndividualCustomerMapper.INSTANCE.individualCustomerFromUpdateIndividualCustomerRequest(updateIndividualCustomerRequest);
-        
+
         IndividualCustomer updatedIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse =
                 IndividualCustomerMapper.INSTANCE.updatedIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
+        updatedIndividualCustomerResponse.setId(updatedIndividualCustomer.getId());
 
         return updatedIndividualCustomerResponse;
     }
@@ -77,21 +78,27 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         individualCustomerBusinessRules.checkIfIndividualCustomer(id);
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
         individualCustomerBusinessRules.checkIfIndividualCustomerDeleted(individualCustomer.getDeletedDate());
-        GetIndividualCustomerResponse response = IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
-        return response;
+
+        GetIndividualCustomerResponse getIndividualCustomerResponse =
+                IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
+        getIndividualCustomerResponse.setId(individualCustomer.getId());
+
+        return getIndividualCustomerResponse;
     }
 
     @Override
     public DeletedIndividualCustomerResponse delete(String id) {
         individualCustomerBusinessRules.checkIfIndividualCustomer(id);
-        IndividualCustomer individualCustomer = individualCustomerRepository.findByCustomerId(id).get();
+        IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
         individualCustomerBusinessRules.checkIfIndividualCustomerDeleted(individualCustomer.getDeletedDate());
 
         individualCustomer.setDeletedDate(LocalDateTime.now());
         IndividualCustomer deletedIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
-        DeletedIndividualCustomerResponse deletedIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.deletedIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
-        deletedIndividualCustomerResponse.setCustomerId(deletedIndividualCustomer.getCustomer().getId());
+        DeletedIndividualCustomerResponse deletedIndividualCustomerResponse =
+                IndividualCustomerMapper.INSTANCE.deletedIndividualCustomerResponseFromIndividualCustomer(deletedIndividualCustomer);
+        deletedIndividualCustomerResponse.setId(deletedIndividualCustomer.getId());
+
         return deletedIndividualCustomerResponse;
     }
 }

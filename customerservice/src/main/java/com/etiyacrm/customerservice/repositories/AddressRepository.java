@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.repositories;
 
 import com.etiyacrm.customerservice.entities.Address;
+import com.etiyacrm.customerservice.entities.ContactMedium;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,5 +13,6 @@ import java.util.Optional;
 
 public interface AddressRepository extends JpaRepository<Address,String> {
     List<Address> findByDeletedDate(LocalDateTime deletedDate);
-    Optional<Address> findByCustomerId(String customerId);
+
+    //List<Address> findByCustomerId(String customerId);
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class UpdateContactMediumRequest {
+
     @NotNull
     private String email;
     @NotNull

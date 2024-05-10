@@ -12,8 +12,6 @@ public class GetAllAddressResponse {
     private String description;
     private String street;
     private int flatNumber;
-    private String cityId;
-    private String cityName;
     private String districtId;
     private String customerId;
 }

@@ -8,13 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetContactMediumResponse {
+    private String id;
     private String email;
-
     private String mobilePhone;
-
     private String homePhone;
-
     private String fax;
-
     private String customerId;
 }

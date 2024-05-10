@@ -41,8 +41,8 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public CreatedCityResponse add(CreateCityRequest createCityRequest) {
-
         cityBusinessRules.cityNameCanNotBeDuplicatedWhenInserted(createCityRequest.getName());
+
         City city = CityMapper.INSTANCE.cityFromCreateCityRequest(createCityRequest);
         City createdCity = cityRepository.save(city);
 
@@ -54,6 +54,7 @@ public class CityServiceImpl implements CityService {
     @Override
     public UpdatedCityResponse update(UpdateCityRequest updateCityRequest, String id) {
         cityBusinessRules.cityNameCanNotBeDuplicatedWhenInserted(updateCityRequest.getName());
+
         City city = CityMapper.INSTANCE.cityFromUpdateCityRequest(updateCityRequest);
         city.setId(id);
         city.setUpdatedDate(LocalDateTime.now());

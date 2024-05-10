@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdatedIndividualCustomerResponse {
-    private String customerId;
     private String id;
     private String firstName;
     private String middleName;

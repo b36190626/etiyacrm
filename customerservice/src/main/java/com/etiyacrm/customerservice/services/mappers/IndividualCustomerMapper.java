@@ -15,12 +15,10 @@ import org.mapstruct.factory.Mappers;
 public interface IndividualCustomerMapper {
     IndividualCustomerMapper INSTANCE = Mappers.getMapper(IndividualCustomerMapper.class);
 
-    @Mapping(source = "customer.id", target = "customerId")
     GetAllIndividualCustomerResponse getAllIndividualCustomerFromIndividualCustomer(IndividualCustomer individualCustomer);
 
     IndividualCustomer individualCustomerFromCreateIndividualCustomerRequest(CreateIndividualCustomerRequest createIndividualCustomerRequest);
 
-    @Mapping(source = "customer.id", target = "customerId")
     CreatedIndividualCustomerResponse createdIndividualCustomerResponseFromIndividualCustomer(IndividualCustomer individualCustomer);
 
     IndividualCustomer individualCustomerFromUpdateIndividualCustomerRequest(UpdateIndividualCustomerRequest updateIndividualCustomerRequest);

@@ -16,23 +16,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Where(clause = "deleted_date IS NULL")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Customer extends BaseEntity {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @OneToOne(mappedBy = "customer")
-    private IndividualCustomer individualCustomer;
-
     @OneToMany(mappedBy = "customer")
     private List<Address> addresses;
 
     @OneToOne(mappedBy = "customer")
     private ContactMedium contactMedium;
-
-
-    public Customer(String id){
-        this.id = id;
-    }
+    
 }

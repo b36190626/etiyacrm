@@ -10,7 +10,7 @@ public class Messages {
         public static final String NationalityIdentityExists = "nationalityIdentityExists";
         public static final String IndividualCustomerIdNotExists = "individualCustomerIdNotExists";
 
-        public static final String ContactMediumIdNotExists = "contactMediumIdNotExists";
         public static final String CustomerHasContactMedium = "customerHasContactMedium";
+        public static final String CustomerHasNoContactMedium = "customerHasNoContactMedium";
     }
 }

@@ -30,10 +30,6 @@ public class Address extends BaseEntity {
     private int flatNumber;
 
     @ManyToOne()
-    @JoinColumn(name = "city_id")
-    private City city;
-
-    @ManyToOne()
     @JoinColumn(name = "district_id")
     private District district;
 

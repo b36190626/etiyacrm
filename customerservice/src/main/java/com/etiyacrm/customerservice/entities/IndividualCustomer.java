@@ -17,11 +17,8 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name="individual_customers")
 @Data
-@Where(clause = "deleted_date IS NULL")
-public class IndividualCustomer extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+@PrimaryKeyJoinColumn(name = "customer_id")
+public class IndividualCustomer extends Customer {
 
     @Column(name = "first_name")
     private String firstName;
@@ -47,7 +44,4 @@ public class IndividualCustomer extends BaseEntity {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    private Customer customer;
 }

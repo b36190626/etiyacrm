@@ -16,5 +16,4 @@ public interface CityRepository extends JpaRepository<City, String> {
 
     List<City> findByDeletedDate(LocalDateTime deletedDate);
 
-
 }

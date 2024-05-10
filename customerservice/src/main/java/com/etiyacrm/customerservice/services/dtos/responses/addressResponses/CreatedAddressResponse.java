@@ -15,7 +15,6 @@ public class CreatedAddressResponse {
     private String description;
     private String street;
     private int flatNumber;
-    private String cityId;
     private String districtId;
     private String customerId;
 }

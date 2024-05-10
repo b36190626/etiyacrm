@@ -1,17 +1,19 @@
 package com.etiyacrm.customerservice.services.concretes;
 
+import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.District;
 import com.etiyacrm.customerservice.repositories.DistrictRepository;
 import com.etiyacrm.customerservice.services.abstracts.DistrictService;
 import com.etiyacrm.customerservice.services.dtos.requests.districtRequests.CreateDistrictRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.districtRequests.UpdateDistrictRequest;
-import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.CreatedDistrictResponse;
-import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.DeletedDistrictResponse;
-import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.GetDistrictResponse;
-import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.UpdatedDistrictResponse;
+import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.*;
 import com.etiyacrm.customerservice.services.mappers.DistrictMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,6 +23,16 @@ import java.time.LocalDateTime;
 public class DistrictServiceImpl implements DistrictService {
 
     private DistrictRepository districtRepository;
+
+
+    @Override
+    public PageInfoResponse<GetAllDistrictResponse> getAll(PageInfo pageInfo) {
+        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
+        Page<District> response = districtRepository.findAll(pageable);
+        Page<GetAllDistrictResponse> responsePage = response
+                .map(district -> DistrictMapper.INSTANCE.getAllDistrictResponse(district));
+        return new PageInfoResponse<>(responsePage);
+    }
 
     @Override
     public GetDistrictResponse getById(String id) {

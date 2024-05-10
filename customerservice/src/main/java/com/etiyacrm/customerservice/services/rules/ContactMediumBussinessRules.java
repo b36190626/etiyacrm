@@ -18,7 +18,7 @@ public class ContactMediumBussinessRules {
     private MessageService messageService;
 
     public void checkIfContactMedium(String id){
-        Optional<ContactMedium> contactMedium = contactMediumRepository.findById(id);
+        Optional<ContactMedium> contactMedium = contactMediumRepository.findByCustomerId(id);
         if (contactMedium.isEmpty()) {
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.ContactMediumIdNotExists));
         }
@@ -27,7 +27,7 @@ public class ContactMediumBussinessRules {
     public void checkIfCustomerHasContactMedium(String customerId){
         Optional<ContactMedium> contactMedium = contactMediumRepository.findByCustomerId(customerId);
         if(contactMedium.isPresent()){
-            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CustomerHasContactmedium));
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CustomerHasContactMedium));
         }
 
     }

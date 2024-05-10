@@ -38,7 +38,6 @@ public class DistrictServiceImpl implements DistrictService {
         City city = new City();
         city.setId(createDistrictRequest.getCityId());
         district.setCity(city);
-
         District createdDistrict = districtRepository.save(district);
 
         CreatedDistrictResponse createdDistrictResponse = DistrictMapper.INSTANCE.createdDistrictResponseFromDistrict(createdDistrict);

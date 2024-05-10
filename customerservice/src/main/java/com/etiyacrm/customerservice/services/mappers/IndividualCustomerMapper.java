@@ -8,16 +8,19 @@ import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerRe
 import com.etiyacrm.customerservice.services.dtos.responses.cityresponses.DeletedCityResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.cityresponses.GetCityResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface IndividualCustomerMapper {
     IndividualCustomerMapper INSTANCE = Mappers.getMapper(IndividualCustomerMapper.class);
 
+    @Mapping(source = "customer.id", target = "customerId")
     GetAllIndividualCustomerResponse getAllIndividualCustomerFromIndividualCustomer(IndividualCustomer individualCustomer);
 
     IndividualCustomer individualCustomerFromCreateIndividualCustomerRequest(CreateIndividualCustomerRequest createIndividualCustomerRequest);
 
+    @Mapping(source = "customer.id", target = "customerId")
     CreatedIndividualCustomerResponse createdIndividualCustomerResponseFromIndividualCustomer(IndividualCustomer individualCustomer);
 
     IndividualCustomer individualCustomerFromUpdateIndividualCustomerRequest(UpdateIndividualCustomerRequest updateIndividualCustomerRequest);

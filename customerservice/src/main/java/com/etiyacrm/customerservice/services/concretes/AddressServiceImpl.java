@@ -46,15 +46,13 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public GetAddressResponse getById(String id) {
-        Address address = addressRepository.findById(id).get();
+        Address address = addressRepository.findByCustomerId(id).get();
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
         GetAddressResponse response = AddressMapper.INSTANCE.getAddressResponseFromAddress(address);
         return response;
     }
-//AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
     @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
-       // Address address = AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
 
         City city = new City();
         city.setId(createAddressRequest.getCityId());
@@ -65,11 +63,7 @@ public class AddressServiceImpl implements AddressService {
         Customer customer = new Customer();
         customer.setId(createAddressRequest.getCustomerId());
 
-        Address address = new Address();
-        address.setDescription(createAddressRequest.getDescription());
-        address.setFlatNumber(createAddressRequest.getFlatNumber());
-        address.setStreet(createAddressRequest.getStreet());
-        address.setCreatedDate(LocalDateTime.now());
+        Address address = AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
         address.setCity(city);
         address.setDistrict(district);
         address.setCustomer(customer);
@@ -86,7 +80,6 @@ public class AddressServiceImpl implements AddressService {
     public UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest, String id) {
         Address address = AddressMapper.INSTANCE.addressFromUpdateAddressRequest(updateAddressRequest);
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
-        address.setId(id);
         address.setUpdatedDate(LocalDateTime.now());
         Address updatedAddress = addressRepository.save(address);
 
@@ -98,7 +91,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public DeletedAddressResponse delete(String id) {
-        Address address = addressRepository.findById(id).get();
+        Address address = addressRepository.findByCustomerId(id).get();
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
         address.setId(id);
         address.setDeletedDate(LocalDateTime.now());

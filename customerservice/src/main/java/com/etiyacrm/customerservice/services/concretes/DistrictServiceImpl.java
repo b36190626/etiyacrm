@@ -25,7 +25,9 @@ public class DistrictServiceImpl implements DistrictService {
     @Override
     public GetDistrictResponse getById(String id) {
         District district = districtRepository.findById(id).get();
+        System.out.println(id);
         GetDistrictResponse response = DistrictMapper.INSTANCE.getDistrictResponseFromDistrict(district);
+        response.setCityId(district.getCity().getId());
         return response;
     }
 

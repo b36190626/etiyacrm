@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name="individual_customers")
 @Data
-@EqualsAndHashCode(callSuper=false)
+@Where(clause = "deleted_date IS NULL")
 public class IndividualCustomer extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

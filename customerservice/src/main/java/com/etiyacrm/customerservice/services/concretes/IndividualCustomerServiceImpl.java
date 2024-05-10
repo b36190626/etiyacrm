@@ -53,7 +53,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public PageInfoResponse<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<IndividualCustomer> response =  individualCustomerRepository.findByDeletedDateIsNull(pageable);
+        Page<IndividualCustomer> response =  individualCustomerRepository.findAll(pageable);
         Page<GetAllIndividualCustomerResponse> responsePage = response
                 .map(individualCustomer -> IndividualCustomerMapper.INSTANCE.getAllIndividualCustomerFromIndividualCustomer(individualCustomer));
         return new PageInfoResponse<>(responsePage);

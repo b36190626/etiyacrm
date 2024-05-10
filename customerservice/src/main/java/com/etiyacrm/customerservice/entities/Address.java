@@ -7,12 +7,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "addresses")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Where(clause = "deleted_date IS NULL")
 public class Address extends BaseEntity {
     @Id
     @Column(name="id")

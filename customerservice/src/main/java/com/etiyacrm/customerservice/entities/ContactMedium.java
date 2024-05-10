@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "contact_medium")
 @AllArgsConstructor
 @NoArgsConstructor
+@Where(clause = "deleted_date IS NULL")
 public class ContactMedium extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

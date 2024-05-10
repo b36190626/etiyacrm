@@ -30,4 +30,9 @@ public class Customer extends BaseEntity {
 
     @OneToOne(mappedBy = "customer")
     private ContactMedium contactMedium;
+
+
+    public Customer(String id){
+        this.id = id;
+    }
 }

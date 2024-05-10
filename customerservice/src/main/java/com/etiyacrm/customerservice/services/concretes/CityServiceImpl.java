@@ -29,7 +29,7 @@ public class CityServiceImpl implements CityService {
         Page<GetAllCityResponse> responsePage = response
                 .map(city -> CityMapper.INSTANCE.getAllCityResponseFromCity(city));
         return new PageInfoResponse<>(responsePage);
-    }//GetAllCityResponse içinde totalPage totalElement getSize hasNext ve hasPrevious olacak
+    }
 
     @Override
     public GetCityResponse getById(String id) {

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DeletedIndividualCustomerResponse {
+    private String customerId;
     private String id;
     private LocalDateTime deletedDate;
 }

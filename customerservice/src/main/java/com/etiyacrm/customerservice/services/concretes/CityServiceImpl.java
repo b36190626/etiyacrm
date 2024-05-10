@@ -25,7 +25,7 @@ public class CityServiceImpl implements CityService {
     @Override
     public PageInfoResponse<GetAllCityResponse> getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<City> response =  cityRepository.findByDeletedDateIsNull(pageable);
+        Page<City> response =  cityRepository.findAll(pageable);
         Page<GetAllCityResponse> responsePage = response
                 .map(city -> CityMapper.INSTANCE.getAllCityResponseFromCity(city));
         return new PageInfoResponse<>(responsePage);

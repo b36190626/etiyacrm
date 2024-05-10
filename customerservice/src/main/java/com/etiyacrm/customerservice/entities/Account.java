@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.kafka.common.protocol.types.Field;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "accounts")

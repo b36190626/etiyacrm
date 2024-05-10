@@ -13,5 +13,5 @@ public interface IndividualCustomerRepository extends JpaRepository<IndividualCu
 
     Optional<IndividualCustomer> findByNationalityIdentity(String nationalityIdentity);
     List<IndividualCustomer> findByDeletedDate(LocalDateTime deletedDate);
-    Page<IndividualCustomer> findByDeletedDateIsNull(Pageable pageable);
+
 }

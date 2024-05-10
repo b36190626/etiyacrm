@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface AddressRepository extends JpaRepository<Address,String> {
     List<Address> findByDeletedDate(LocalDateTime deletedDate);
-    Page<Address> findByDeletedDateIsNull(Pageable pageable);
+
 }

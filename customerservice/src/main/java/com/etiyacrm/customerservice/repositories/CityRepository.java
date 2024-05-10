@@ -15,6 +15,5 @@ public interface CityRepository extends JpaRepository<City, String> {
 
     List<City> findByDeletedDate(LocalDateTime deletedDate);
 
-    Page<City> findByDeletedDateIsNull(Pageable pageable);
 
 }

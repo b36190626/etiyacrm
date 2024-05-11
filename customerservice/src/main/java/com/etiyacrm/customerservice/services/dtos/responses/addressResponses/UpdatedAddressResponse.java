@@ -12,6 +12,7 @@ public class UpdatedAddressResponse {
     private String description;
     private String street;
     private int flatNumber;
+    private boolean isDefaultAddress;
     private String districtId;
     private String customerId;
 }

@@ -13,5 +13,4 @@ public class UpdatedContactMediumResponse {
     private String mobilePhone;
     private String homePhone;
     private String fax;
-    private String customerId;
 }

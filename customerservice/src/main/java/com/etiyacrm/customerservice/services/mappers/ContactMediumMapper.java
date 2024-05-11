@@ -8,6 +8,7 @@ import com.etiyacrm.customerservice.services.dtos.responses.contactMediumRespons
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.GetContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.UpdatedContactMediumResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -19,5 +20,6 @@ public interface ContactMediumMapper {
     GetContactMediumResponse getContactMediumResponseFromContactMedium(ContactMedium contactMedium);
     DeletedContactMediumResponse deletedContactMediumResponseFromContactMedium(ContactMedium contactMedium);
     ContactMedium contactMediumFromCreateContactMediumRequest(CreateContactMediumRequest createContactMediumRequest);
+
     ContactMedium contactMediumFromUpdateContactMediumRequest(UpdateContactMediumRequest updateContactMediumRequest);
 }

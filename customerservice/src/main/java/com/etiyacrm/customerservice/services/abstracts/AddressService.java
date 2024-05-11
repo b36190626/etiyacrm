@@ -10,10 +10,10 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface AddressService {
-    PageInfoResponse<GetAllAddressResponse> getAll(PageInfo pageInfo);
+    PageInfoResponse<GetAllAddressResponse> getAllPage(PageInfo pageInfo);
     List<GetAddressResponse> getById(String id);
     CreatedAddressResponse add(CreateAddressRequest createAddressRequest);
     UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest, String id);
     DeletedAddressResponse delete(String id);
-    List<GetAllAddressResponse> getAllAddresses();
+    List<GetAllAddressResponse> getAll();
 }

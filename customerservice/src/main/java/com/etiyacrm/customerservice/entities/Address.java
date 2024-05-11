@@ -29,7 +29,7 @@ public class Address extends BaseEntity {
     @Column(name = "flatNumber")
     private int flatNumber;
 
-    @Column(name = "isDefaulAddress")
+    @Column(name = "isDefaultAddress")
     private boolean isDefaultAddress;
 
     @ManyToOne(cascade = CascadeType.MERGE)

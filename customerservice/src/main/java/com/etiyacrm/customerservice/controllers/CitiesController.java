@@ -30,12 +30,20 @@ public class CitiesController {
         return cityService.add(createCityRequest);
     }
 
+    @GetMapping("/paging")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "GetAll")
+    public PageInfoResponse<GetAllCityResponse> getAllPage(PageInfo pageInfo){
+        return cityService.getAllPage(pageInfo);
+    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "GetAll")
-    public PageInfoResponse<GetAllCityResponse> getAll(PageInfo pageInfo){
-        return cityService.getAll(pageInfo);
+    public List<GetAllCityResponse> getAll(){
+        return cityService.getAll();
     }
+
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

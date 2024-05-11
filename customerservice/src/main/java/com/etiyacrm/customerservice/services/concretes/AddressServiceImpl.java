@@ -36,12 +36,22 @@ public class AddressServiceImpl implements AddressService {
 
 
     @Override
-    public PageInfoResponse<GetAllAddressResponse> getAll(PageInfo pageInfo) {
+    public PageInfoResponse<GetAllAddressResponse> getAllPage(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<Address> response =  addressRepository.findAll(pageable);
         Page<GetAllAddressResponse> responsePage = response
                 .map(address -> AddressMapper.INSTANCE.getAllAddressResponse(address));
         return new PageInfoResponse<>(responsePage);
+    }
+
+    @Override
+    public List<GetAllAddressResponse> getAll() {
+
+        List<Address> response =  addressRepository.findAll();
+        List<GetAllAddressResponse> responsePage = response.stream()
+                .map(address -> AddressMapper.INSTANCE.getAllListAddressResponse(address))
+                .collect(Collectors.toList());
+        return responsePage;
     }
 
     @Override
@@ -96,13 +106,4 @@ public class AddressServiceImpl implements AddressService {
         return deletedAddressResponse;
     }
 
-    @Override
-    public List<GetAllAddressResponse> getAllAddresses() {
-
-        List<Address> response =  addressRepository.findAll();
-        List<GetAllAddressResponse> responsePage = response.stream()
-                .map(address -> AddressMapper.INSTANCE.getAllListAddressResponse(address))
-                .collect(Collectors.toList());
-        return responsePage;
-    }
 }

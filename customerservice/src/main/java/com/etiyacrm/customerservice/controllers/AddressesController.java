@@ -30,15 +30,15 @@ public class AddressesController {
     @GetMapping("/paging")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getAll")
-    public PageInfoResponse<GetAllAddressResponse> getAll(PageInfo pageInfo){
-        return addressService.getAll(pageInfo);
+    public PageInfoResponse<GetAllAddressResponse> getAllPage(PageInfo pageInfo){
+        return addressService.getAllPage(pageInfo);
     }
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getAll")
-    public List<GetAllAddressResponse> getAllAddress(){
-        return addressService.getAllAddresses();
+    public List<GetAllAddressResponse> getAll(){
+        return addressService.getAll();
     }
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

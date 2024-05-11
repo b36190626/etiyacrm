@@ -18,6 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -26,12 +28,21 @@ public class DistrictServiceImpl implements DistrictService {
     private DistrictBusinessRules districtBusinessRules;
 
     @Override
-    public PageInfoResponse<GetAllDistrictResponse> getAll(PageInfo pageInfo) {
+    public PageInfoResponse<GetAllDistrictResponse> getAllPage(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<District> response = districtRepository.findAll(pageable);
         Page<GetAllDistrictResponse> responsePage = response
                 .map(district -> DistrictMapper.INSTANCE.getAllDistrictResponse(district));
         return new PageInfoResponse<>(responsePage);
+    }
+
+    @Override
+    public List<GetAllDistrictResponse> getAll() {
+        List<District> districtList = districtRepository.findAll();
+        List<GetAllDistrictResponse> getAllDistrictResponseList =
+                districtList.stream().map(DistrictMapper.INSTANCE::getAllDistrictResponse)
+                        .collect(Collectors.toList());
+        return getAllDistrictResponseList;
     }
 
     @Override
@@ -83,5 +94,7 @@ public class DistrictServiceImpl implements DistrictService {
         deletedDistrictResponse.setDeletedDate(deletedDistrict.getDeletedDate());
         return deletedDistrictResponse;
     }
+
+
 
 }

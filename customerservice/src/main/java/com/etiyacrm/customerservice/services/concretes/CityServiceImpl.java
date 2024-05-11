@@ -17,18 +17,30 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class CityServiceImpl implements CityService {
     private CityRepository cityRepository;
     private CityBusinessRules cityBusinessRules;
     @Override
-    public PageInfoResponse<GetAllCityResponse> getAll(PageInfo pageInfo) {
+    public PageInfoResponse<GetAllCityResponse> getAllPage(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<City> response =  cityRepository.findAll(pageable);
         Page<GetAllCityResponse> responsePage = response
                 .map(city -> CityMapper.INSTANCE.getAllCityResponseFromCity(city));
         return new PageInfoResponse<>(responsePage);
+    }
+
+    @Override
+    public List<GetAllCityResponse> getAll() {
+        List<City> cityList = cityRepository.findAll();
+        List<GetAllCityResponse> getAllCityResponseList =
+                cityList.stream().map(CityMapper.INSTANCE::getAllCityResponseFromCity)
+                        .collect(Collectors.toList());
+        return getAllCityResponseList;
     }
 
     @Override
@@ -76,4 +88,6 @@ public class CityServiceImpl implements CityService {
         deletedCityResponse.setDeletedDate(deletedCity.getDeletedDate());
         return deletedCityResponse;
     }
+
+
 }

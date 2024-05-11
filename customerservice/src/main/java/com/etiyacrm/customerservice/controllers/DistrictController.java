@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @CrossOrigin()
@@ -41,11 +43,18 @@ public class DistrictController {
         return districtService.delete(id);
     }
 
-    @GetMapping
+    @GetMapping("/paging")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "GetAll")
-    public PageInfoResponse<GetAllDistrictResponse> getAll(PageInfo pageInfo) {
-        return districtService.getAll(pageInfo);
+    public PageInfoResponse<GetAllDistrictResponse> getAllPage(PageInfo pageInfo) {
+        return districtService.getAllPage(pageInfo);
+    }
+
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "GetAll")
+    public List<GetAllDistrictResponse> getAll() {
+        return districtService.getAll();
     }
 
     @GetMapping("/{id}")

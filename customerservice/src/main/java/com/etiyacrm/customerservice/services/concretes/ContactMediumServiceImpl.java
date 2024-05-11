@@ -63,8 +63,10 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     @Override
     public GetContactMediumResponse getById(String id) {
         contactMediumBussinessRules.checkIfContactMedium(id);
+
         ContactMedium contactMedium = contactMediumRepository.findByCustomerId(id).get();
-        GetContactMediumResponse contactMediumResponse = ContactMediumMapper.INSTANCE.getContactMediumResponseFromContactMedium(contactMedium);
+        GetContactMediumResponse contactMediumResponse =
+                ContactMediumMapper.INSTANCE.getContactMediumResponseFromContactMedium(contactMedium);
         contactMediumResponse.setCustomerId(contactMedium.getCustomer().getId());
         contactMediumResponse.setId(contactMedium.getId());
         return contactMediumResponse;

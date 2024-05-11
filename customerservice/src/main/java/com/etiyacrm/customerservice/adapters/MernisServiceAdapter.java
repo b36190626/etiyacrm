@@ -3,6 +3,7 @@ package com.etiyacrm.customerservice.adapters;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.outservices.mernis.LWPKPSPublicSoap;
+import org.apache.commons.lang.WordUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,10 +14,14 @@ public class MernisServiceAdapter implements CustomerCheckService{
                                      String lastName,
                                      int birthDate) throws Exception {
         LWPKPSPublicSoap client = new LWPKPSPublicSoap();
+        String formattedFirstName = firstName.toLowerCase();
+        String formattedLastName = lastName.toLowerCase();
+        formattedFirstName = WordUtils.capitalize(formattedFirstName);
+        formattedLastName = WordUtils.capitalize(formattedLastName);
         return client.TCKimlikNoDogrula(
                 Long.parseLong(nationalityIdentity),
-                firstName,
-                lastName,
+                formattedFirstName,
+                formattedLastName,
                 birthDate);
     }
 }

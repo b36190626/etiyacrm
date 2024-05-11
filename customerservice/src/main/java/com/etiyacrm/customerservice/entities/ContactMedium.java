@@ -31,7 +31,7 @@ public class ContactMedium extends BaseEntity {
     @Column(name = "fax")
     private String fax;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 }

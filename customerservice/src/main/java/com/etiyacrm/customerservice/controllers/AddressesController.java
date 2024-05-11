@@ -43,7 +43,7 @@ public class AddressesController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")
-    public GetAddressResponse getById(@PathVariable String id){
+    public List<GetAddressResponse> getById(@PathVariable String id){
         return addressService.getById(id);
     }
 

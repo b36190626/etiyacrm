@@ -9,6 +9,7 @@ public class Messages {
         public static final String IndividualCustomerDeleted="individualCustomerDeleted";
         public static final String NationalityIdentityExists = "nationalityIdentityExists";
         public static final String IndividualCustomerIdNotExists = "individualCustomerIdNotExists";
+        public static final String IdentityNumberNotExists = "identityNumberNotExists";
 
         public static final String CustomerHasContactMedium = "customerHasContactMedium";
         public static final String CustomerHasNoContactMedium = "customerHasNoContactMedium";

@@ -17,6 +17,7 @@ import com.etiyacrm.customerservice.services.dtos.responses.cityresponses.GetAll
 import com.etiyacrm.customerservice.services.mappers.AddressMapper;
 import com.etiyacrm.customerservice.services.mappers.CityMapper;
 import com.etiyacrm.customerservice.services.rules.AddressBusinessRules;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,16 +41,16 @@ public class AddressServiceImpl implements AddressService {
         Page<Address> response =  addressRepository.findAll(pageable);
         Page<GetAllAddressResponse> responsePage = response
                 .map(address -> AddressMapper.INSTANCE.getAllAddressResponse(address));
-
         return new PageInfoResponse<>(responsePage);
     }
 
     @Override
-    public GetAddressResponse getById(String id) {
-        Address address = addressRepository.findById(id).get();
-        addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
-        GetAddressResponse response = AddressMapper.INSTANCE.getAddressResponseFromAddress(address);
-        return response;
+    public List<GetAddressResponse> getById(String id) {
+        List<Address> addresses = addressRepository.findByCustomerId(id);
+        List<GetAddressResponse> getAddressResponseList =
+                addresses.stream().map(AddressMapper.INSTANCE::getAddressResponseFromAddress).collect(Collectors.toList());
+
+        return getAddressResponseList;
     }
     @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {

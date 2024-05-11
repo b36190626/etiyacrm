@@ -31,9 +31,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
         ContactMedium contactMedium =
                 ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
-        Customer customer = new Customer();
-        customer.setId(createContactMediumRequest.getCustomerId());
-        contactMedium.setCustomer(customer);
+
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
 
         CreatedContactMediumResponse createdContactMediumResponse =
@@ -46,9 +44,11 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     @Override
     public UpdatedContactMediumResponse update(String id, UpdateContactMediumRequest updateContactMediumRequest) {
 
+        ContactMedium savedContactMedium = contactMediumRepository.findById(id).get();
         ContactMedium contactMedium =
                 ContactMediumMapper.INSTANCE.contactMediumFromUpdateContactMediumRequest(updateContactMediumRequest);
         contactMedium.setId(id);
+        contactMedium.setCustomer(savedContactMedium.getCustomer());
         contactMedium.setUpdatedDate(LocalDateTime.now());
 
         ContactMedium updatedContactmedium = contactMediumRepository.save(contactMedium);

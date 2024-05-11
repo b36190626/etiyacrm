@@ -28,7 +28,7 @@ public class ContactMediumBussinessRules {
     public void checkIfCustomerHasContactMedium(String customerId){
         List<ContactMedium> contactMediumList = contactMediumRepository.findAll();
         for (ContactMedium contactMedium : contactMediumList){
-            if (!customerId.equals(contactMedium.getCustomer().getId())){
+            if (customerId.equals(contactMedium.getCustomer().getId())){
                 throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CustomerHasContactMedium));
             }
         }

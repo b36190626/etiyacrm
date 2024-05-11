@@ -23,8 +23,12 @@ public interface AddressMapper {
     @Mapping(source = "customerId", target = "customer.id")
     @Mapping(source = "districtId", target = "district.id")
     Address addressFromCreateAddressRequest(CreateAddressRequest createAddressRequest);
+    @Mapping(source = "customer.id", target = "customerId")
+    @Mapping(source = "district.id", target = "districtId")
     CreatedAddressResponse createdAddressResponseFromAddress(Address address);
     Address addressFromUpdateAddressRequest(UpdateAddressRequest updateAddressRequest);
+    @Mapping(source = "customer.id", target = "customerId")
+    @Mapping(source = "district.id", target = "districtId")
     UpdatedAddressResponse updatedAddressResponseFromAddress(Address address);
     DeletedAddressResponse deletedAddressResponseFromAddress(Address address);
 

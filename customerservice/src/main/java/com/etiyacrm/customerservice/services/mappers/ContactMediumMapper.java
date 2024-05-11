@@ -19,7 +19,7 @@ public interface ContactMediumMapper {
     UpdatedContactMediumResponse updatedContactMediumResponseFromContactMedium(ContactMedium contactMedium);
     GetContactMediumResponse getContactMediumResponseFromContactMedium(ContactMedium contactMedium);
     DeletedContactMediumResponse deletedContactMediumResponseFromContactMedium(ContactMedium contactMedium);
+    @Mapping(source = "customerId", target = "customer.id")
     ContactMedium contactMediumFromCreateContactMediumRequest(CreateContactMediumRequest createContactMediumRequest);
-
     ContactMedium contactMediumFromUpdateContactMediumRequest(UpdateContactMediumRequest updateContactMediumRequest);
 }

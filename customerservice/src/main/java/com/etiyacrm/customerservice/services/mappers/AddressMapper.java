@@ -14,19 +14,20 @@ import java.util.List;
 public interface AddressMapper {
     AddressMapper INSTANCE = Mappers.getMapper(AddressMapper.class);
 
-    @Mapping(source = "city.id", target = "cityId")
     @Mapping(source = "customer.id", target = "customerId")
     GetAllAddressResponse getAllAddressResponse(Address address);
-    @Mapping(source = "city.id", target = "cityId")
+
     @Mapping(source = "customer.id", target = "customerId")
-    @Mapping(source = "city.name", target = "cityName")
     GetAllAddressResponse getAllListAddressResponse(Address address);
 
+    @Mapping(source = "customerId", target = "customer.id")
+    @Mapping(source = "districtId", target = "district.id")
     Address addressFromCreateAddressRequest(CreateAddressRequest createAddressRequest);
     CreatedAddressResponse createdAddressResponseFromAddress(Address address);
     Address addressFromUpdateAddressRequest(UpdateAddressRequest updateAddressRequest);
     UpdatedAddressResponse updatedAddressResponseFromAddress(Address address);
     DeletedAddressResponse deletedAddressResponseFromAddress(Address address);
+
     GetAddressResponse getAddressResponseFromAddress(Address address);
 
 }

@@ -14,5 +14,5 @@ import java.util.Optional;
 public interface AddressRepository extends JpaRepository<Address,String> {
     List<Address> findByDeletedDate(LocalDateTime deletedDate);
 
-    //List<Address> findByCustomerId(String customerId);
+    List<Address> findByCustomerId(String customerId);
 }

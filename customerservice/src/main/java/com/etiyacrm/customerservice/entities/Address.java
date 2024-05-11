@@ -29,11 +29,11 @@ public class Address extends BaseEntity {
     @Column(name = "flatNumber")
     private int flatNumber;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "district_id")
     private District district;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 }

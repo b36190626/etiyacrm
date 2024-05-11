@@ -33,8 +33,13 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     private CustomerProducer customerProducer;
 
     @Override
-    public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
+    public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception {
         individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(createIndividualCustomerRequest.getNationalityIdentity());
+        individualCustomerBusinessRules.checkIfNationalIdentityExists(
+                createIndividualCustomerRequest.getNationalityIdentity(),
+                createIndividualCustomerRequest.getFirstName(),
+                createIndividualCustomerRequest.getLastName(),
+                createIndividualCustomerRequest.getBirthDate().getYear());
 
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE
                 .individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);

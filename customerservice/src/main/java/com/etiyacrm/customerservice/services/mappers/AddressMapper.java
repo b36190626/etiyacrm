@@ -32,6 +32,8 @@ public interface AddressMapper {
     UpdatedAddressResponse updatedAddressResponseFromAddress(Address address);
     DeletedAddressResponse deletedAddressResponseFromAddress(Address address);
 
+    @Mapping(source = "customer.id", target = "customerId")
+    @Mapping(source = "district.id", target = "districtId")
     GetAddressResponse getAddressResponseFromAddress(Address address);
 
 }

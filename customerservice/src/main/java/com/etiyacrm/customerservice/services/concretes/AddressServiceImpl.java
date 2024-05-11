@@ -73,7 +73,7 @@ public class AddressServiceImpl implements AddressService {
                 AddressMapper.INSTANCE.addressFromUpdateAddressRequest(updateAddressRequest);
 
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
-
+        address.setId(id);
         address.setUpdatedDate(LocalDateTime.now());
         Address updatedAddress = addressRepository.save(address);
 

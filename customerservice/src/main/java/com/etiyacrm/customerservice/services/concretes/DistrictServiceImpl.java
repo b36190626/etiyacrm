@@ -10,6 +10,7 @@ import com.etiyacrm.customerservice.services.dtos.requests.districtRequests.Crea
 import com.etiyacrm.customerservice.services.dtos.requests.districtRequests.UpdateDistrictRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.districtResponses.*;
 import com.etiyacrm.customerservice.services.mappers.DistrictMapper;
+import com.etiyacrm.customerservice.services.rules.DistrictBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,9 +22,8 @@ import java.time.LocalDateTime;
 @Service
 @AllArgsConstructor
 public class DistrictServiceImpl implements DistrictService {
-
     private DistrictRepository districtRepository;
-
+    private DistrictBusinessRules districtBusinessRules;
 
     @Override
     public PageInfoResponse<GetAllDistrictResponse> getAll(PageInfo pageInfo) {
@@ -60,12 +60,9 @@ public class DistrictServiceImpl implements DistrictService {
     @Override
     public UpdatedDistrictResponse update(UpdateDistrictRequest updateDistrictRequest, String id) {
         //rule eklenecek
-        City city = new City();
-        city.setId(updateDistrictRequest.getCityId());
 
         District district =DistrictMapper.INSTANCE.districtFromUpdateDistrictRequest(updateDistrictRequest);
         district.setId(id);
-        district.setCity(city);
         district.setUpdatedDate(LocalDateTime.now());
         District updatedDistrict = districtRepository.save(district);
 
@@ -75,9 +72,9 @@ public class DistrictServiceImpl implements DistrictService {
 
     @Override
     public DeletedDistrictResponse delete(String id) {
-        //rule eklenecek
 
         District district = districtRepository.findById(id).get();
+        districtBusinessRules.checkIfDistrictDeleted(district.getDeletedDate());
         district.setId(id);
         district.setDeletedDate(LocalDateTime.now());
         District deletedDistrict = districtRepository.save(district);

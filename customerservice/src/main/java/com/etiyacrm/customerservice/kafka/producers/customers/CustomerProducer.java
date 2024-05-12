@@ -1,7 +1,8 @@
-package com.etiyacrm.customerservice.kafka.producers;
+package com.etiyacrm.customerservice.kafka.producers.customers;
 
 
 import com.etiya.common.events.customers.CustomerCreatedEvent;
+import com.etiya.common.events.customers.CustomerUpdatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,9 +16,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerProducer {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerProducer.class);
-    private final KafkaTemplate<String, CustomerCreatedEvent> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    public CustomerProducer(KafkaTemplate<String,CustomerCreatedEvent> kafkaTemplate){
+    public CustomerProducer(KafkaTemplate<String,Object> kafkaTemplate){
         this.kafkaTemplate = kafkaTemplate;
     }
 
@@ -28,6 +29,15 @@ public class CustomerProducer {
                 .setHeader(KafkaHeaders.TOPIC,"customer-created")
                 .build();
 
+        kafkaTemplate.send(message);
+    }
+
+    public void sendMessage(CustomerUpdatedEvent customerUpdatedEvent){
+        LOGGER.info(String.format("Customer updated =>%s",customerUpdatedEvent.toString()));
+
+        Message<CustomerUpdatedEvent> message = MessageBuilder.withPayload(customerUpdatedEvent)
+                .setHeader(KafkaHeaders.TOPIC, "customer-updated")
+                .build();
         kafkaTemplate.send(message);
     }
 }

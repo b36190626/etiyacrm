@@ -2,13 +2,12 @@ package com.etiyacrm.customerservice.services.concretes;
 
 
 import com.etiya.common.events.customers.CustomerCreatedEvent;
+import com.etiya.common.events.customers.CustomerUpdatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
-import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
-import com.etiyacrm.customerservice.kafka.producers.CustomerProducer;
+import com.etiyacrm.customerservice.kafka.producers.customers.CustomerProducer;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
-import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.UpdateIndividualCustomerRequest;
@@ -22,8 +21,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.UUID;
 
 @AllArgsConstructor
 @Service
@@ -84,6 +81,18 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse =
                 IndividualCustomerMapper.INSTANCE.updatedIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
         updatedIndividualCustomerResponse.setId(updatedIndividualCustomer.getId());
+
+        CustomerUpdatedEvent customerUpdatedEvent = new CustomerUpdatedEvent(
+                updatedIndividualCustomer.getId(),
+                updatedIndividualCustomer.getFirstName(),
+                updatedIndividualCustomer.getMiddleName(),
+                updatedIndividualCustomer.getLastName(),
+                updatedIndividualCustomer.getGender(),
+                updatedIndividualCustomer.getBirthDate(),
+                updatedIndividualCustomer.getFatherName(),
+                updatedIndividualCustomer.getMotherName(),
+                updatedIndividualCustomer.getNationalityIdentity());
+        customerProducer.sendMessage(customerUpdatedEvent);
 
         return updatedIndividualCustomerResponse;
     }

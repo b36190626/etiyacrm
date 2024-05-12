@@ -1,4 +1,4 @@
-package com.etiya.searchservice.kafka;
+package com.etiya.searchservice.kafka.customers;
 
 import com.etiya.common.events.customers.CustomerCreatedEvent;
 import com.etiya.searchservice.entities.Customer;
@@ -18,8 +18,16 @@ public class CustomerCreatedConsumer {
     @KafkaListener(topics = "customer-created", groupId = "create-customer")
     private void consume(CustomerCreatedEvent customerCreatedEvent){
         Customer customer = new Customer();
+        customer.setId(customerCreatedEvent.getId());
         customer.setFirstName(customerCreatedEvent.getFirstName());
+        customer.setMiddleName(customerCreatedEvent.getMiddleName());
+        customer.setLastName(customerCreatedEvent.getLastName());
+        customer.setGender(customerCreatedEvent.getGender());
+        customer.setBirthDate(customerCreatedEvent.getBirthDate());
+        customer.setFatherName(customerCreatedEvent.getFatherName());
+        customer.setMotherName(customerCreatedEvent.getMotherName());
+        customer.setNationalityIdentity(customerCreatedEvent.getNationalityIdentity());
         LOGGER.info(String.format("Customer created event consumer => %s", customerCreatedEvent.toString()));
-        this.filterService.add(customer);
+        this.filterService.addCustomer(customer);
     }
 }

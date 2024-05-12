@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -30,7 +31,7 @@ public class Customer {
     private String gender;
 
     @Field(name = "birthDate")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Field(name = "fatherName")
     private String fatherName;

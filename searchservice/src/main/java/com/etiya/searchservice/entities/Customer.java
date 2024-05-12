@@ -19,35 +19,23 @@ public class Customer {
     @Id
     private String id;
 
+    @Field(name = "nationalityIdentity")
+    private String nationalityIdentity;
+
+    @Field(name = "accountNumber")
+    private String accountNumber;
+
+    @Field(name = "mobilePhone")
+    private String mobilePhone;
+
     @Field(name = "firstName")
     private String firstName;
-
-    @Field(name = "middleName")
-    private String middleName;
 
     @Field(name = "lastName")
     private String lastName;
 
-    @Field(name = "gender")
-    private String gender;
-
-    @Field(name = "birthDate")
-    private LocalDate birthDate;
-
-    @Field(name = "fatherName")
-    private String fatherName;
-
-    @Field(name = "motherName")
-    private String motherName;
-
-    @Field(name = "nationalityIdentity")
-    private String nationalityIdentity;
-
-    @Field(name = "createdDate")
-    private LocalDateTime createdDate;
-
-    @Field(name = "updatedDate")
-    private LocalDateTime updatedDate;
+    @Field(name = "orderNumber")
+    private String orderNumber;
 
     @Field(name = "deletedDate")
     private LocalDateTime deletedDate;

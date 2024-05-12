@@ -1,13 +1,18 @@
 package com.etiyacrm.customerservice.services.concretes;
 
+import com.etiya.common.events.customers.CustomerCreatedEvent;
+import com.etiya.common.events.customers.CustomerUpdatedEvent;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.ContactMedium;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
+import com.etiyacrm.customerservice.kafka.producers.customers.CustomerProducer;
 import com.etiyacrm.customerservice.repositories.ContactMediumRepository;
 import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
+import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMediumRequests.CreateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMediumRequests.UpdateContactMediumRequest;
+import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.GetIndividualCustomerResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.CreatedContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.DeletedContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.GetContactMediumResponse;
@@ -24,6 +29,8 @@ import java.time.LocalDateTime;
 public class ContactMediumServiceImpl implements ContactMediumService {
     private ContactMediumRepository contactMediumRepository;
     private ContactMediumBussinessRules contactMediumBussinessRules;
+    private IndividualCustomerService individualCustomerService;
+    private CustomerProducer customerProducer;
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
@@ -38,6 +45,15 @@ public class ContactMediumServiceImpl implements ContactMediumService {
                 ContactMediumMapper.INSTANCE.createdContactMediumResponseFromContactMedium(createdContactMedium);
         createdContactMediumResponse.setId(createdContactMedium.getId());
         createdContactMediumResponse.setCustomerId(createdContactMedium.getCustomer().getId());
+
+        GetIndividualCustomerResponse individualCustomer = individualCustomerService.getById(createdContactMedium.getCustomer().getId());
+        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent();
+        customerCreatedEvent.setNationalityIdentity(individualCustomer.getNationalityIdentity());
+        customerCreatedEvent.setId(createdContactMedium.getId());
+        customerCreatedEvent.setMobilePhone(createdContactMedium.getMobilePhone());
+        customerCreatedEvent.setFirstName(individualCustomer.getFirstName());
+        customerCreatedEvent.setLastName(individualCustomer.getLastName());
+        customerProducer.sendMessage(customerCreatedEvent);
         return createdContactMediumResponse;
     }
 
@@ -56,6 +72,16 @@ public class ContactMediumServiceImpl implements ContactMediumService {
         UpdatedContactMediumResponse updatedContactMediumResponse =
                 ContactMediumMapper.INSTANCE.updatedContactMediumResponseFromContactMedium(updatedContactmedium);
         updatedContactMediumResponse.setId(updatedContactmedium.getId());
+
+        GetIndividualCustomerResponse individualCustomer =
+                individualCustomerService.getById(savedContactMedium.getCustomer().getId());
+        CustomerUpdatedEvent customerUpdatedEvent = new CustomerUpdatedEvent();
+        customerUpdatedEvent.setNationalityIdentity(individualCustomer.getNationalityIdentity());
+        customerUpdatedEvent.setId(updatedContactmedium.getId());
+        customerUpdatedEvent.setMobilePhone(updatedContactmedium.getMobilePhone());
+        customerUpdatedEvent.setFirstName(individualCustomer.getFirstName());
+        customerUpdatedEvent.setLastName(individualCustomer.getLastName());
+        customerProducer.sendMessage(customerUpdatedEvent);
 
         return updatedContactMediumResponse;
     }

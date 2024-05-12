@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SearchRequest {
     private String nationalityIdentity;
-    private String customerId;
+    private String id;
     private String accountNumber;
     private String mobilePhone;
     private String firstName;

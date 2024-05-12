@@ -21,16 +21,12 @@ public class CustomerUpdatedConsumer {
     @KafkaListener(topics = "customer-updated", groupId = "update-customer")
     private void consume(CustomerUpdatedEvent customerUpdatedEvent){
         Customer customer = new Customer();
-        customer.setId(customerUpdatedEvent.getId());
-        customer.setFirstName(customerUpdatedEvent.getFirstName());
-        customer.setMiddleName(customerUpdatedEvent.getMiddleName());
-        customer.setLastName(customerUpdatedEvent.getLastName());
-        customer.setGender(customerUpdatedEvent.getGender());
-        customer.setBirthDate(customerUpdatedEvent.getBirthDate());
-        customer.setFatherName(customerUpdatedEvent.getFatherName());
-        customer.setMotherName(customerUpdatedEvent.getMotherName());
         customer.setNationalityIdentity(customerUpdatedEvent.getNationalityIdentity());
-        customer.setUpdatedDate(LocalDateTime.now());
+        customer.setId(customerUpdatedEvent.getId());
+        customer.setMobilePhone(customerUpdatedEvent.getMobilePhone());
+        customer.setFirstName(customerUpdatedEvent.getFirstName());
+        customer.setLastName(customerUpdatedEvent.getLastName());
+
         LOGGER.info(String.format("Customer updated event consumer => %s", customerUpdatedEvent.toString()));
         this.filterService.updateCustomer(customer);
     }

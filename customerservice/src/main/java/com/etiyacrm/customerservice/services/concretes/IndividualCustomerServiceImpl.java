@@ -29,7 +29,6 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     private IndividualCustomerRepository individualCustomerRepository;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     private CustomerProducer customerProducer;
-
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception {
         individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(createIndividualCustomerRequest.getNationalityIdentity());
@@ -48,17 +47,6 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
                 IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
         createdIndividualCustomerResponse.setId(createdIndividualCustomer.getId());
 
-        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(
-                createdIndividualCustomer.getId(),
-                createdIndividualCustomer.getFirstName(),
-                createdIndividualCustomer.getMiddleName(),
-                createdIndividualCustomer.getLastName(),
-                createdIndividualCustomer.getGender(),
-                createdIndividualCustomer.getBirthDate(),
-                createdIndividualCustomer.getFatherName(),
-                createdIndividualCustomer.getMotherName(),
-                createdIndividualCustomer.getNationalityIdentity());
-        customerProducer.sendMessage(customerCreatedEvent);
         return createdIndividualCustomerResponse;
     }
     @Override
@@ -82,18 +70,6 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse =
                 IndividualCustomerMapper.INSTANCE.updatedIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
         updatedIndividualCustomerResponse.setId(updatedIndividualCustomer.getId());
-
-        CustomerUpdatedEvent customerUpdatedEvent = new CustomerUpdatedEvent(
-                updatedIndividualCustomer.getId(),
-                updatedIndividualCustomer.getFirstName(),
-                updatedIndividualCustomer.getMiddleName(),
-                updatedIndividualCustomer.getLastName(),
-                updatedIndividualCustomer.getGender(),
-                updatedIndividualCustomer.getBirthDate(),
-                updatedIndividualCustomer.getFatherName(),
-                updatedIndividualCustomer.getMotherName(),
-                updatedIndividualCustomer.getNationalityIdentity());
-        customerProducer.sendMessage(customerUpdatedEvent);
 
         return updatedIndividualCustomerResponse;
     }

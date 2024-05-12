@@ -10,13 +10,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerUpdatedEvent {
+    private String nationalityIdentity;
     private String id;
     private String firstName;
-    private String middleName;
+    private String accountNumber;
+    private String mobilePhone;
     private String lastName;
-    private String gender;
-    private LocalDate birthDate;
-    private String motherName;
-    private String fatherName;
-    private String nationalityIdentity;
+    private String orderNumber;
 }

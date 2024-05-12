@@ -20,16 +20,12 @@ public class CustomerCreatedConsumer {
     @KafkaListener(topics = "customer-created", groupId = "create-customer")
     private void consume(CustomerCreatedEvent customerCreatedEvent){
         Customer customer = new Customer();
-        customer.setId(customerCreatedEvent.getId());
-        customer.setFirstName(customerCreatedEvent.getFirstName());
-        customer.setMiddleName(customerCreatedEvent.getMiddleName());
-        customer.setLastName(customerCreatedEvent.getLastName());
-        customer.setGender(customerCreatedEvent.getGender());
-        customer.setBirthDate(customerCreatedEvent.getBirthDate());
-        customer.setFatherName(customerCreatedEvent.getFatherName());
-        customer.setMotherName(customerCreatedEvent.getMotherName());
         customer.setNationalityIdentity(customerCreatedEvent.getNationalityIdentity());
-        customer.setCreatedDate(LocalDateTime.now());
+        customer.setId(customerCreatedEvent.getId());
+        customer.setMobilePhone(customerCreatedEvent.getMobilePhone());
+        customer.setFirstName(customerCreatedEvent.getFirstName());
+        customer.setLastName(customerCreatedEvent.getLastName());
+
         LOGGER.info(String.format("Customer created event consumer => %s", customerCreatedEvent.toString()));
         this.filterService.addCustomer(customer);
     }

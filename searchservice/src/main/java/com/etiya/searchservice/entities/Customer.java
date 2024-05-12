@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,4 +19,25 @@ public class Customer {
 
     @Field(name = "firstName")
     private String firstName;
+
+    @Field(name = "middleName")
+    private String middleName;
+
+    @Field(name = "lastName")
+    private String lastName;
+
+    @Field(name = "gender")
+    private String gender;
+
+    @Field(name = "birthDate")
+    private Date birthDate;
+
+    @Field(name = "fatherName")
+    private String fatherName;
+
+    @Field(name = "motherName")
+    private String motherName;
+
+    @Field(name = "nationalityIdentity")
+    private String nationalityIdentity;
 }

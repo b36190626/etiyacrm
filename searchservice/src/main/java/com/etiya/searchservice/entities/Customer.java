@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -41,4 +42,13 @@ public class Customer {
 
     @Field(name = "nationalityIdentity")
     private String nationalityIdentity;
+
+    @Field(name = "createdDate")
+    private LocalDateTime createdDate;
+
+    @Field(name = "updatedDate")
+    private LocalDateTime updatedDate;
+
+    @Field(name = "deletedDate")
+    private LocalDateTime deletedDate;
 }

@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @AllArgsConstructor
 public class CustomerCreatedConsumer {
@@ -27,6 +29,7 @@ public class CustomerCreatedConsumer {
         customer.setFatherName(customerCreatedEvent.getFatherName());
         customer.setMotherName(customerCreatedEvent.getMotherName());
         customer.setNationalityIdentity(customerCreatedEvent.getNationalityIdentity());
+        customer.setCreatedDate(LocalDateTime.now());
         LOGGER.info(String.format("Customer created event consumer => %s", customerCreatedEvent.toString()));
         this.filterService.addCustomer(customer);
     }

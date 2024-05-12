@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @AllArgsConstructor
 public class CustomerUpdatedConsumer {
@@ -28,7 +30,8 @@ public class CustomerUpdatedConsumer {
         customer.setFatherName(customerUpdatedEvent.getFatherName());
         customer.setMotherName(customerUpdatedEvent.getMotherName());
         customer.setNationalityIdentity(customerUpdatedEvent.getNationalityIdentity());
+        customer.setUpdatedDate(LocalDateTime.now());
         LOGGER.info(String.format("Customer updated event consumer => %s", customerUpdatedEvent.toString()));
-        this.filterService.addCustomer(customer);
+        this.filterService.updateCustomer(customer);
     }
 }

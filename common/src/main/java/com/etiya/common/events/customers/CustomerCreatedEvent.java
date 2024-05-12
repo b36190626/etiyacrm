@@ -22,22 +22,22 @@ public class CustomerCreatedEvent {
     private String fatherName;
     private String nationalityIdentity;
 
-    //contact medium
-    private String contactMediumId;
-    private String email;
-    private String mobilePhone;
-    private String homePhone;
-    private String fax;
-    private String customerId;
-
-    //address
-    private String addressId;
-    private String description;
-    private String street;
-    private int flatNumber;
-    private String cityId;
-    private String cityName;
-    private String districtId;
-    private String districtName;
-    //private long customerId;
+//    //contact medium
+//    private String contactMediumId;
+//    private String email;
+//    private String mobilePhone;
+//    private String homePhone;
+//    private String fax;
+//    private String customerId;
+//
+//    //address
+//    private String addressId;
+//    private String description;
+//    private String street;
+//    private int flatNumber;
+//    private String cityId;
+//    private String cityName;
+//    private String districtId;
+//    private String districtName;
+//    //private long customerId;
 }

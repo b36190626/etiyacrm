@@ -46,7 +46,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
         createdContactMediumResponse.setId(createdContactMedium.getId());
         createdContactMediumResponse.setCustomerId(createdContactMedium.getCustomer().getId());
 
-        GetIndividualCustomerResponse individualCustomer = individualCustomerService.getById(createdContactMedium.getId());
+        GetIndividualCustomerResponse individualCustomer = individualCustomerService.getById(createdContactMedium.getCustomer().getId());
         CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent();
         customerCreatedEvent.setNationalityIdentity(individualCustomer.getNationalityIdentity());
         customerCreatedEvent.setId(createdContactMedium.getId());

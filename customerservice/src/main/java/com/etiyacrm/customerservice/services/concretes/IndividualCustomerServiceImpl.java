@@ -2,6 +2,7 @@ package com.etiyacrm.customerservice.services.concretes;
 
 
 import com.etiya.common.events.customers.CustomerCreatedEvent;
+import com.etiya.common.events.customers.CustomerDeletedEvent;
 import com.etiya.common.events.customers.CustomerUpdatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
@@ -75,7 +76,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
         IndividualCustomer individualCustomer =
                 IndividualCustomerMapper.INSTANCE.individualCustomerFromUpdateIndividualCustomerRequest(updateIndividualCustomerRequest);
-
+        individualCustomer.setId(id);
         IndividualCustomer updatedIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse =
@@ -122,6 +123,10 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
                 IndividualCustomerMapper.INSTANCE.deletedIndividualCustomerResponseFromIndividualCustomer(deletedIndividualCustomer);
         deletedIndividualCustomerResponse.setId(deletedIndividualCustomer.getId());
 
+        CustomerDeletedEvent customerDeletedEvent = new CustomerDeletedEvent(
+                deletedIndividualCustomer.getId(),
+                deletedIndividualCustomer.getDeletedDate());
+        customerProducer.sendMessage(customerDeletedEvent);
         return deletedIndividualCustomerResponse;
     }
 }

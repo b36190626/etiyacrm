@@ -3,6 +3,8 @@ package com.etiya.searchservice.service.concretes;
 import com.etiya.searchservice.entities.Customer;
 import com.etiya.searchservice.repository.FilterRepository;
 import com.etiya.searchservice.service.abstracts.FilterService;
+import com.etiya.searchservice.service.dtos.requests.SearchRequest;
+import com.etiya.searchservice.service.dtos.responses.SearchResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,9 @@ public class FilterServiceImpl implements FilterService {
     }
 
     @Override
-    public Customer searchByNationalityIdentity(String nationalityIdentity) {
-        return this.filterRepository.searchByNationalityIdentity(nationalityIdentity);
+    public void deleteCustomer(Customer customer) {
+        this.filterRepository.save(customer);
     }
+
+
 }

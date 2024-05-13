@@ -33,8 +33,13 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<SearchResponse> search(
-            String nationalityIdentity, String id, String mobilePhone,
-            String accountNumber, String firstName, String lastName, String orderNumber) {
+            String nationalityIdentity,
+            String id,
+            String accountNumber,
+            String mobilePhone,
+            String firstName,
+            String lastName,
+            String orderNumber) {
 
         List<Customer> customers =
                 this.filterRepository.searchResult(

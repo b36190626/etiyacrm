@@ -16,4 +16,5 @@ public class SearchResponse {
     private String nationalityIdentity;
     private String accountNumber;
     private String mobilePhone;
-}
+}    
+

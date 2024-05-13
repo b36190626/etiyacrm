@@ -19,16 +19,16 @@ public class SearchCustomerController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<SearchResponse> search(
+            @RequestParam(required = false) String nationalityIdentity,
             @RequestParam(required = false) String id,
+            @RequestParam(required = false) String accountNumber,
+            @RequestParam(required = false) String mobilePhone,
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName,
-            @RequestParam(required = false) String mobilePhone,
-            @RequestParam(required = false) String nationalityIdentity,
-            @RequestParam(required = false) String orderNumber,
-            @RequestParam(required = false) String accountNumber
+            @RequestParam(required = false) String orderNumber
     ) {
         return this.filterService.search(
-                id, firstName, lastName, mobilePhone, nationalityIdentity, orderNumber, accountNumber
+                nationalityIdentity, id, accountNumber, mobilePhone, firstName, lastName, orderNumber
         );
     }
 

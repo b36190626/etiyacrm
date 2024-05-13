@@ -39,4 +39,3 @@ public class FilterRepositoryCustomImpl implements FilterRepositoryCustom{
         return mongoTemplate.find(query, Customer.class);
     }
 }
-

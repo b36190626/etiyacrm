@@ -15,6 +15,7 @@ public class CustomerUpdatedEvent {
     private String firstName;
     private String accountNumber;
     private String mobilePhone;
+    private String middleName;
     private String lastName;
     private String orderNumber;
 }

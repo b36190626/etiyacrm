@@ -25,6 +25,7 @@ public class CustomerUpdatedConsumer {
         customer.setId(customerUpdatedEvent.getId());
         customer.setMobilePhone(customerUpdatedEvent.getMobilePhone());
         customer.setFirstName(customerUpdatedEvent.getFirstName());
+        customer.setMiddleName(customerUpdatedEvent.getMiddleName());
         customer.setLastName(customerUpdatedEvent.getLastName());
 
         LOGGER.info(String.format("Customer updated event consumer => %s", customerUpdatedEvent.toString()));

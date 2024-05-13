@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SearchResponse {
-    private String customerId;
+    private String id;
     private String firstName;
-    private String secondName;
+    private String middleName;
     private String lastName;
     private String role;
     private String nationalityIdentity;

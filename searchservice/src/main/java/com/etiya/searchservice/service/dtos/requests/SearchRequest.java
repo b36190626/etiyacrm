@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SearchRequest {
-    private String nationalityIdentity;
-    private String id;
-    private String accountNumber;
-    private String mobilePhone;
-    private String firstName;
-    private String lastName;
-    private String orderNumber;
+    String nationalityIdentity;
+    String id;
+    String accountNumber;
+    String mobilePhone;
+    String firstName;
+    String lastName;
+    String orderNumber;
 }

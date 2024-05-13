@@ -52,6 +52,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
         customerCreatedEvent.setId(createdContactMedium.getId());
         customerCreatedEvent.setMobilePhone(createdContactMedium.getMobilePhone());
         customerCreatedEvent.setFirstName(individualCustomer.getFirstName());
+        customerCreatedEvent.setMiddleName(individualCustomer.getMiddleName());
         customerCreatedEvent.setLastName(individualCustomer.getLastName());
         customerProducer.sendMessage(customerCreatedEvent);
         return createdContactMediumResponse;
@@ -80,6 +81,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
         customerUpdatedEvent.setId(updatedContactmedium.getId());
         customerUpdatedEvent.setMobilePhone(updatedContactmedium.getMobilePhone());
         customerUpdatedEvent.setFirstName(individualCustomer.getFirstName());
+        customerUpdatedEvent.setMiddleName(individualCustomer.getMiddleName());
         customerUpdatedEvent.setLastName(individualCustomer.getLastName());
         customerProducer.sendMessage(customerUpdatedEvent);
 

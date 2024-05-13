@@ -3,7 +3,6 @@ package com.etiya.searchservice.service.concretes;
 import com.etiya.searchservice.entities.Customer;
 import com.etiya.searchservice.repository.FilterRepository;
 import com.etiya.searchservice.service.abstracts.FilterService;
-import com.etiya.searchservice.service.dtos.requests.SearchRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,15 +29,25 @@ public class FilterServiceImpl implements FilterService {
     }
 
     @Override
-    public List<Customer> search(SearchRequest searchRequest) {
-        return filterRepository.searchByNationalityIdentityOrIdOrAccountNumberOrMobilePhoneOrFirstNameOrLastNameOrOrderNumber(
-                searchRequest.getNationalityIdentity(),
-                searchRequest.getId(),
-                searchRequest.getAccountNumber(),
-                searchRequest.getMobilePhone(),
-                searchRequest.getFirstName(),
-                searchRequest.getLastName(),
-                searchRequest.getOrderNumber()
-        );
+    public List<Customer> search(
+            String nationalityIdentity,
+            String id,
+            String accountNumber,
+            String mobilePhone,
+            String firstName,
+            String lastName,
+            String orderNumber) {
+
+        List<Customer> customers =
+                this.filterRepository.searchResult(
+                        nationalityIdentity,
+                        id,
+                        mobilePhone, accountNumber,
+                        firstName,
+                        lastName,
+                        orderNumber
+                );
+        return customers;
+
     }
 }

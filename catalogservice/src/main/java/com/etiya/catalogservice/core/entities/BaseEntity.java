@@ -1,4 +1,4 @@
-package com.etiya.common.entities;
+package com.etiya.catalogservice.core.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

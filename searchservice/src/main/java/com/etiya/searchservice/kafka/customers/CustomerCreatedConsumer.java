@@ -1,5 +1,6 @@
 package com.etiya.searchservice.kafka.customers;
 
+
 import com.etiya.common.events.customers.CustomerCreatedEvent;
 import com.etiya.searchservice.entities.Customer;
 import com.etiya.searchservice.service.abstracts.FilterService;

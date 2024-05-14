@@ -10,6 +10,7 @@ public interface FilterService {
     void updateCustomer(Customer customer);
     void deleteCustomer(Customer customer);
 
+    List<SearchResponse> getAll();
     List<SearchResponse> search(
             String nationalityIdentity, String id, String accountNumber,
             String mobilePhone, String firstName, String lastName, String orderNumber

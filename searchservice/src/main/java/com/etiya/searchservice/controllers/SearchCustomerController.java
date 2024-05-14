@@ -32,4 +32,10 @@ public class SearchCustomerController {
         );
     }
 
+    @GetMapping("/getAll")
+    @ResponseStatus(HttpStatus.OK)
+    public List<SearchResponse> getAll(){
+        return this.filterService.getAll();
+    }
+
 }

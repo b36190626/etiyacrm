@@ -32,6 +32,27 @@ public class FilterServiceImpl implements FilterService {
     }
 
     @Override
+    public List<SearchResponse> getAll() {
+        List<Customer> customerList = filterRepository.findAll();
+
+        List<SearchResponse> searchResponses = new ArrayList<>();
+        for (Customer customer : customerList) {
+            SearchResponse searchResponse = new SearchResponse();
+            searchResponse.setId(customer.getId());
+            searchResponse.setFirstName(customer.getFirstName());
+            searchResponse.setMiddleName(customer.getMiddleName());
+            searchResponse.setLastName(customer.getLastName());
+            searchResponse.setRole(customer.getRole());
+            searchResponse.setNationalityIdentity(customer.getNationalityIdentity());
+            searchResponse.setAccountNumber(customer.getAccountNumber());
+            searchResponse.setMobilePhone(customer.getMobilePhone());
+
+            searchResponses.add(searchResponse);
+        }
+        return searchResponses;
+    }
+
+    @Override
     public List<SearchResponse> search(
             String nationalityIdentity,
             String id,

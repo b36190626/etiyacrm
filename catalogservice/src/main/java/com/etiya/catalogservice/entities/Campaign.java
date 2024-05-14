@@ -1,6 +1,7 @@
 package com.etiya.catalogservice.entities;
 
-import com.etiya.common.entities.BaseEntity;
+
+import com.etiya.catalogservice.core.entities.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

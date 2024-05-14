@@ -40,6 +40,7 @@ public class CityServiceImpl implements CityService {
         List<GetAllCityResponse> getAllCityResponseList =
                 cityList.stream().map(CityMapper.INSTANCE::getAllCityResponseFromCity)
                         .collect(Collectors.toList());
+
         return getAllCityResponseList;
     }
 
@@ -47,18 +48,22 @@ public class CityServiceImpl implements CityService {
     public GetCityResponse getById(String id) {
         City city = cityRepository.findById(id).get();
         cityBusinessRules.checkIfCityDeleted(city.getDeletedDate());
-        GetCityResponse response = CityMapper.INSTANCE.getCityResponseFromCity(city);
-        return response;
+        GetCityResponse getCityResponse =
+                CityMapper.INSTANCE.getCityResponseFromCity(city);
+
+        return getCityResponse;
     }
 
     @Override
     public CreatedCityResponse add(CreateCityRequest createCityRequest) {
         cityBusinessRules.cityNameCanNotBeDuplicatedWhenInserted(createCityRequest.getName());
 
-        City city = CityMapper.INSTANCE.cityFromCreateCityRequest(createCityRequest);
+        City city =
+                CityMapper.INSTANCE.cityFromCreateCityRequest(createCityRequest);
         City createdCity = cityRepository.save(city);
 
-        CreatedCityResponse createdCityResponse = CityMapper.INSTANCE.createdCityResponseFromCity(createdCity);
+        CreatedCityResponse createdCityResponse =
+                CityMapper.INSTANCE.createdCityResponseFromCity(createdCity);
 
         return  createdCityResponse;
     }
@@ -67,12 +72,15 @@ public class CityServiceImpl implements CityService {
     public UpdatedCityResponse update(UpdateCityRequest updateCityRequest, String id) {
         cityBusinessRules.cityNameCanNotBeDuplicatedWhenInserted(updateCityRequest.getName());
 
-        City city = CityMapper.INSTANCE.cityFromUpdateCityRequest(updateCityRequest);
+        City city =
+                CityMapper.INSTANCE.cityFromUpdateCityRequest(updateCityRequest);
         city.setId(id);
         city.setUpdatedDate(LocalDateTime.now());
         City updatedCity = cityRepository.save(city);
 
-        UpdatedCityResponse updatedCityResponse = CityMapper.INSTANCE.updatedCityResponseFromCity(updatedCity);
+        UpdatedCityResponse updatedCityResponse =
+                CityMapper.INSTANCE.updatedCityResponseFromCity(updatedCity);
+
         return updatedCityResponse;
     }
 
@@ -84,7 +92,9 @@ public class CityServiceImpl implements CityService {
         city.setDeletedDate(LocalDateTime.now());
         City deletedCity = cityRepository.save(city);
 
-        DeletedCityResponse deletedCityResponse = CityMapper.INSTANCE.deletedCityResponseFromCity(deletedCity);
+        DeletedCityResponse deletedCityResponse =
+                CityMapper.INSTANCE.deletedCityResponseFromCity(deletedCity);
+
         deletedCityResponse.setDeletedDate(deletedCity.getDeletedDate());
         return deletedCityResponse;
     }

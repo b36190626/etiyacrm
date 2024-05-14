@@ -1,9 +1,10 @@
-package com.etiyacrm.customerservice.core.business.paging;
+package com.etiya.common.business.paging;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
+
 
 import java.util.List;
 

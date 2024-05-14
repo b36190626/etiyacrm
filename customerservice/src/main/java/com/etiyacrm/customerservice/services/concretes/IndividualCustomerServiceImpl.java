@@ -1,9 +1,7 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 
-import com.etiya.common.events.customers.CustomerCreatedEvent;
 import com.etiya.common.events.customers.CustomerDeletedEvent;
-import com.etiya.common.events.customers.CustomerUpdatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;

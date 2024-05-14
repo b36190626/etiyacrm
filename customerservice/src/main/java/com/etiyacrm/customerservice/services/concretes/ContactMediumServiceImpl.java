@@ -49,7 +49,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
         GetIndividualCustomerResponse individualCustomer = individualCustomerService.getById(createdContactMedium.getCustomer().getId());
         CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent();
         customerCreatedEvent.setNationalityIdentity(individualCustomer.getNationalityIdentity());
-        customerCreatedEvent.setId(createdContactMedium.getId());
+        customerCreatedEvent.setId(createdContactMedium.getCustomer().getId());
         customerCreatedEvent.setMobilePhone(createdContactMedium.getMobilePhone());
         customerCreatedEvent.setFirstName(individualCustomer.getFirstName());
         customerCreatedEvent.setMiddleName(individualCustomer.getMiddleName());

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: catalogservice
+    name: catalog-service
   cloud:
     config:
       profile: dev

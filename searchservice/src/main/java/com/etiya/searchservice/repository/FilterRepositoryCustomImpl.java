@@ -15,27 +15,16 @@ public class FilterRepositoryCustomImpl implements FilterRepositoryCustom{
     public List<Customer> searchResult
             (String nationalityIdentity, String id, String mobilePhone, String accountNumber, String firstName, String lastName, String orderNumber) {
         Query query = new Query();
-        if (nationalityIdentity != null) {
-            query.addCriteria(Criteria.where("nationalityIdentity").is(nationalityIdentity));
-        }
-        if (id != null) {
-            query.addCriteria(Criteria.where("id").is(id));
-        }
-        if (mobilePhone != null) {
-            query.addCriteria(Criteria.where("mobilePhone").is(mobilePhone));
-        }
-        if (accountNumber != null) {
-            query.addCriteria(Criteria.where("accountNumber").is(accountNumber));
-        }
-        if (firstName != null) {
-            query.addCriteria(Criteria.where("firstName").is(firstName));
-        }
-        if (lastName != null) {
-            query.addCriteria(Criteria.where("lastName").is(lastName));
-        }
-        if (orderNumber != null) {
-            query.addCriteria(Criteria.where("orderNumber").is(orderNumber));
-        }
+        query.addCriteria(
+                (nationalityIdentity != null) ? Criteria.where("nationalityIdentity").is(nationalityIdentity) :
+                        (id != null) ? Criteria.where("id").is(id) :
+                                (mobilePhone != null) ? Criteria.where("mobilePhone").is(mobilePhone) :
+                                        (accountNumber != null) ? Criteria.where("accountNumber").is(accountNumber) :
+                                                (firstName != null) ? Criteria.where("firstName").is(firstName) :
+                                                        (lastName != null) ? Criteria.where("lastName").is(lastName) :
+                                                                (orderNumber != null) ? Criteria.where("orderNumber").is(orderNumber) :
+                                                                        null
+        );
         return mongoTemplate.find(query, Customer.class);
     }
 }

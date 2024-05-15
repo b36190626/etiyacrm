@@ -1,6 +1,5 @@
-package com.etiyacrm.customerservice.services.dtos.responses.accountResponses;
+package com.etiyacrm.customerservice.services.dtos.responses.billingAccountResponses;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CreatedBillingAccountResponse {
+public class GetBillingAccountResponse {
     private String id;
     private String status;
     private String number;

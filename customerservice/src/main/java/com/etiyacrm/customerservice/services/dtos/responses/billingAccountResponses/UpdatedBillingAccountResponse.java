@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.services.dtos.responses.accountResponses;
+package com.etiyacrm.customerservice.services.dtos.responses.billingAccountResponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class GetBillingAccountResponse {
+public class UpdatedBillingAccountResponse {
     private String id;
     private String status;
     private String number;

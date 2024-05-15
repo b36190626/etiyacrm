@@ -1,6 +1,5 @@
-package com.etiyacrm.customerservice.services.dtos.requests.accountRequests;
+package com.etiyacrm.customerservice.services.dtos.requests.billingAccountRequests;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;

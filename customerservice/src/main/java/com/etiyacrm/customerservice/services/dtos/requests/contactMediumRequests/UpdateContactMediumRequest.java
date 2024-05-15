@@ -12,7 +12,7 @@ public class UpdateContactMediumRequest {
     private String email;
 
     @NotBlank
-    @Pattern(regexp = "/([(]?)([5])([0-9]{2})([)]?)([\\s]?)([0-9]{3})([\\s]?)([0-9]{2})([\\s]?)([0-9]{2})$/g")
+    //@Pattern(regexp = "/([(]?)([5])([0-9]{2})([)]?)([\\s]?)([0-9]{3})([\\s]?)([0-9]{2})([\\s]?)([0-9]{2})$/g")
     private String mobilePhone;
 
     @NotNull

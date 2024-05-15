@@ -2,15 +2,19 @@ package com.etiyacrm.customerservice.services.concretes;
 
 
 import com.etiya.common.events.customers.CustomerDeletedEvent;
+import com.etiya.common.events.customers.CustomerUpdatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
+import com.etiyacrm.customerservice.entities.ContactMedium;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.kafka.producers.customers.CustomerProducer;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
+import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.*;
+import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.GetContactMediumResponse;
 import com.etiyacrm.customerservice.services.mappers.IndividualCustomerMapper;
 import com.etiyacrm.customerservice.services.rules.IndividualCustomerBusinessRules;
 import lombok.AllArgsConstructor;
@@ -69,6 +73,15 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
                 IndividualCustomerMapper.INSTANCE.updatedIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
         updatedIndividualCustomerResponse.setId(updatedIndividualCustomer.getId());
 
+
+        CustomerUpdatedEvent customerUpdatedEvent = new CustomerUpdatedEvent();
+        customerUpdatedEvent.setNationalityIdentity(updatedIndividualCustomer.getNationalityIdentity());
+        customerUpdatedEvent.setId(updatedIndividualCustomer.getId());
+        customerUpdatedEvent.setFirstName(updatedIndividualCustomer.getFirstName());
+        customerUpdatedEvent.setMiddleName(updatedIndividualCustomer.getMiddleName());
+        customerUpdatedEvent.setLastName(updatedIndividualCustomer.getLastName());
+        customerProducer.sendMessage(customerUpdatedEvent);
+
         return updatedIndividualCustomerResponse;
     }
     @Override
@@ -97,10 +110,11 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
                 IndividualCustomerMapper.INSTANCE.deletedIndividualCustomerResponseFromIndividualCustomer(deletedIndividualCustomer);
         deletedIndividualCustomerResponse.setId(deletedIndividualCustomer.getId());
 
-        CustomerDeletedEvent customerDeletedEvent = new CustomerDeletedEvent(
-                deletedIndividualCustomer.getId(),
-                deletedIndividualCustomer.getDeletedDate());
+        CustomerDeletedEvent customerDeletedEvent = new CustomerDeletedEvent();
+        customerDeletedEvent.setId(deletedIndividualCustomer.getId());
+        customerDeletedEvent.setDeletedDate(deletedIndividualCustomer.getDeletedDate());
         customerProducer.sendMessage(customerDeletedEvent);
+
         return deletedIndividualCustomerResponse;
     }
 }

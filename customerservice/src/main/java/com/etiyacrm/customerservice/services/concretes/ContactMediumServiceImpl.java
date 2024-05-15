@@ -1,11 +1,9 @@
 package com.etiyacrm.customerservice.services.concretes;
 
+import com.etiya.common.events.contactMediums.ContactMediumUpdatedEvent;
 import com.etiya.common.events.customers.CustomerCreatedEvent;
-import com.etiya.common.events.customers.CustomerUpdatedEvent;
-import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.ContactMedium;
-import com.etiyacrm.customerservice.entities.Customer;
-import com.etiyacrm.customerservice.entities.IndividualCustomer;
+import com.etiyacrm.customerservice.kafka.producers.contactMediums.ContactMediumProducer;
 import com.etiyacrm.customerservice.kafka.producers.customers.CustomerProducer;
 import com.etiyacrm.customerservice.repositories.ContactMediumRepository;
 import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
@@ -31,6 +29,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     private ContactMediumBussinessRules contactMediumBussinessRules;
     private IndividualCustomerService individualCustomerService;
     private CustomerProducer customerProducer;
+    private ContactMediumProducer contactMediumProducer;
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
@@ -68,22 +67,18 @@ public class ContactMediumServiceImpl implements ContactMediumService {
         contactMedium.setCustomer(savedContactMedium.getCustomer());
         contactMedium.setUpdatedDate(LocalDateTime.now());
 
-        ContactMedium updatedContactmedium = contactMediumRepository.save(contactMedium);
+        ContactMedium updatedContactMedium = contactMediumRepository.save(contactMedium);
 
         UpdatedContactMediumResponse updatedContactMediumResponse =
-                ContactMediumMapper.INSTANCE.updatedContactMediumResponseFromContactMedium(updatedContactmedium);
-        updatedContactMediumResponse.setId(updatedContactmedium.getId());
+                ContactMediumMapper.INSTANCE.updatedContactMediumResponseFromContactMedium(updatedContactMedium);
+        updatedContactMediumResponse.setId(updatedContactMedium.getId());
 
-        GetIndividualCustomerResponse individualCustomer =
-                individualCustomerService.getById(savedContactMedium.getCustomer().getId());
-        CustomerUpdatedEvent customerUpdatedEvent = new CustomerUpdatedEvent();
-        customerUpdatedEvent.setNationalityIdentity(individualCustomer.getNationalityIdentity());
-        customerUpdatedEvent.setId(updatedContactmedium.getId());
-        customerUpdatedEvent.setMobilePhone(updatedContactmedium.getMobilePhone());
-        customerUpdatedEvent.setFirstName(individualCustomer.getFirstName());
-        customerUpdatedEvent.setMiddleName(individualCustomer.getMiddleName());
-        customerUpdatedEvent.setLastName(individualCustomer.getLastName());
-        customerProducer.sendMessage(customerUpdatedEvent);
+        GetIndividualCustomerResponse individualCustomer = individualCustomerService.getById(updatedContactMedium.getCustomer().getId());
+
+        ContactMediumUpdatedEvent contactMediumUpdatedEvent = new ContactMediumUpdatedEvent();
+        contactMediumUpdatedEvent.setId(individualCustomer.getId());
+        contactMediumUpdatedEvent.setMobilePhone(updatedContactMedium.getMobilePhone());
+        contactMediumProducer.sendMessage(contactMediumUpdatedEvent);
 
         return updatedContactMediumResponse;
     }
@@ -110,6 +105,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
         DeletedContactMediumResponse deletedContactMediumResponse = ContactMediumMapper.INSTANCE.deletedContactMediumResponseFromContactMedium(deletedContactMedium);
         deletedContactMediumResponse.setDeletedDate(deletedContactMedium.getDeletedDate());
+
         return deletedContactMediumResponse;
     }
 }

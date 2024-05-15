@@ -2,9 +2,9 @@ package com.etiyacrm.customerservice.services.abstracts;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
-import com.etiyacrm.customerservice.services.dtos.requests.accountRequests.CreateBillingAccountRequest;
-import com.etiyacrm.customerservice.services.dtos.requests.accountRequests.UpdateBillingAccountRequest;
-import com.etiyacrm.customerservice.services.dtos.responses.accountResponses.*;
+import com.etiyacrm.customerservice.services.dtos.requests.billingAccountRequests.CreateBillingAccountRequest;
+import com.etiyacrm.customerservice.services.dtos.requests.billingAccountRequests.UpdateBillingAccountRequest;
+import com.etiyacrm.customerservice.services.dtos.responses.billingAccountResponses.*;
 
 import java.util.List;
 

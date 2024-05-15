@@ -1,11 +1,10 @@
 package com.etiyacrm.customerservice.services.mappers;
 
 import com.etiyacrm.customerservice.entities.BillingAccount;
-import com.etiyacrm.customerservice.services.dtos.requests.accountRequests.CreateBillingAccountRequest;
-import com.etiyacrm.customerservice.services.dtos.requests.accountRequests.UpdateBillingAccountRequest;
-import com.etiyacrm.customerservice.services.dtos.responses.accountResponses.*;
+import com.etiyacrm.customerservice.services.dtos.requests.billingAccountRequests.CreateBillingAccountRequest;
+import com.etiyacrm.customerservice.services.dtos.requests.billingAccountRequests.UpdateBillingAccountRequest;
+import com.etiyacrm.customerservice.services.dtos.responses.billingAccountResponses.*;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

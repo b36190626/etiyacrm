@@ -18,7 +18,7 @@ public class CreateContactMediumRequest {
     private String email;
 
     @NotBlank
-    @Pattern(regexp = "([(]?)([5])([0-9]{2})([)]?)([\\s]?)([0-9]{3})([\\s]?)([0-9]{2})([\\s]?)([0-9]{2})$")
+    //@Pattern(regexp = "([(]?)([5])([0-9]{2})([)]?)([\\s]?)([0-9]{3})([\\s]?)([0-9]{2})([\\s]?)([0-9]{2})$")
     private String mobilePhone;
 
     @NotNull

@@ -31,8 +31,10 @@ public class UpdateIndividualCustomerRequest {
     @NotEmpty(message = "Gender cannot be empty")
     private String gender;
 
+    @NotNull
     private String fatherName;
 
+    @NotNull
     private String motherName;
 
     @NotEmpty(message = "Nationality ID cannot be empty")

@@ -26,6 +26,9 @@ public class Customer extends BaseEntity {
     @OneToMany(mappedBy = "customer")
     private List<Address> addresses;
 
+    @OneToMany(mappedBy = "customer")
+    private List<Account> accounts;
+
     @OneToOne(mappedBy = "customer")
     private ContactMedium contactMedium;
     

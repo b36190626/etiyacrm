@@ -1,8 +1,6 @@
 package com.etiyacrm.customerservice.services.dtos.requests.addressRequests;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,23 +9,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreateAddressRequest {
-    @NotNull
+
     @NotEmpty
+    @NotBlank
     @Size(min = 3,max = 50)
     private String description;
 
-    @NotNull
+    @NotBlank
     private String street;
 
     @NotNull
+    @Positive
     private int flatNumber;
 
     @NotNull
     private boolean isDefaultAddress;
 
-    @NotNull
+    @NotBlank
     private String districtId;
 
-    @NotNull
+    @NotBlank
     private String customerId;
 }

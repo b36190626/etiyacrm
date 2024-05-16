@@ -18,4 +18,7 @@ public class CreateBillingAccountRequest {
 
     @NotBlank
     private String customerId;
+
+    @NotBlank
+    private String addressId;
 }

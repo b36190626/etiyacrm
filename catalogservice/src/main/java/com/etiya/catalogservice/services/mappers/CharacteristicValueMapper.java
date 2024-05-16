@@ -1,0 +1,29 @@
+package com.etiya.catalogservice.services.mappers;
+
+import com.etiya.catalogservice.entities.CharacteristicValue;
+import com.etiya.catalogservice.services.dtos.requests.characteristicValueRequests.CreateCharacteristicValueRequest;
+import com.etiya.catalogservice.services.dtos.requests.characteristicValueRequests.UpdateCharacteristicValueRequest;
+import com.etiya.catalogservice.services.dtos.responses.characteristicValueResponses.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+@Mapper
+public interface CharacteristicValueMapper {
+
+    CharacteristicValueMapper INSTANCE = Mappers.getMapper(CharacteristicValueMapper.class);
+
+    GetAllCharacteristicValueResponse getAllCharacteristicValueResponseFromCharacteristicValue(CharacteristicValue characteristicValue);
+
+    CharacteristicValue characteristicValueFromCreateCharacteristicValueRequest(CreateCharacteristicValueRequest createCharacteristicRequestValue);
+
+    CreatedCharacteristicValueResponse createdCharacteristicValueResponseFromCharacteristicValue(CharacteristicValue characteristicValue);
+
+    CharacteristicValue characteristicValueFromUpdateCharacteristicValueRequest(UpdateCharacteristicValueRequest updateCharacteristicRequestValue);
+
+    UpdatedCharacteristicValueResponse updatedCharacteristicValueResponseFromCharacteristicValue(CharacteristicValue characteristicValue);
+
+    DeletedCharacteristicValueResponse deletedCharacteristicValueResponseFromCharacteristicValue(CharacteristicValue characteristicValue);
+
+    GetCharacteristicValueResponse getCharacteristicValueResponseFromCharacteristicValue(CharacteristicValue characteristicValue);
+
+}

@@ -7,30 +7,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
-import java.util.List;
-
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Where(clause = "deleted_date IS NULL")
-@Table(name = "product_offers")
-public class ProductOffer extends BaseEntity {
+@Table(name = "general_characteristic_value")
+public class CharacteristicValue extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private String id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "value")
+    private String value;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "is_active")
+    private boolean isActive;
 
-    @Column(name = "price")
-    private double price;
-
-    @OneToMany(mappedBy = "productOffer")
-    private List<Product> products;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "characteristic_id")
+    private Characteristic generalCharacteristic;
 }

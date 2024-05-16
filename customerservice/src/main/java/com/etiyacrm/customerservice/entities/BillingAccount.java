@@ -2,15 +2,11 @@ package com.etiyacrm.customerservice.entities;
 
 import com.etiyacrm.customerservice.core.entities.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name="billing_accounts")
 @Data
-@Where(clause = "deleted_date IS NULL")
 public class BillingAccount extends BaseEntity {
     @Id
     @Column(name="id")
@@ -20,8 +16,8 @@ public class BillingAccount extends BaseEntity {
     @Column(name="status")
     private boolean status;
 
-    @Column(name="number")
-    private String number;
+    @Column(name="account_number")
+    private String accountNumber;
 
     @Column(name="name")
     private String name;

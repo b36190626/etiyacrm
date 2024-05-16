@@ -9,6 +9,7 @@ import com.etiyacrm.customerservice.services.dtos.requests.billingAccountRequest
 import com.etiyacrm.customerservice.services.dtos.requests.billingAccountRequests.UpdateBillingAccountRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.billingAccountResponses.*;
 import com.etiyacrm.customerservice.services.mappers.BillingAccountMapper;
+import com.etiyacrm.customerservice.services.rules.BillingAccountBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class BillingAccountServiceImpl implements BillingAccountService {
     private BillingAccountRepository billingAccountRepository;
+    private BillingAccountBusinessRules billingAccountBusinessRules;
     @Override
     public PageInfoResponse<GetAllBillingAccountResponse> getAllPage(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
@@ -53,9 +55,13 @@ public class BillingAccountServiceImpl implements BillingAccountService {
 
     @Override
     public CreatedBillingAccountResponse add(CreateBillingAccountRequest createBillingAccountRequest) {
-        BillingAccount billingAccount = BillingAccountMapper.INSTANCE.billingAccountFromCreateBillingAccountRequest(createBillingAccountRequest);
+        billingAccountBusinessRules.checkIfCustomerAddressExists(createBillingAccountRequest);
 
-        BillingAccount createdBillingAccount = billingAccountRepository.save(billingAccount);
+        BillingAccount billingAccount =
+                BillingAccountMapper.INSTANCE.billingAccountFromCreateBillingAccountRequest(createBillingAccountRequest);
+
+        BillingAccount createdBillingAccount =
+                billingAccountRepository.save(billingAccount);
 
         CreatedBillingAccountResponse createdBillingAccountResponse =
                 BillingAccountMapper.INSTANCE.createdBillingAccountResponseFromBillingAccount(createdBillingAccount);
@@ -65,11 +71,13 @@ public class BillingAccountServiceImpl implements BillingAccountService {
 
     @Override
     public UpdatedBillingAccountResponse update(UpdateBillingAccountRequest updateBillingAccountRequest, String id) {
+
+        BillingAccount savedBillingAccount = billingAccountRepository.findById(id).get();
+
         BillingAccount billingAccount = BillingAccountMapper.INSTANCE.billingAccountFromUpdateBillingAccountRequest(updateBillingAccountRequest);
 
-        //rule
-
         billingAccount.setId(id);
+        billingAccount.setCustomer(savedBillingAccount.getCustomer());
         billingAccount.setUpdatedDate(LocalDateTime.now());
         BillingAccount updatedBillingAccount = billingAccountRepository.save(billingAccount);
 

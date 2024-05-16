@@ -12,7 +12,7 @@ public class GetAllAddressResponse {
     private String description;
     private String street;
     private int flatNumber;
-    private boolean isDefaultAddress;
+    private boolean defaultAddress;
     private String districtId;
     private String customerId;
 }

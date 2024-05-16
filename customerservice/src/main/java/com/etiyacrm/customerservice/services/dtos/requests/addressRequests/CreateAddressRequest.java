@@ -23,7 +23,7 @@ public class CreateAddressRequest {
     private int flatNumber;
 
     @NotNull
-    private boolean isDefaultAddress;
+    private boolean defaultAddress;
 
     @NotBlank
     private String districtId;

@@ -27,5 +27,5 @@ public class CharacteristicValue extends BaseEntity {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "characteristic_id")
-    private Characteristic generalCharacteristic;
+    private Characteristic characteristic;
 }

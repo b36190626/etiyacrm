@@ -12,4 +12,7 @@ public class UpdateBillingAccountRequest {
 
     @NotBlank
     private String name;
+
+    @NotBlank
+    private String addressId;
 }

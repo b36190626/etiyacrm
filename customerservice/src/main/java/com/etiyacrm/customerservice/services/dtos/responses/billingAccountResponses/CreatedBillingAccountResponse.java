@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class CreatedBillingAccountResponse {
     private String id;
     private String status;
-    private String number;
+    private String accountNumber;
     private String name;
     private String type;
     private String customerId;

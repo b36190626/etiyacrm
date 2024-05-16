@@ -13,5 +13,7 @@ public class Messages {
 
         public static final String CustomerHasContactMedium = "customerHasContactMedium";
         public static final String CustomerHasNoContactMedium = "customerHasNoContactMedium";
+
+        public static final String AddressNotExistsOnCustomer = "addressNotExistsOnCustomer";
     }
 }

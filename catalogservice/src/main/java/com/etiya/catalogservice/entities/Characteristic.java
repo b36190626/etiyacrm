@@ -9,14 +9,13 @@ import org.hibernate.annotations.Where;
 
 import java.util.List;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Where(clause = "deleted_date IS NULL")
-@Table(name = "product_offers")
-public class ProductOffer extends BaseEntity {
+@Table(name = "general_characteristic")
+public class Characteristic extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
@@ -28,9 +27,6 @@ public class ProductOffer extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
-    private double price;
-
-    @OneToMany(mappedBy = "productOffer")
-    private List<Product> products;
+    @OneToMany(mappedBy = "characteristic")
+    private List<CharacteristicValue> characteristicValues;
 }

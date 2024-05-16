@@ -1,33 +1,28 @@
 package com.etiya.catalogservice.entities;
 
-import com.etiya.catalogservice.core.entities.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "products")
 @Where(clause = "deleted_date IS NULL")
-public class Product extends BaseEntity {
+@Table(name = "catalog_product_offers")
+public class CatalogProductOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private String id;
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "productOffer_id")
+    private ProductOffer productOffer;
 
-    @Column(name = "description")
-    private String description;
-
-    @OneToMany(mappedBy = "product")
-    private List<ProductProductOffer> productProductOffers;
-
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "catalog_id")
+    private Catalog catalog;
 }

@@ -12,5 +12,4 @@ public class CreatedProductOfferResponse {
     private String name;
     private String description;
     private double price;
-    private String productId;
 }

@@ -13,15 +13,7 @@ public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
     GetAllProductResponse getAllProductResponseFromProduct(Product product);
-
-//    @Mapping(source = "catalogId", target = "catalog.id")
-//    @Mapping(source = "campaignId", target = "campaign.id")
-//    @Mapping(source = "productOfferId", target = "productOffer.id")
     Product productFromCreateProductRequest(CreateProductRequest createProductRequest);
-
-//    @Mapping(source = "catalog.id", target = "catalogId")
-//    @Mapping(source = "campaign.id", target = "campaignId")
-//    @Mapping(source = "productOffer.id", target = "productOfferId")
     CreatedProductResponse createdProductResponseFromProduct(Product product);
     Product productFromUpdateProductRequest(UpdateProductRequest updateProductRequest);
     UpdatedProductResponse updatedProductResponseFromProduct(Product product);

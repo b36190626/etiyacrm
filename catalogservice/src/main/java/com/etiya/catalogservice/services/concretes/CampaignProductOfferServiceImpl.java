@@ -53,12 +53,13 @@ public class CampaignProductOfferServiceImpl implements CampaignProductOfferServ
     }
 
     @Override
-    public GetCampaignProductOfferResponse findByProductOfferId(String id) {
-        CampaignProductOffer campaignProductOffer = campaignProductOfferRepository.findById(id).get(); //düzelecek
+    public List<GetCampaignProductOfferResponse> findByProductOfferId(String id) {
+        List<CampaignProductOffer> campaignProductOfferList = campaignProductOfferRepository.findByProductOfferId(id); //düzelecek
 
-        GetCampaignProductOfferResponse getCampaignProductOfferResponse =
-                CampaignProductOfferMapper.INSTANCE.getCampaignProductOfferResponseFromCampaignProductOffer(campaignProductOffer);
-        return getCampaignProductOfferResponse;
+        List<GetCampaignProductOfferResponse> getCampaignProductOfferResponses =
+                campaignProductOfferList.stream().map(CampaignProductOfferMapper.INSTANCE::getCampaignProductOfferResponseFromCampaignProductOffer)
+                        .collect(Collectors.toList());
+        return getCampaignProductOfferResponses;
     }
 
     @Override

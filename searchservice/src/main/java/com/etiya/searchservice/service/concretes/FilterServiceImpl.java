@@ -39,7 +39,8 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public List<SearchResponse> getAll() {
-        List<Customer> customerList = filterRepository.findAll();
+
+        List<Customer> customerList = filterRepository.findAllByDeletedDateIsNull();
 
         List<SearchResponse> searchResponses = new ArrayList<>();
         for (Customer customer : customerList) {

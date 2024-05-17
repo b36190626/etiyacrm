@@ -42,7 +42,7 @@ public class CatalogProductOfferController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")
-    public List<GetCatalogProductOfferResponse> finByProductOfferId(@PathVariable String id) {
+    public List<GetCatalogProductOfferResponse> getById(@PathVariable String id) {
         return catalogProductOfferService.finByProductOfferId(id);
     }
 

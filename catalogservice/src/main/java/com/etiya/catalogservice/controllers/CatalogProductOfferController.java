@@ -42,8 +42,8 @@ public class CatalogProductOfferController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")
-    public GetCatalogProductOfferResponse getById(@PathVariable String id) {
-        return catalogProductOfferService.getById(id);
+    public List<GetCatalogProductOfferResponse> finByProductOfferId(@PathVariable String id) {
+        return catalogProductOfferService.finByProductOfferId(id);
     }
 
     @DeleteMapping("/{id}")

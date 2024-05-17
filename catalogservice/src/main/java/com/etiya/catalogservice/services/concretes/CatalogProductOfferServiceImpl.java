@@ -57,13 +57,13 @@ public class CatalogProductOfferServiceImpl implements CatalogProductOfferServic
     }
 
     @Override
-    public GetCatalogProductOfferResponse getById(String id) {
-        CatalogProductOffer catalogProductOffer = catalogProductOfferRepository.findById(id).get();
+    public List<GetCatalogProductOfferResponse> finByProductOfferId(String id) {
+        List<CatalogProductOffer> catalogProductOfferList = catalogProductOfferRepository.finByProductOfferId(id);
 
-        GetCatalogProductOfferResponse getCatalogProductOfferResponse =
-                CatalogProductOfferMapper.INSTANCE.getCatalogProductOfferResponseFromCatalogProductOffer(catalogProductOffer);
-
-        return getCatalogProductOfferResponse;
+        List<GetCatalogProductOfferResponse> getCatalogProductOfferResponses =
+                catalogProductOfferList.stream().map(CatalogProductOfferMapper.INSTANCE::getCatalogProductOfferResponseFromCatalogProductOffer)
+                        .collect(Collectors.toList());
+        return getCatalogProductOfferResponses;
     }
 
     @Override

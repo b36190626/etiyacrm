@@ -32,11 +32,12 @@ public class ProductOffer extends BaseEntity {
     private double price;
 
     @OneToMany(mappedBy = "productOffer")
-    private List<ProductProductOffer> productProductOffers;
-
-    @OneToMany(mappedBy = "productOffer")
     private List<CampaignProductOffer> campaignProductOffers;
 
     @OneToMany(mappedBy = "productOffer")
     private List<CatalogProductOffer> catalogProductOffers;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

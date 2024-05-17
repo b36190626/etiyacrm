@@ -28,6 +28,6 @@ public class Product extends BaseEntity {
     private String description;
 
     @OneToMany(mappedBy = "product")
-    private List<ProductProductOffer> productProductOffers;
+    private List<ProductOffer> productOffers;
 
 }

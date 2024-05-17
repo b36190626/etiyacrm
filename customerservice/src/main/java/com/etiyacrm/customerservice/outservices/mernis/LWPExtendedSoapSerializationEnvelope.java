@@ -12,6 +12,7 @@ package com.etiyacrm.customerservice.outservices.mernis;
 //
 // Licence: F17C27A5423B78425C70A70706EFDEB56DC8E3C99D2638D5BBEACBA80B5895948A78718C0120E0982AFDAB0F654504553DB24F86CD2FC2F4F970AEA9EE9CB5D1
 //------------------------------------------------------------------------
+
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.*;
 import org.kxml2.io.KXmlParser;
@@ -19,17 +20,15 @@ import org.kxml2.kdom.Element;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
-import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Vector;
-import java.io.StringReader;
-import java.io.StringWriter;
 
 
 class LWPSoapFaultEx extends org.ksoap2.SoapFault

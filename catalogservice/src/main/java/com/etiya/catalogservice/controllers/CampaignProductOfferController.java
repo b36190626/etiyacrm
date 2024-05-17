@@ -43,7 +43,7 @@ public class CampaignProductOfferController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")
     public GetCampaignProductOfferResponse getById(@PathVariable String id) {
-        return campaignProductOfferService.getById(id);
+        return campaignProductOfferService.findByProductOfferId(id);
     }
 
     @DeleteMapping("/{id}")

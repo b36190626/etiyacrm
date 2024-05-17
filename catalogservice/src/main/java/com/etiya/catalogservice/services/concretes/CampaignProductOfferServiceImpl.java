@@ -53,8 +53,8 @@ public class CampaignProductOfferServiceImpl implements CampaignProductOfferServ
     }
 
     @Override
-    public GetCampaignProductOfferResponse getById(String id) {
-        CampaignProductOffer campaignProductOffer = campaignProductOfferRepository.findById(id).get();
+    public GetCampaignProductOfferResponse findByProductOfferId(String id) {
+        CampaignProductOffer campaignProductOffer = campaignProductOfferRepository.findById(id).get(); //düzelecek
 
         GetCampaignProductOfferResponse getCampaignProductOfferResponse =
                 CampaignProductOfferMapper.INSTANCE.getCampaignProductOfferResponseFromCampaignProductOffer(campaignProductOffer);

@@ -11,4 +11,5 @@ public class CreateProductOfferRequest {
     private String name;
     private String description;
     private double price;
+    private String productId;
 }

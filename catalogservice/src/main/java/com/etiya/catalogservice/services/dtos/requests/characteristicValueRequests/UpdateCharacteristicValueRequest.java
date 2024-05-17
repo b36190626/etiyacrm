@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCharacteristicValueRequest {
-    private String name;
     private String value;
     private boolean isActive;
     private String characteristicId;

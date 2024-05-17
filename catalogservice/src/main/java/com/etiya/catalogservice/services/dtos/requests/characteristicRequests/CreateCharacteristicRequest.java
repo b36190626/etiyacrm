@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class CreateCharacteristicRequest {
     private String name;
     private String description;
-    private String characteristicValueId;
 }

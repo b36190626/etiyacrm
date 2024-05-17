@@ -12,7 +12,7 @@ public class CreateAddressRequest {
 
     @NotEmpty
     @NotBlank
-    @Size(min = 3,max = 50)
+    @Size(min = 3,max = 250)
     private String description;
 
     @NotBlank

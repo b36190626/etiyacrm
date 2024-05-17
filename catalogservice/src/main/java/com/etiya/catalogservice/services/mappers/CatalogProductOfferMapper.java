@@ -30,5 +30,8 @@ public interface CatalogProductOfferMapper {
     DeletedCatalogProductOfferResponse deletedCatalogProductOfferResponseFromCatalogProductOffer(CatalogProductOffer catalogProductOffer);
     @Mapping(source = "catalog.id", target = "catalogId")
     @Mapping(source = "productOffer.id", target = "productOfferId")
+    @Mapping(source = "catalog.name", target = "catalogName")
+    @Mapping(source = "productOffer.name", target = "productOfferName")
+    @Mapping(source = "productOffer.price", target = "productOfferPrice")
     GetCatalogProductOfferResponse getCatalogProductOfferResponseFromCatalogProductOffer(CatalogProductOffer catalogProductOffer);
 }

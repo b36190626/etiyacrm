@@ -28,8 +28,8 @@ public class ProductOffer extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
-    private double price;
+    @Column(name = "totalPrice")
+    private double totalPrice;
 
     @OneToMany(mappedBy = "productOffer")
     private List<CampaignProductOffer> campaignProductOffers;

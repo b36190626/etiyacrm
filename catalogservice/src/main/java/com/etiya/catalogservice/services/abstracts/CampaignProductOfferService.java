@@ -10,7 +10,7 @@ public interface CampaignProductOfferService {
     CreatedCampaignProductOfferResponse add(CreateCampaignProductOfferRequest createCampaignProductOfferRequest);
     UpdatedCampaignProductOfferResponse update(UpdateCampaignProductOfferRequest updateCampaignProductOfferRequest, String id);
     List<GetAllCampaignProductOfferResponse> getAll();
-    GetCampaignProductOfferResponse getById(String id);
+    GetCampaignProductOfferResponse findByProductOfferId(String id);
     DeletedCampaignProductOfferResponse delete(String id);
 
 }

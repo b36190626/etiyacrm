@@ -11,4 +11,5 @@ public class GetAllCharacteristicValueResponse {
     private String id;
     private String value;
     private boolean isActive;
+    private String characteristicId;
 }

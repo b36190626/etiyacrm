@@ -1,4 +1,4 @@
-package com.etiya.catalogservice.services.dtos.responses.catalogProductOfferResponses;
+package com.etiya.basketservice.services.dtos.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +13,5 @@ public class GetCatalogProductOfferResponse {
     private String catalogId;
     private String catalogName;
     private String productOfferName;
-    private double productOfferTotalPrice;
-
+    private double productOfferPrice;
 }

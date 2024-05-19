@@ -12,4 +12,5 @@ public interface CatalogServiceClient {
 
     @RequestMapping(method = RequestMethod.GET,value = "catalog-service/api/v1/catalogproductoffers/{id}")
     GetCatalogProductOfferResponse getById(@PathVariable String id);
+
 }

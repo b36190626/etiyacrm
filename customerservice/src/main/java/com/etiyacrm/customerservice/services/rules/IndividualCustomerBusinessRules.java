@@ -7,6 +7,7 @@ import com.etiyacrm.customerservice.core.crossCusttingConcerns.exceptions.types.
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
+import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.RealCustomerRequest;
 import com.etiyacrm.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -47,9 +48,24 @@ public class IndividualCustomerBusinessRules {
 
     public void checkIfNationalIdentityExists(String nationalityIdentity,
                                               String firstName,
+                                              String middleName,
                                               String lastName,
                                               int birthDate) throws Exception {
-        if (!customerCheckService.checkIfRealPerson(nationalityIdentity, firstName, lastName, birthDate)){
+        String convertedFirstName = firstName + " " + middleName;
+        if (!customerCheckService.checkIfRealPerson(nationalityIdentity, convertedFirstName, lastName, birthDate)){
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IdentityNumberNotExists));
+        }
+    }
+
+    public void checkIfRealCustomerExist(RealCustomerRequest realCustomerRequest) throws Exception {
+        String convertedFirstName = realCustomerRequest.getFirstName() + " " + realCustomerRequest.getMiddleName();
+        int convertedBirthDate = realCustomerRequest.getBirthDate().getYear();
+        if (!customerCheckService.checkIfRealPerson(
+                realCustomerRequest.getNationalityIdentity(),
+                convertedFirstName,
+                realCustomerRequest.getLastName(),
+                convertedBirthDate
+        )){
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IdentityNumberNotExists));
         }
     }

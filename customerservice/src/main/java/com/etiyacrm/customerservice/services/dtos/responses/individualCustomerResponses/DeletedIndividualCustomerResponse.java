@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses;
+package com.etiyacrm.customerservice.services.dtos.responses.individualCustomerResponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

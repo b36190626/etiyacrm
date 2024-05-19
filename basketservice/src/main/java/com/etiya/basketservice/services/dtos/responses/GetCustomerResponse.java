@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses;
+package com.etiya.basketservice.services.dtos.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class UpdatedIndividualCustomerResponse {
+@NoArgsConstructor
+public class GetCustomerResponse {
     private String id;
     private String firstName;
     private String middleName;

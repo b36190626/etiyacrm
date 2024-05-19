@@ -17,9 +17,6 @@ public class CreateBillingAccountRequest {
     private String description;
 
     @NotBlank
-    private String accountNumber;
-
-    @NotBlank
     private String type;
 
     private String customerId;

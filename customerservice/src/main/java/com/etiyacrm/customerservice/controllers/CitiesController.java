@@ -3,10 +3,8 @@ package com.etiyacrm.customerservice.controllers;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
-import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.cityRequests.CreateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.cityRequests.UpdateCityRequest;
-import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.UpdatedIndividualCustomerResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.cityresponses.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -19,7 +17,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @CrossOrigin()
-@RequestMapping("customerservice/api/v1/cities")
+@RequestMapping("api/v1/cities")
 public class CitiesController {
     private CityService cityService;
 

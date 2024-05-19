@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @CrossOrigin()
-@RequestMapping("customerservice/api/v1/addresses")
+@RequestMapping("api/v1/addresses")
 public class AddressesController {
     private AddressService addressService;
     @PostMapping

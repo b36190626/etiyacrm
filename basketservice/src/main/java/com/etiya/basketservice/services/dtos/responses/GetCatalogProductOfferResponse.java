@@ -13,5 +13,5 @@ public class GetCatalogProductOfferResponse {
     private String catalogId;
     private String catalogName;
     private String productOfferName;
-    private double productOfferPrice;
+    private double productOfferTotalPrice;
 }

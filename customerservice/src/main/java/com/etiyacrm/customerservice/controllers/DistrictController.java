@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @CrossOrigin()
-@RequestMapping("customerservice/api/v1/districts")
+@RequestMapping("api/v1/districts")
 public class DistrictController {
 
     private DistrictService districtService;

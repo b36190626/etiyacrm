@@ -4,9 +4,10 @@ import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.CreateIndividualCustomerRequest;
+import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.RealCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.UpdateIndividualCustomerRequest;
 
-import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.*;
+import com.etiyacrm.customerservice.services.dtos.responses.individualCustomerResponses.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @CrossOrigin()
-@RequestMapping("customerservice/api/v1/individualcustomers")
+@RequestMapping("api/v1/individualcustomers")
 public class IndividualCustomersController {
     private IndividualCustomerService individualCustomerService;
 
@@ -53,5 +54,19 @@ public class IndividualCustomersController {
     @Operation(summary = "Delete")
     public DeletedIndividualCustomerResponse delete(@PathVariable String id){
         return individualCustomerService.delete(id);
+    }
+
+    @GetMapping("/checkCustomerReal")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Check Customer")
+    public boolean checkIfCustomerReal(RealCustomerRequest realCustomerRequest) throws Exception {
+        return individualCustomerService.checkIfCustomerReal(realCustomerRequest);
+    }
+
+    @GetMapping("/checkNationalityIdentityDuplicated/{nationalityIdentity}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Check Nationality Identity Duplicated")
+    public boolean checkIfCustomerDuplicated(String nationalityIdentity){
+        return individualCustomerService.checkIfCustomerDuplicated(nationalityIdentity);
     }
 }

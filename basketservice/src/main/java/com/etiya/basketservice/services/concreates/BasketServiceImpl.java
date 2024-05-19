@@ -9,6 +9,9 @@ import com.etiya.basketservice.services.dtos.responses.GetCatalogProductOfferRes
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class BasketServiceImpl implements BasketService {
@@ -19,13 +22,15 @@ public class BasketServiceImpl implements BasketService {
         Basket basket = new Basket();
         GetCatalogProductOfferResponse getCatalogProductOfferResponse =
                 catalogServiceClient.getById(productOfferId);
-        BasketItem basketItem = new BasketItem();
-        basketItem.setProductOfferId(productOfferId);
-        basketItem.setPrice(getCatalogProductOfferResponse.getProductOfferPrice());
-        basketItem.setProductOfferName(getCatalogProductOfferResponse.getProductOfferName());
-        basket.setCustomerId(customerId); // basket.getCustomerId
-        basket.setTotalPrice(basket.getTotalPrice() + basketItem.getPrice());
-        basket.getBasketItems().add(basketItem);
+        List<BasketItem> basketItemList = new ArrayList<>();
+        for (BasketItem basketItem : basketItemList){
+            basketItem.setProductOfferId(productOfferId);
+            basketItem.setPrice(getCatalogProductOfferResponse.getProductOfferPrice());
+            basketItem.setProductOfferName(getCatalogProductOfferResponse.getProductOfferName());
+            basket.setCustomerId(customerId); // basket.getCustomerId
+            basket.setTotalPrice(basket.getTotalPrice() + basketItem.getPrice());
+        }
+        basket.setBasketItems(basketItemList);
         basketRepository.save(basket);
     }
 }

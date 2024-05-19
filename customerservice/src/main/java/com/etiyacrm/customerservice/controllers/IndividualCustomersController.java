@@ -58,13 +58,13 @@ public class IndividualCustomersController {
         return individualCustomerService.delete(id);
     }
 
-    @GetMapping("/checkCustomerReal")
+    @GetMapping("/check-customer-real")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Check Customer")
     public boolean checkIfCustomerReal(
             @RequestParam String nationalityIdentity,
             @RequestParam String firstName,
-            @RequestParam String middleName,
+            @RequestParam(required = false) String middleName,
             @RequestParam String lastName,
             @RequestParam LocalDate birthDate
             ) throws Exception {
@@ -72,7 +72,7 @@ public class IndividualCustomersController {
                 nationalityIdentity, firstName, middleName, lastName, birthDate);
     }
 
-    @GetMapping("/checkNationalityIdentityDuplicated/{nationalityIdentity}")
+    @GetMapping("/check-nationality-identity-duplicated/{nationalityIdentity}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Check Nationality Identity Duplicated")
     public boolean checkIfCustomerDuplicated(@PathVariable String nationalityIdentity){

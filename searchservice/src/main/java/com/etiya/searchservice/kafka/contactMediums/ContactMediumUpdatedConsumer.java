@@ -1,8 +1,7 @@
-package com.etiya.searchservice.kafka.contactMedium;
+package com.etiya.searchservice.kafka.contactMediums;
 
 import com.etiya.common.events.contactMediums.ContactMediumUpdatedEvent;
 import com.etiya.searchservice.entities.Customer;
-import com.etiya.searchservice.kafka.customers.CustomerCreatedConsumer;
 import com.etiya.searchservice.service.abstracts.FilterService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

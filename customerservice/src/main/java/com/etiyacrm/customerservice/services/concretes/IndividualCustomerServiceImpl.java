@@ -5,16 +5,14 @@ import com.etiya.common.events.customers.CustomerDeletedEvent;
 import com.etiya.common.events.customers.CustomerUpdatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
-import com.etiyacrm.customerservice.entities.ContactMedium;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.kafka.producers.customers.CustomerProducer;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
-import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.CreateIndividualCustomerRequest;
+import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.RealCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.UpdateIndividualCustomerRequest;
-import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.*;
-import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.GetContactMediumResponse;
+import com.etiyacrm.customerservice.services.dtos.responses.individualCustomerResponses.*;
 import com.etiyacrm.customerservice.services.mappers.IndividualCustomerMapper;
 import com.etiyacrm.customerservice.services.rules.IndividualCustomerBusinessRules;
 import lombok.AllArgsConstructor;
@@ -37,6 +35,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         individualCustomerBusinessRules.checkIfNationalIdentityExists(
                 createIndividualCustomerRequest.getNationalityIdentity(),
                 createIndividualCustomerRequest.getFirstName(),
+                createIndividualCustomerRequest.getMiddleName(),
                 createIndividualCustomerRequest.getLastName(),
                 createIndividualCustomerRequest.getBirthDate().getYear());
 
@@ -117,4 +116,17 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
         return deletedIndividualCustomerResponse;
     }
+
+    @Override
+    public boolean checkIfCustomerDuplicated(String nationalityIdentity) {
+        individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(nationalityIdentity);
+        return true;
+    }
+
+    @Override
+    public boolean checkIfCustomerReal(RealCustomerRequest realCustomerRequest) throws Exception {
+       individualCustomerBusinessRules.checkIfRealCustomerExist(realCustomerRequest);
+       return true;
+    }
+
 }

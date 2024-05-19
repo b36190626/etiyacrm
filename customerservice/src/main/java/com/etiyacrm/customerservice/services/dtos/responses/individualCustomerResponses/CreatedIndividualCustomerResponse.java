@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses;
+package com.etiyacrm.customerservice.services.dtos.responses.individualCustomerResponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class GetAllIndividualCustomerResponse {
+public class CreatedIndividualCustomerResponse {
     private String id;
     private String firstName;
     private String middleName;

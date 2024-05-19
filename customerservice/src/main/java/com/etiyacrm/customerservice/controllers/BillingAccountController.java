@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @CrossOrigin()
-@RequestMapping("customerservice/api/v1/billing-accounts")
+@RequestMapping("api/v1/billing-accounts")
 public class BillingAccountController {
     private BillingAccountService billingAccountService;
 

@@ -1,14 +1,10 @@
 package com.etiyacrm.customerservice.services.mappers;
 
-import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.UpdateIndividualCustomerRequest;
-import com.etiyacrm.customerservice.services.dtos.responses.IndividualCustomerResponses.*;
-import com.etiyacrm.customerservice.services.dtos.responses.cityresponses.DeletedCityResponse;
-import com.etiyacrm.customerservice.services.dtos.responses.cityresponses.GetCityResponse;
+import com.etiyacrm.customerservice.services.dtos.responses.individualCustomerResponses.*;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

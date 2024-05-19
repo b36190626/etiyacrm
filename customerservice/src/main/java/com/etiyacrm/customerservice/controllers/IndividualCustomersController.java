@@ -14,6 +14,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @RestController
 @AllArgsConstructor
 @CrossOrigin()
@@ -59,14 +61,21 @@ public class IndividualCustomersController {
     @GetMapping("/checkCustomerReal")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Check Customer")
-    public boolean checkIfCustomerReal(RealCustomerRequest realCustomerRequest) throws Exception {
-        return individualCustomerService.checkIfCustomerReal(realCustomerRequest);
+    public boolean checkIfCustomerReal(
+            @RequestParam String nationalityIdentity,
+            @RequestParam String firstName,
+            @RequestParam String middleName,
+            @RequestParam String lastName,
+            @RequestParam LocalDate birthDate
+            ) throws Exception {
+        return individualCustomerService.checkIfCustomerReal(
+                nationalityIdentity, firstName, middleName, lastName, birthDate);
     }
 
     @GetMapping("/checkNationalityIdentityDuplicated/{nationalityIdentity}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Check Nationality Identity Duplicated")
-    public boolean checkIfCustomerDuplicated(String nationalityIdentity){
+    public boolean checkIfCustomerDuplicated(@PathVariable String nationalityIdentity){
         return individualCustomerService.checkIfCustomerDuplicated(nationalityIdentity);
     }
 }

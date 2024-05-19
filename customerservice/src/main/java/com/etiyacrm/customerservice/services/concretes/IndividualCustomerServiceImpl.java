@@ -21,6 +21,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -124,8 +125,13 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     }
 
     @Override
-    public boolean checkIfCustomerReal(RealCustomerRequest realCustomerRequest) throws Exception {
-       individualCustomerBusinessRules.checkIfRealCustomerExist(realCustomerRequest);
+    public boolean checkIfCustomerReal(String nationalityIdentity,
+                                       String firstName,
+                                       String middleName,
+                                       String lastName,
+                                       LocalDate birthDate) throws Exception {
+       individualCustomerBusinessRules.checkIfRealCustomerExist(
+               nationalityIdentity, firstName, middleName, lastName, birthDate);
        return true;
     }
 

@@ -7,6 +7,8 @@ import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerReq
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomerResponses.*;
 
+import java.time.LocalDate;
+
 public interface IndividualCustomerService {
     CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception;
     PageInfoResponse<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo);
@@ -15,5 +17,9 @@ public interface IndividualCustomerService {
     DeletedIndividualCustomerResponse delete(String id);
 
     boolean checkIfCustomerDuplicated(String nationalityIdentity);
-    boolean checkIfCustomerReal(RealCustomerRequest realCustomerRequest) throws Exception;
+    boolean checkIfCustomerReal(String nationalityIdentity,
+                                String firstName,
+                                String middleName,
+                                String lastName,
+                                LocalDate birthDate) throws Exception;
 }

@@ -20,7 +20,7 @@ public class FilterRepositoryCustomImpl implements FilterRepositoryCustom{
         List<Criteria> criteriaList = new ArrayList<>();
 
         criteriaList.add(nationalityIdentity != null ? Criteria.where("nationalityIdentity").is(nationalityIdentity) : null);
-        criteriaList.add(id != null && !id.isEmpty() ? Criteria.where("id").regex(id, "i") : null);
+        criteriaList.add(id != null ? Criteria.where("id").is(id) : null);
         criteriaList.add(mobilePhone != null ? Criteria.where("mobilePhone").is(mobilePhone) : null);
         criteriaList.add(accountNumber != null ? Criteria.where("accountNumber").is(accountNumber) : null);
         criteriaList.add(firstName != null && !firstName.isEmpty() ? Criteria.where("firstName").regex(firstName, "i") : null);

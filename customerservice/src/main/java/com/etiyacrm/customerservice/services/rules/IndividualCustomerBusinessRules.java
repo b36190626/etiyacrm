@@ -12,6 +12,7 @@ import com.etiyacrm.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -57,13 +58,17 @@ public class IndividualCustomerBusinessRules {
         }
     }
 
-    public void checkIfRealCustomerExist(RealCustomerRequest realCustomerRequest) throws Exception {
-        String convertedFirstName = realCustomerRequest.getFirstName() + " " + realCustomerRequest.getMiddleName();
-        int convertedBirthDate = realCustomerRequest.getBirthDate().getYear();
+    public void checkIfRealCustomerExist(String nationalityIdentity,
+                                         String firstName,
+                                         String middleName,
+                                         String lastName,
+                                         LocalDate birthDate) throws Exception {
+        String convertedFirstName = firstName + " " + middleName;
+        int convertedBirthDate = birthDate.getYear();
         if (!customerCheckService.checkIfRealPerson(
-                realCustomerRequest.getNationalityIdentity(),
+                nationalityIdentity,
                 convertedFirstName,
-                realCustomerRequest.getLastName(),
+                lastName,
                 convertedBirthDate
         )){
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IdentityNumberNotExists));

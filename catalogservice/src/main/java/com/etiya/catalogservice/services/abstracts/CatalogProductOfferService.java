@@ -10,6 +10,8 @@ public interface CatalogProductOfferService {
     CreatedCatalogProductOfferResponse add(CreateCatalogProductOfferRequest createCatalogProductOfferRequest);
     UpdatedCatalogProductOfferResponse update(UpdateCatalogProductOfferRequest updateCatalogProductOfferRequest, String id);
     List<GetAllCatalogProductOfferResponse> getAll();
-    GetCatalogProductOfferResponse finByProductOfferId(String id);
+    GetCatalogProductOfferResponse findByProductOfferId(String id);
+
+    GetCatalogProductOfferResponse findByCatalogId(String catalogId);
     DeletedCatalogProductOfferResponse delete(String id);
 }

@@ -52,7 +52,15 @@ public class IndividualCustomerBusinessRules {
                                               String middleName,
                                               String lastName,
                                               int birthDate) throws Exception {
-        String convertedFirstName = firstName + " " + middleName;
+        String convertedFirstName;
+        if (middleName != null){
+            convertedFirstName = firstName + " " + middleName;
+        }
+        else {
+            convertedFirstName = firstName;
+        }
+
+
         if (!customerCheckService.checkIfRealPerson(nationalityIdentity, convertedFirstName, lastName, birthDate)){
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IdentityNumberNotExists));
         }
@@ -63,7 +71,14 @@ public class IndividualCustomerBusinessRules {
                                          String middleName,
                                          String lastName,
                                          LocalDate birthDate) throws Exception {
-        String convertedFirstName = firstName + " " + middleName;
+        String convertedFirstName;
+        if(middleName != null){
+            convertedFirstName = firstName + " " + middleName;
+        }
+        else {
+            convertedFirstName = firstName;
+        }
+
         int convertedBirthDate = birthDate.getYear();
         if (!customerCheckService.checkIfRealPerson(
                 nationalityIdentity,

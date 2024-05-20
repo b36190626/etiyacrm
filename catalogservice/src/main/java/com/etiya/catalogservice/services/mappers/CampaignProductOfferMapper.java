@@ -29,6 +29,9 @@ public interface CampaignProductOfferMapper {
     UpdatedCampaignProductOfferResponse updatedCampaignProductOfferResponseFromCampaignProductOffer(CampaignProductOffer campaignProductOffer);
     DeletedCampaignProductOfferResponse deletedCampaignProductOfferResponseFromCampaignProductOffer(CampaignProductOffer campaignProductOffer);
     @Mapping(source = "campaign.id", target = "campaignId")
+    @Mapping(source = "campaign.name", target = "campaignName")
     @Mapping(source = "productOffer.id", target = "productOfferId")
+    @Mapping(source = "productOffer.name", target = "productOfferName")
+    @Mapping(source = "productOffer.totalPrice", target = "productOfferTotalPrice")
     GetCampaignProductOfferResponse getCampaignProductOfferResponseFromCampaignProductOffer(CampaignProductOffer campaignProductOffer);
 }

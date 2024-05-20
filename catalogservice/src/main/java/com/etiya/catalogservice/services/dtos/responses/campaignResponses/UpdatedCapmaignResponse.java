@@ -12,4 +12,5 @@ public class UpdatedCapmaignResponse {
     private String name;
     private String description;
     private String code;
+    private String discount;
 }

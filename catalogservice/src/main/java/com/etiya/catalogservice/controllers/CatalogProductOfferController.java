@@ -47,7 +47,7 @@ public class CatalogProductOfferController {
         return catalogProductOfferService.findByProductOfferId(id);
     }
 
-    @GetMapping("/{/catalogId}")
+    @GetMapping("/{catalogId}")
     @ResponseStatus(HttpStatus.OK)
     public GetCatalogProductOfferResponse getById(@PathVariable String catalogId){
         return catalogProductOfferService.findByCatalogId(catalogId);

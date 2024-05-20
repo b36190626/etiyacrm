@@ -10,5 +10,8 @@ import lombok.NoArgsConstructor;
 public class GetCampaignProductOfferResponse {
     private String id;
     private String productOfferId;
+    private String productOfferName;
     private String campaignId;
+    private String campaignName;
+    private String productOfferTotalPrice;
 }

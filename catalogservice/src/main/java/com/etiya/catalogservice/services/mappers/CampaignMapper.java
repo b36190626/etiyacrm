@@ -5,6 +5,7 @@ import com.etiya.catalogservice.services.dtos.requests.campaignRequests.CreateCa
 import com.etiya.catalogservice.services.dtos.requests.campaignRequests.UpdateCampaignRequest;
 import com.etiya.catalogservice.services.dtos.responses.campaignResponses.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -16,6 +17,7 @@ public interface CampaignMapper {
     Campaign campaignFromUpdateCampaignRequest(UpdateCampaignRequest updateCampaignRequest);
     UpdatedCapmaignResponse updatedCampaignResponseFromCampaign(Campaign campaign);
     DeletedCampaignResponse deletedCampaignResponseFromCampaign(Campaign campaign);
+    @Mapping(source = "discount", target = "discount")
     GetCampaignResponse getCampaignResponseFromCampaign(Campaign campaign);
 
 }

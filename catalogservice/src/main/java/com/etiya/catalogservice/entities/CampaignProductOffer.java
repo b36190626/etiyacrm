@@ -19,7 +19,7 @@ public class CampaignProductOffer extends BaseEntity {
     @Column(name = "id")
     private String id;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "productOffer_id")
     private ProductOffer productOffer;
 

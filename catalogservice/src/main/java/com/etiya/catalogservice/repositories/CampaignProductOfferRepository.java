@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CampaignProductOfferRepository extends JpaRepository<CampaignProductOffer, String> {
     List<CampaignProductOffer> findByProductOfferId(String productOfferId);
+    List<CampaignProductOffer> findByCampaignId(String campaignId);
 }

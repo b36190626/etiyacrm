@@ -11,4 +11,5 @@ public class UpdateCampaignRequest {
     private String name;
     private String description;
     private String code;
+    private String discount;
 }

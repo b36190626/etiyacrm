@@ -1,12 +1,15 @@
 package com.etiya.catalogservice.services.concretes;
 
 import com.etiya.catalogservice.entities.CampaignProductOffer;
+import com.etiya.catalogservice.entities.ProductOffer;
 import com.etiya.catalogservice.repositories.CampaignProductOfferRepository;
 import com.etiya.catalogservice.services.abstracts.CampaignProductOfferService;
 import com.etiya.catalogservice.services.dtos.requests.campaignProductOfferRequests.CreateCampaignProductOfferRequest;
 import com.etiya.catalogservice.services.dtos.requests.campaignProductOfferRequests.UpdateCampaignProductOfferRequest;
 import com.etiya.catalogservice.services.dtos.responses.campaignProductOfferResponses.*;
+import com.etiya.catalogservice.services.dtos.responses.productOfferResponses.GetProductOfferResponse;
 import com.etiya.catalogservice.services.mappers.CampaignProductOfferMapper;
+import com.etiya.catalogservice.services.rules.CampaignProductOfferBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +21,17 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class CampaignProductOfferServiceImpl implements CampaignProductOfferService {
     private CampaignProductOfferRepository campaignProductOfferRepository;
+    private CampaignProductOfferBusinessRules campaignProductOfferBusinessRules;
     @Override
     public CreatedCampaignProductOfferResponse add(CreateCampaignProductOfferRequest createCampaignProductOfferRequest) {
+        ProductOffer newProductOffer = campaignProductOfferBusinessRules.calculateDiscountedPrice(createCampaignProductOfferRequest);
+
         CampaignProductOffer campaignProductOffer =
                 CampaignProductOfferMapper.INSTANCE.campaignProductOfferFromCreateCampaignProductOfferRequest(createCampaignProductOfferRequest);
+
+        campaignProductOffer.setProductOffer(newProductOffer);
         CampaignProductOffer createdCampaignProductOffer = campaignProductOfferRepository.save(campaignProductOffer);
+
 
         CreatedCampaignProductOfferResponse createdCampaignProductOfferResponse =
                 CampaignProductOfferMapper.INSTANCE.createdCampaignProductOfferResponseFromCampaignProductOffer(createdCampaignProductOffer);
@@ -55,6 +64,16 @@ public class CampaignProductOfferServiceImpl implements CampaignProductOfferServ
     @Override
     public List<GetCampaignProductOfferResponse> findByProductOfferId(String id) {
         List<CampaignProductOffer> campaignProductOfferList = campaignProductOfferRepository.findByProductOfferId(id); //düzelecek
+
+        List<GetCampaignProductOfferResponse> getCampaignProductOfferResponses =
+                campaignProductOfferList.stream().map(CampaignProductOfferMapper.INSTANCE::getCampaignProductOfferResponseFromCampaignProductOffer)
+                        .collect(Collectors.toList());
+        return getCampaignProductOfferResponses;
+    }
+
+    @Override
+    public List<GetCampaignProductOfferResponse> findByCampaignId(String campaignId) {
+        List<CampaignProductOffer> campaignProductOfferList = campaignProductOfferRepository.findByCampaignId(campaignId);
 
         List<GetCampaignProductOfferResponse> getCampaignProductOfferResponses =
                 campaignProductOfferList.stream().map(CampaignProductOfferMapper.INSTANCE::getCampaignProductOfferResponseFromCampaignProductOffer)

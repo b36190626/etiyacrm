@@ -39,11 +39,18 @@ public class CampaignProductOfferController {
         return campaignProductOfferService.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getByProductOfferId/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")
-    public List<GetCampaignProductOfferResponse> getById(@PathVariable String id) {
+    public List<GetCampaignProductOfferResponse> getByProductOfferId(@PathVariable String id) {
         return campaignProductOfferService.findByProductOfferId(id);
+    }
+
+    @GetMapping("/{campaignId}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "getById")
+    public List<GetCampaignProductOfferResponse> getById(@PathVariable String campaignId){
+        return campaignProductOfferService.findByCampaignId(campaignId);
     }
 
     @DeleteMapping("/{id}")

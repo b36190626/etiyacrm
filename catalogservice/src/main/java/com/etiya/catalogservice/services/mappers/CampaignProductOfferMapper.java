@@ -13,13 +13,19 @@ public interface CampaignProductOfferMapper {
     CampaignProductOfferMapper INSTANCE = Mappers.getMapper(CampaignProductOfferMapper.class);
 
     @Mapping(source = "campaign.id", target = "campaignId")
+    @Mapping(source = "campaign.name", target = "campaignName")
     @Mapping(source = "productOffer.id", target = "productOfferId")
+    @Mapping(source = "productOffer.name", target = "productOfferName")
+    @Mapping(source = "productOffer.totalPrice", target = "productOfferTotalPrice")
     GetAllCampaignProductOfferResponse getAllCampaignProductOfferResponseFromCampaignProductOffer(CampaignProductOffer campaignProductOffer);
     @Mapping(source = "campaignId", target = "campaign.id")
     @Mapping(source = "productOfferId", target = "productOffer.id")
     CampaignProductOffer campaignProductOfferFromCreateCampaignProductOfferRequest(CreateCampaignProductOfferRequest createCampaignProductOfferRequest);
     @Mapping(source = "campaign.id", target = "campaignId")
+    @Mapping(source = "campaign.name", target = "campaignName")
     @Mapping(source = "productOffer.id", target = "productOfferId")
+    @Mapping(source = "productOffer.name", target = "productOfferName")
+    @Mapping(source = "productOffer.totalPrice", target = "productOfferTotalPrice")
     CreatedCampaignProductOfferResponse createdCampaignProductOfferResponseFromCampaignProductOffer(CampaignProductOffer campaignProductOffer);
     @Mapping(source = "campaignId", target = "campaign.id")
     @Mapping(source = "productOfferId", target = "productOffer.id")

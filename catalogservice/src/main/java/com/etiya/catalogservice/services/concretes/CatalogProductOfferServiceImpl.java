@@ -57,21 +57,23 @@ public class CatalogProductOfferServiceImpl implements CatalogProductOfferServic
     }
 
     @Override
-    public GetCatalogProductOfferResponse findByProductOfferId(String id) {
-        CatalogProductOffer catalogProductOffer = catalogProductOfferRepository.findByProductOfferId(id);
+    public List<GetCatalogProductOfferResponse> findByProductOfferId(String id) {
+        List<CatalogProductOffer> catalogProductOfferList = catalogProductOfferRepository.findByProductOfferId(id);
 
-        GetCatalogProductOfferResponse getCatalogProductOfferResponse =
-                CatalogProductOfferMapper.INSTANCE.getCatalogProductOfferResponseFromCatalogProductOffer(catalogProductOffer);
-        return getCatalogProductOfferResponse;
+        List<GetCatalogProductOfferResponse> getCatalogProductOfferResponses = catalogProductOfferList.stream()
+                .map(CatalogProductOfferMapper.INSTANCE::getCatalogProductOfferResponseFromCatalogProductOffer)
+                .collect(Collectors.toList());
+        return getCatalogProductOfferResponses;
     }
 
     @Override
-    public GetCatalogProductOfferResponse findByCatalogId(String catalogId) {
-        CatalogProductOffer catalogProductOffer = catalogProductOfferRepository.findByCatalogId(catalogId);
+    public List<GetCatalogProductOfferResponse> findByCatalogId(String catalogId) {
+        List<CatalogProductOffer> catalogProductOfferList = catalogProductOfferRepository.findByCatalogId(catalogId);
 
-        GetCatalogProductOfferResponse getCatalogProductOfferResponse =
-                CatalogProductOfferMapper.INSTANCE.getCatalogProductOfferResponseFromCatalogProductOffer(catalogProductOffer);
-        return getCatalogProductOfferResponse;
+        List<GetCatalogProductOfferResponse> getCatalogProductOfferResponseList =
+                catalogProductOfferList.stream().map(CatalogProductOfferMapper.INSTANCE::getCatalogProductOfferResponseFromCatalogProductOffer)
+                        .collect(Collectors.toList());
+        return getCatalogProductOfferResponseList;
     }
 
     @Override

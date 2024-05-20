@@ -72,6 +72,16 @@ public class CampaignProductOfferServiceImpl implements CampaignProductOfferServ
     }
 
     @Override
+    public List<GetCampaignProductOfferResponse> findByCampaignId(String campaignId) {
+        List<CampaignProductOffer> campaignProductOfferList = campaignProductOfferRepository.findByCampaignId(campaignId);
+
+        List<GetCampaignProductOfferResponse> getCampaignProductOfferResponses =
+                campaignProductOfferList.stream().map(CampaignProductOfferMapper.INSTANCE::getCampaignProductOfferResponseFromCampaignProductOffer)
+                        .collect(Collectors.toList());
+        return getCampaignProductOfferResponses;
+    }
+
+    @Override
     public DeletedCampaignProductOfferResponse delete(String id) {
         CampaignProductOffer campaignProductOffer = campaignProductOfferRepository.findById(id).get();
         campaignProductOffer.setId(id);

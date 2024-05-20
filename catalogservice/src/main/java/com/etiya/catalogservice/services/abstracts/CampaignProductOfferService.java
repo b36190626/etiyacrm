@@ -11,6 +11,7 @@ public interface CampaignProductOfferService {
     UpdatedCampaignProductOfferResponse update(UpdateCampaignProductOfferRequest updateCampaignProductOfferRequest, String id);
     List<GetAllCampaignProductOfferResponse> getAll();
     List<GetCampaignProductOfferResponse> findByProductOfferId(String id);
+    List<GetCampaignProductOfferResponse> findByCampaignId(String campaignId);
     DeletedCampaignProductOfferResponse delete(String id);
 
 }

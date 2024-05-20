@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/catalogproductoffers")
+@RequestMapping("api/v1/catalog-product-offers")
 
 public class CatalogProductOfferController {
     private CatalogProductOfferService catalogProductOfferService;
@@ -40,11 +40,17 @@ public class CatalogProductOfferController {
         return catalogProductOfferService.getAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get-by-product-offer-id/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")
-    public GetCatalogProductOfferResponse getById(@PathVariable String id) {
-        return catalogProductOfferService.finByProductOfferId(id);
+    public GetCatalogProductOfferResponse getByProductOfferId(@PathVariable String id) {
+        return catalogProductOfferService.findByProductOfferId(id);
+    }
+
+    @GetMapping("/{/catalogId}")
+    @ResponseStatus(HttpStatus.OK)
+    public GetCatalogProductOfferResponse getById(@PathVariable String catalogId){
+        return catalogProductOfferService.findByCatalogId(catalogId);
     }
 
     @DeleteMapping("/{id}")

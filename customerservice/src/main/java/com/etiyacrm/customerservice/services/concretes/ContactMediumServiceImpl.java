@@ -16,7 +16,7 @@ import com.etiyacrm.customerservice.services.dtos.responses.contactMediumRespons
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.GetContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMediumResponses.UpdatedContactMediumResponse;
 import com.etiyacrm.customerservice.services.mappers.ContactMediumMapper;
-import com.etiyacrm.customerservice.services.rules.ContactMediumBussinessRules;
+import com.etiyacrm.customerservice.services.rules.ContactMediumBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,14 +26,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ContactMediumServiceImpl implements ContactMediumService {
     private ContactMediumRepository contactMediumRepository;
-    private ContactMediumBussinessRules contactMediumBussinessRules;
+    private ContactMediumBusinessRules contactMediumBusinessRules;
     private IndividualCustomerService individualCustomerService;
     private CustomerProducer customerProducer;
     private ContactMediumProducer contactMediumProducer;
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
-        //contactMediumBussinessRules.checkIfCustomerHasContactMedium(createContactMediumRequest.getCustomerId());
 
         ContactMedium contactMedium =
                 ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
@@ -85,7 +84,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
     @Override
     public GetContactMediumResponse getById(String id) {
-        contactMediumBussinessRules.checkIfContactMedium(id);
+        contactMediumBusinessRules.checkIfContactMedium(id);
 
         ContactMedium contactMedium = contactMediumRepository.findByCustomerId(id).get();
         GetContactMediumResponse contactMediumResponse =

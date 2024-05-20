@@ -11,6 +11,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface ProductOfferMapper {
     ProductOfferMapper INSTANCE = Mappers.getMapper(ProductOfferMapper.class);
+    @Mapping(source = "product.id", target = "productId")
     GetAllProductOfferResponse getAllProductOfferResponseFromProductOffer(ProductOffer productOffer);
     @Mapping(source = "productId" ,target = "product.id")
     ProductOffer productOfferFromCreateProductOfferRequest(CreateProductOfferRequest createProductOfferRequest);

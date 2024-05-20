@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CatalogProductOfferRepository extends JpaRepository<CatalogProductOffer, String> {
     CatalogProductOffer findByProductOfferId (String productOfferId);
+    CatalogProductOffer findByCatalogId (String catalogId);
 }

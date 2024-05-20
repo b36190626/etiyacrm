@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin()
 @RequestMapping("api/v1/campaigns")
 public class CampaignController {
     private CampaignService campaignService;

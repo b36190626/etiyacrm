@@ -57,8 +57,17 @@ public class CatalogProductOfferServiceImpl implements CatalogProductOfferServic
     }
 
     @Override
-    public List<GetCatalogProductOfferResponse> findByProductOfferId(String id) {
-        List<CatalogProductOffer> catalogProductOfferList = catalogProductOfferRepository.findByProductOfferId(id);
+    public GetCatalogProductOfferResponse findByProductOfferId(String productOfferId) {
+        CatalogProductOffer catalogProductOffer = catalogProductOfferRepository.findByProductOfferId(productOfferId);
+
+        GetCatalogProductOfferResponse getCatalogProductOfferResponse =
+                CatalogProductOfferMapper.INSTANCE.getCatalogProductOfferResponseFromCatalogProductOffer(catalogProductOffer);
+        return getCatalogProductOfferResponse;
+    }
+
+    @Override
+    public List<GetCatalogProductOfferResponse> findAllByProductOfferId(String id) {
+        List<CatalogProductOffer> catalogProductOfferList = catalogProductOfferRepository.findAllByProductOfferId(id);
 
         List<GetCatalogProductOfferResponse> getCatalogProductOfferResponses = catalogProductOfferList.stream()
                 .map(CatalogProductOfferMapper.INSTANCE::getCatalogProductOfferResponseFromCatalogProductOffer)
@@ -67,8 +76,16 @@ public class CatalogProductOfferServiceImpl implements CatalogProductOfferServic
     }
 
     @Override
-    public List<GetCatalogProductOfferResponse> findByCatalogId(String catalogId) {
-        List<CatalogProductOffer> catalogProductOfferList = catalogProductOfferRepository.findByCatalogId(catalogId);
+    public GetCatalogProductOfferResponse findByCatalogId(String catalogId) {
+        CatalogProductOffer catalogProductOffer = catalogProductOfferRepository.findByCatalogId(catalogId);
+        GetCatalogProductOfferResponse getCatalogProductOfferResponse =
+                CatalogProductOfferMapper.INSTANCE.getCatalogProductOfferResponseFromCatalogProductOffer(catalogProductOffer);
+        return getCatalogProductOfferResponse;
+    }
+
+    @Override
+    public List<GetCatalogProductOfferResponse> findAllByCatalogId(String catalogId) {
+        List<CatalogProductOffer> catalogProductOfferList = catalogProductOfferRepository.findAllByCatalogId(catalogId);
 
         List<GetCatalogProductOfferResponse> getCatalogProductOfferResponseList =
                 catalogProductOfferList.stream().map(CatalogProductOfferMapper.INSTANCE::getCatalogProductOfferResponseFromCatalogProductOffer)

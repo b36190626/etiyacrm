@@ -67,7 +67,6 @@ public class AddressServiceImpl implements AddressService {
 
         Address address =
                 AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
-
         Address createdAddress = addressRepository.save(address);
 
         CreatedAddressResponse createdAddressResponse =
@@ -81,7 +80,9 @@ public class AddressServiceImpl implements AddressService {
 
         Address address =
                 AddressMapper.INSTANCE.addressFromUpdateAddressRequest(updateAddressRequest);
-
+        boolean setDefaultAddress =
+                addressBusinessRules.checkIfOneAddress(updateAddressRequest);
+        address.setDefaultAddress(setDefaultAddress);
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
         address.setId(id);
         address.setUpdatedDate(LocalDateTime.now());

@@ -44,13 +44,26 @@ public class CatalogProductOfferController {
     @GetMapping("/get-by-product-offer-id/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")
-    public List<GetCatalogProductOfferResponse> getByProductOfferId(@PathVariable String id) {
+    public List<GetCatalogProductOfferResponse> getAllByProductOfferId(@PathVariable String id) {
+        return catalogProductOfferService.findAllByProductOfferId(id);
+    }
+
+    @GetMapping("/get-product-offer/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "getById")
+    public GetCatalogProductOfferResponse getByProductOfferId(@PathVariable String id) {
         return catalogProductOfferService.findByProductOfferId(id);
     }
 
     @GetMapping("/{catalogId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<GetCatalogProductOfferResponse> getById(@PathVariable String catalogId){
+    public List<GetCatalogProductOfferResponse> getAllById(@PathVariable String catalogId){
+        return catalogProductOfferService.findAllByCatalogId(catalogId);
+    }
+
+    @GetMapping("/get-catalog-product/{catalogId}")
+    @ResponseStatus(HttpStatus.OK)
+    public GetCatalogProductOfferResponse getById(@PathVariable String catalogId){
         return catalogProductOfferService.findByCatalogId(catalogId);
     }
 

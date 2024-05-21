@@ -24,7 +24,7 @@ public class District extends BaseEntity {
     @Column(name="name")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = {CascadeType.MERGE , CascadeType.PERSIST})
     @JoinColumn(name = "city_id")
     private City city;
 }

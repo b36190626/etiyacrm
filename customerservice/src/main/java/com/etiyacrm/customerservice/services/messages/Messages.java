@@ -5,6 +5,7 @@ public class Messages {
         public static final String CityNameExists ="cityNameExists";
         public static final String CityDeleted="cityDeleted";
         public static final String AddressDeleted="addressDeleted";
+        public static final String CustomerShouldHaveAtLeastOneAddress= "customerShouldHaveAtLeastOneAddress";
 
         public static final String IndividualCustomerDeleted="individualCustomerDeleted";
         public static final String NationalityIdentityExists = "nationalityIdentityExists";

@@ -44,23 +44,20 @@ public class AddressBusinessRules {
         return isDefaultAddress;
     }
 
-    public boolean cantDeleteLastAddress(String customerId){
+    public void cantDeleteLastAddress(String customerId){
         List<Address> addressList = addressRepository.findByCustomerId(customerId);
-
-        if (addressList.size()== 1){
-            for (Address address : addressList){
-                address.setDefaultAddress(true);
-                return true;
-            }
+        if (addressList.size() == 1){
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CustomerShouldHaveAtLeastOneAddress));
         }
-        return false;
     }
+
+
 
     public void setDefaultAddress(String customerId, String addressId){
         List<Address> addressList = addressRepository.findByCustomerId(customerId);
 
         for (Address address : addressList){
-            if (address.getId().equals(addressId)){
+            if (address.getId().equals(addressId) || addressList.size() == 1){
                 address.setDefaultAddress(true);
             }
             else {

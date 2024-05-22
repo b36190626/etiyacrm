@@ -61,9 +61,14 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     }
 
     @Override
-    public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest, String id) {
+    public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest, String id) throws Exception {
         individualCustomerBusinessRules.checkIfIndividualCustomer(id);
-        individualCustomerBusinessRules.nationalityIdentityCannotBeDuplicated(updateIndividualCustomerRequest.getNationalityIdentity());
+        individualCustomerBusinessRules.checkIfRealCustomerExist(
+                updateIndividualCustomerRequest.getNationalityIdentity(),
+                updateIndividualCustomerRequest.getFirstName(),
+                updateIndividualCustomerRequest.getMiddleName(),
+                updateIndividualCustomerRequest.getLastName(),
+                updateIndividualCustomerRequest.getBirthDate());
 
         IndividualCustomer individualCustomer =
                 IndividualCustomerMapper.INSTANCE.individualCustomerFromUpdateIndividualCustomerRequest(updateIndividualCustomerRequest);

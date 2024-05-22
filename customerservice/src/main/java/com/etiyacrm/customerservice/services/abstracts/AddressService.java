@@ -16,6 +16,6 @@ public interface AddressService {
     UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest, String id);
     DeletedAddressResponse delete(String id);
 
-    UpdatedDefaultAddressResponse putDefaultAddress(UpdateDefaultAddressRequest updateDefaultAddressRequest);
+    UpdatedDefaultAddressResponse putDefaultAddress(String id, UpdateDefaultAddressRequest updateDefaultAddressRequest);
     List<GetAllAddressResponse> getAll();
 }

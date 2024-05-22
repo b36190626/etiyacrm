@@ -3,22 +3,14 @@ package com.etiyacrm.customerservice.services.concretes;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.entities.Address;
-import com.etiyacrm.customerservice.entities.City;
-import com.etiyacrm.customerservice.entities.Customer;
-import com.etiyacrm.customerservice.entities.District;
 import com.etiyacrm.customerservice.repositories.AddressRepository;
 import com.etiyacrm.customerservice.services.abstracts.AddressService;
-import com.etiyacrm.customerservice.services.abstracts.CityService;
-import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.CreateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.UpdateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.UpdateDefaultAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.addressResponses.*;
-import com.etiyacrm.customerservice.services.dtos.responses.cityresponses.GetAllCityResponse;
 import com.etiyacrm.customerservice.services.mappers.AddressMapper;
-import com.etiyacrm.customerservice.services.mappers.CityMapper;
 import com.etiyacrm.customerservice.services.rules.AddressBusinessRules;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -111,12 +103,12 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public UpdatedDefaulAddressResponse putDefaultAddress(UpdateDefaultAddressRequest updateDefaultAddressRequest) {
+    public UpdatedDefaultAddressResponse putDefaultAddress(UpdateDefaultAddressRequest updateDefaultAddressRequest) {
         Address address = addressRepository.findById(updateDefaultAddressRequest.getId()).get();
         address.setId(updateDefaultAddressRequest.getId());
         address.setDefaultAddress(updateDefaultAddressRequest.isDefaultAddress());
-        UpdatedDefaulAddressResponse updatedDefaulAddressResponse = new UpdatedDefaulAddressResponse(address.getId(), address.isDefaultAddress());
-        return updatedDefaulAddressResponse;
+        UpdatedDefaultAddressResponse updatedDefaultAddressResponse = new UpdatedDefaultAddressResponse(address.getId(), address.isDefaultAddress());
+        return updatedDefaultAddressResponse;
 
     }
 

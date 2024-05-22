@@ -66,7 +66,7 @@ public class AddressesController {
 
     @PutMapping("/setDefaultAddress")
     @ResponseStatus(HttpStatus.OK)
-    public UpdatedDefaulAddressResponse updateDefaultAddress(@RequestBody UpdateDefaultAddressRequest updateDefaultAddressRequest){
+    public UpdatedDefaultAddressResponse updateDefaultAddress(@RequestBody UpdateDefaultAddressRequest updateDefaultAddressRequest){
         return addressService.putDefaultAddress(updateDefaultAddressRequest);
     }
 

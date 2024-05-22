@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdatedDefaulAddressResponse {
+public class UpdatedDefaultAddressResponse {
     String id;
     boolean defaultAddress;
 }

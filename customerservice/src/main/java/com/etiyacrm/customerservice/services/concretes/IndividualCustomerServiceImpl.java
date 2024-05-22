@@ -69,10 +69,11 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
                 updateIndividualCustomerRequest.getMiddleName(),
                 updateIndividualCustomerRequest.getLastName(),
                 updateIndividualCustomerRequest.getBirthDate());
-
+        String confirmedNationalityIdentity = individualCustomerBusinessRules.checkIfIndividualCustomerCanUpdate(id, updateIndividualCustomerRequest.getNationalityIdentity());
         IndividualCustomer individualCustomer =
                 IndividualCustomerMapper.INSTANCE.individualCustomerFromUpdateIndividualCustomerRequest(updateIndividualCustomerRequest);
         individualCustomer.setId(id);
+        individualCustomer.setNationalityIdentity(confirmedNationalityIdentity);
         IndividualCustomer updatedIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse =

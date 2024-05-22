@@ -104,6 +104,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public UpdatedDefaultAddressResponse putDefaultAddress(String id ,UpdateDefaultAddressRequest updateDefaultAddressRequest) {
         addressBusinessRules.setDefaultAddress(updateDefaultAddressRequest.getCustomerId(), id);
+        addressBusinessRules.cantDeleteLastAddress(id);
 
         Address address = addressRepository.findById(id).get();
         address.setId(id);
@@ -113,6 +114,5 @@ public class AddressServiceImpl implements AddressService {
         return updatedDefaultAddressResponse;
 
     }
-
 
 }

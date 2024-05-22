@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public interface IndividualCustomerService {
     CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception;
     PageInfoResponse<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo);
-    UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest, String id);
+    UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest, String id) throws Exception;
     GetIndividualCustomerResponse getById(String id);
     DeletedIndividualCustomerResponse delete(String id);
 

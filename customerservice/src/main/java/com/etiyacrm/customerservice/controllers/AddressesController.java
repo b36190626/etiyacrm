@@ -64,10 +64,11 @@ public class AddressesController {
     }
 
 
-    @PutMapping("/setDefaultAddress")
+    @PutMapping("/setDefaultAddress/{/id}")
     @ResponseStatus(HttpStatus.OK)
-    public UpdatedDefaultAddressResponse updateDefaultAddress(@RequestBody UpdateDefaultAddressRequest updateDefaultAddressRequest){
-        return addressService.putDefaultAddress(updateDefaultAddressRequest);
+    public UpdatedDefaultAddressResponse updateDefaultAddress(@RequestBody UpdateDefaultAddressRequest updateDefaultAddressRequest,
+                                                              @PathVariable String id){
+        return addressService.putDefaultAddress(id, updateDefaultAddressRequest);
     }
 
 }

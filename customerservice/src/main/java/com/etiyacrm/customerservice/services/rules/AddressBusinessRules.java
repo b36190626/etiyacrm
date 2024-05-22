@@ -28,9 +28,9 @@ public class AddressBusinessRules {
         }
     }
 
-    public boolean checkIfOneAddress(UpdateAddressRequest updateAddressRequest){
-        List<Address> addressList = addressRepository.findByCustomerId(updateAddressRequest.getCustomerId());
-        if (addressList.size() < 2) {
+    public boolean checkIfOneAddress(String customerId, boolean isDefaultAddress){
+        List<Address> addressList = addressRepository.findByCustomerId(customerId);
+        if (addressList.size() == 1) {
             for (Address address : addressList){
                 address.setDefaultAddress(true);
                 return true;
@@ -38,9 +38,21 @@ public class AddressBusinessRules {
         }
         else {
             Address address = new Address();
-            address.setDefaultAddress(updateAddressRequest.isDefaultAddress());
+            address.setDefaultAddress(isDefaultAddress);
             return false;
         }
-        return updateAddressRequest.isDefaultAddress();
+        return isDefaultAddress;
+    }
+
+    public boolean cantDeleteLastAddress(String customerId){
+        List<Address> addressList = addressRepository.findByCustomerId(customerId);
+
+        if (addressList.size()== 1){
+            for (Address address : addressList){
+                address.setDefaultAddress(true);
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -81,7 +81,7 @@ public class AddressServiceImpl implements AddressService {
         Address address =
                 AddressMapper.INSTANCE.addressFromUpdateAddressRequest(updateAddressRequest);
         boolean setDefaultAddress =
-                addressBusinessRules.checkIfOneAddress(updateAddressRequest);
+                addressBusinessRules.checkIfOneAddress(updateAddressRequest.getCustomerId(), updateAddressRequest.isDefaultAddress());
         address.setDefaultAddress(setDefaultAddress);
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
         address.setId(id);
@@ -98,6 +98,7 @@ public class AddressServiceImpl implements AddressService {
     public DeletedAddressResponse delete(String id) {
         Address address = addressRepository.findById(id).get();
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
+        addressBusinessRules.cantDeleteLastAddress(id);
         address.setId(id);
         address.setDeletedDate(LocalDateTime.now());
         Address deletedAddress = addressRepository.save(address);

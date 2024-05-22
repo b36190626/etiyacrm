@@ -55,4 +55,18 @@ public class AddressBusinessRules {
         }
         return false;
     }
+
+    public void setDefaultAddress(String customerId, String addressId){
+        List<Address> addressList = addressRepository.findByCustomerId(customerId);
+
+        for (Address address : addressList){
+            if (address.getId().equals(addressId)){
+                address.setDefaultAddress(true);
+            }
+            else {
+                address.setDefaultAddress(false);
+            }
+            addressRepository.save(address);
+        }
+    }
 }

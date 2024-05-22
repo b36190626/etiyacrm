@@ -5,6 +5,7 @@ import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.services.abstracts.AddressService;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.CreateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.UpdateAddressRequest;
+import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.UpdateDefaultAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.addressResponses.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -60,6 +61,13 @@ public class AddressesController {
     @ResponseStatus(HttpStatus.OK)
     public DeletedAddressResponse delete(@PathVariable String id){
         return addressService.delete(id);
+    }
+
+
+    @PutMapping("/setDefaultAddress")
+    @ResponseStatus(HttpStatus.OK)
+    public UpdatedDefaulAddressResponse updateDefaultAddress(@RequestBody UpdateDefaultAddressRequest updateDefaultAddressRequest){
+        return addressService.putDefaultAddress(updateDefaultAddressRequest);
     }
 
 }

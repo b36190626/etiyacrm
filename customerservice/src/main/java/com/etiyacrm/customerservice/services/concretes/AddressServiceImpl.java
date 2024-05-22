@@ -12,6 +12,7 @@ import com.etiyacrm.customerservice.services.abstracts.CityService;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.CreateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.UpdateAddressRequest;
+import com.etiyacrm.customerservice.services.dtos.requests.addressRequests.UpdateDefaultAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.addressResponses.*;
 import com.etiyacrm.customerservice.services.dtos.responses.cityresponses.GetAllCityResponse;
 import com.etiyacrm.customerservice.services.mappers.AddressMapper;
@@ -68,7 +69,7 @@ public class AddressServiceImpl implements AddressService {
         Address address =
                 AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
         Address createdAddress = addressRepository.save(address);
-
+        addressBusinessRules.cantDeleteLastAddress(createAddressRequest.getCustomerId());
         CreatedAddressResponse createdAddressResponse =
                 AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
 
@@ -108,5 +109,16 @@ public class AddressServiceImpl implements AddressService {
         deletedAddressResponse.setDeletedDate(deletedAddress.getDeletedDate());
         return deletedAddressResponse;
     }
+
+    @Override
+    public UpdatedDefaulAddressResponse putDefaultAddress(UpdateDefaultAddressRequest updateDefaultAddressRequest) {
+        Address address = addressRepository.findById(updateDefaultAddressRequest.getId()).get();
+        address.setId(updateDefaultAddressRequest.getId());
+        address.setDefaultAddress(updateDefaultAddressRequest.isDefaultAddress());
+        UpdatedDefaulAddressResponse updatedDefaulAddressResponse = new UpdatedDefaulAddressResponse(address.getId(), address.isDefaultAddress());
+        return updatedDefaulAddressResponse;
+
+    }
+
 
 }

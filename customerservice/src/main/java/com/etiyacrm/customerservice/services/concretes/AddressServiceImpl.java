@@ -107,6 +107,7 @@ public class AddressServiceImpl implements AddressService {
         Address address = addressRepository.findById(id).get();
         address.setId(id);
         address.setDefaultAddress(updateDefaultAddressRequest.isDefaultAddress());
+        addressRepository.save(address);
         UpdatedDefaultAddressResponse updatedDefaultAddressResponse = new UpdatedDefaultAddressResponse(address.getId(), address.isDefaultAddress());
         return updatedDefaultAddressResponse;
 

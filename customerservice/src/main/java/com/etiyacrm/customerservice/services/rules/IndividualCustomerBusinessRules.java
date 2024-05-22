@@ -6,6 +6,7 @@ import com.etiyacrm.customerservice.core.business.abstracts.MessageService;
 import com.etiyacrm.customerservice.core.crossCusttingConcerns.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
+import com.etiyacrm.customerservice.repositories.CustomerRepository;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
 import com.etiyacrm.customerservice.services.dtos.requests.IndividualCustomerRequests.RealCustomerRequest;
 import com.etiyacrm.customerservice.services.messages.Messages;
@@ -45,6 +46,22 @@ public class IndividualCustomerBusinessRules {
         if (individualCustomer.isEmpty()) {
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerIdNotExists));
         }
+    }
+
+    public String checkIfIndividualCustomerCanUpdate(String id ,String nationalityIdentity){
+        Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findById(id);
+
+        if (!individualCustomer.isPresent()) {
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerIdNotExists));
+        }
+
+        IndividualCustomer existingCustomer = individualCustomer.get();
+
+        Optional<IndividualCustomer> customerWithSameNationalityIdentity = individualCustomerRepository.findByNationalityIdentity(nationalityIdentity);
+        if (customerWithSameNationalityIdentity.isPresent() && !customerWithSameNationalityIdentity.get().getId().equals(existingCustomer.getId())) {
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.NationalityIdentityExists));
+        }
+        return nationalityIdentity;
     }
 
     public void checkIfNationalIdentityExists(String nationalityIdentity,

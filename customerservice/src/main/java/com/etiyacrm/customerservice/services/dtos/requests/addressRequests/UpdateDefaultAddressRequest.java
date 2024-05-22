@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateDefaultAddressRequest {
-    boolean defaultAddress;
+    private String customerId;
+    private boolean defaultAddress;
 }

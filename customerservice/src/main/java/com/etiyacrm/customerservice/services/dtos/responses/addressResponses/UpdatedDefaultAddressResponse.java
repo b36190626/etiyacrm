@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdatedDefaultAddressResponse {
-    String id;
-    boolean defaultAddress;
+    private String id;
+    private boolean defaultAddress;
 }

@@ -104,6 +104,8 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public UpdatedDefaultAddressResponse putDefaultAddress(String id ,UpdateDefaultAddressRequest updateDefaultAddressRequest) {
+        addressBusinessRules.setDefaultAddress(updateDefaultAddressRequest.getCustomerId(), id);
+
         Address address = addressRepository.findById(id).get();
         address.setId(id);
         address.setDefaultAddress(updateDefaultAddressRequest.isDefaultAddress());

@@ -33,7 +33,7 @@ public class IndividualCustomersController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update")
     public UpdatedIndividualCustomerResponse update(@Valid @RequestBody UpdateIndividualCustomerRequest updateIndividualCustomerRequest,
-                                                    @PathVariable String id){
+                                                    @PathVariable String id) throws Exception {
         return individualCustomerService.update(updateIndividualCustomerRequest, id);
     }
 

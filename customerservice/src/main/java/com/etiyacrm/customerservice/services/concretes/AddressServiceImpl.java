@@ -61,7 +61,6 @@ public class AddressServiceImpl implements AddressService {
         Address address =
                 AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
         Address createdAddress = addressRepository.save(address);
-        addressBusinessRules.cantDeleteLastAddress(createAddressRequest.getCustomerId());
         CreatedAddressResponse createdAddressResponse =
                 AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
 

@@ -90,7 +90,7 @@ public class AddressServiceImpl implements AddressService {
     public DeletedAddressResponse delete(String id) {
         Address address = addressRepository.findById(id).get();
         addressBusinessRules.checkIfAddressDeleted(address.getDeletedDate());
-        addressBusinessRules.cantDeleteLastAddress(id);
+        addressBusinessRules.cantDeleteLastAddress(address.getCustomer().getId());
         address.setId(id);
         address.setDeletedDate(LocalDateTime.now());
         Address deletedAddress = addressRepository.save(address);

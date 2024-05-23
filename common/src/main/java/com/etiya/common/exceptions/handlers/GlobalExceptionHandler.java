@@ -1,6 +1,7 @@
 package com.etiya.common.exceptions.handlers;
 
 import com.etiya.common.exceptions.details.BusinessProblemDetails;
+import com.etiya.common.exceptions.details.ProblemDetails;
 import com.etiya.common.exceptions.details.ValidationProblemDetails;
 import com.etiya.common.exceptions.types.BusinessException;
 import org.springframework.http.HttpStatus;
@@ -41,10 +42,10 @@ public class GlobalExceptionHandler {
 
     }
 
-/*    @ExceptionHandler({Exception.class})
+    @ExceptionHandler({Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ProblemDetails handleException() {
         return new ProblemDetails("Unknown Error","Some error occurred."
-                ,"https://etiya.com/exceptions/unknown","400");
-    }*/
+                ,"https://etiya.com/exceptions/unknown","500");
+    }
 }

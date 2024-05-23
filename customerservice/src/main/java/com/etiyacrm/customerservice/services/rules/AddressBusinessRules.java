@@ -52,7 +52,6 @@ public class AddressBusinessRules {
     }
 
 
-
     public void setDefaultAddress(String customerId, String addressId){
         List<Address> addressList = addressRepository.findByCustomerId(customerId);
 
